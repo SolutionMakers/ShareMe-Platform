@@ -4,32 +4,14 @@ const bcrypt = require("bcrypt");
 const salt = 10;
 
 const createNewUser = async (req, res) => {
-  const {
-    userName,
-    email,
-    password,
-    dob,
-    country,
-    profileimage,
-    gender,
-    role_id,
-  } = req.body;
+  const { userName, email, password, dob, country, profileimage, gender } =
+    req.body;
 
   const encryptedPassword = await bcrypt.hash(password, salt);
 
-  const query = `INSERT INTO users (userName, email, password, dob, email, password, country, profileimage, gender, role_id) VALUES (?,?,?,?,?,?,?,?)`;
-  const data = [
-    userName,
-    email,
-    encryptedPassword,
-    country,
-    `DATE ${dob}`,
-    country,
-    profileimage,
-    gender,
-    role_id,
-  ];
-  connection.query(query, data, (err, results) => {
+  const query = `INSERT INTO users (userName, email, password, dob, country, profileimage, gender) VALUES ('${userName}', '${email}', '${encryptedPassword}', DATE '${dob}', '${country}', '${profileimage}', '${gender}')`;
+
+  connection.query(query, (err, results) => {
     if (err) {
       return res.status(409).json({
         success: false,
@@ -46,6 +28,40 @@ const createNewUser = async (req, res) => {
 };
 
 /************************************* */
+
+const updateProfilePhoto = (req, res) => {
+  const  profileimage = req.body.profileimage;
+  const id = req.params.id;
+
+  const query = `UPDATE users SET profileimage=? WHERE id=?;`;
+
+  const data = [profileimage, id];
+
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(404).json({
+        success: false,
+        massage: `Server error`,
+        err: err,
+      });
+    }
+    if (results.changedRows == 0) {
+      res.status(404).json({
+        success: false,
+        massage: `The User : ${id} is not found`,
+        err: err,
+      });
+    }
+    // result are the data returned by mysql server
+    res.status(201).json({
+      success: true,
+      massage: `profile image updated`,
+      results: results,
+    });
+  });
+};
+/************************************* */
+
 module.exports = {
-  createNewUser,
+  createNewUser,updateProfilePhoto
 };
