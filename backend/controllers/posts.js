@@ -26,7 +26,7 @@ const createNewPost = (req, res) => {
 const getPostsbyUserId = (req, res) => {
   const user_id = req.params.user_id;
 
-  const query = `SELECT * FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=? AND posts.is_deleted=0;`;
+  const query = `SELECT * FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=?;`;
   const data = [user_id];
 
   connection.query(query, data, (err, results) => {
@@ -95,7 +95,7 @@ const getPostById = (req, res) => {
     });
   });
 };
-/************************************************** */
+
 const updatePostById = (req, res) => {
   const { description, media } = req.body;
   const id = req.params.id;
@@ -165,10 +165,6 @@ module.exports = {
   getAllPosts,
   getPostsbyUserId,
   getPostById,
-
   updatePostById,
-
-  deletePostById
-
-
+  deletePostById,
 };

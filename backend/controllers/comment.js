@@ -25,6 +25,30 @@ const createNewComment = (req, res) => {
   });
 };
 
+const getAllCommentsById = (req, res) => {
+  const post_id = req.params.id;
+
+  const query = `SELECT * FROM comments INNER JOIN users ON users.id=comments.commenter_id WHERE comments.post_id=?;`;
+  const data = [post_id];
+
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(404).json({
+        success: false,
+        massage: "The comments Not Found",
+        err: err,
+      });
+    }
+ 
+    res.status(200).json({
+      success: true,
+      massage: `All the comments for the Post: ${post_id}`,
+      results: results,
+    });
+  });
+};
+
 module.exports = {
   createNewComment,
+  getAllCommentsById
 };
