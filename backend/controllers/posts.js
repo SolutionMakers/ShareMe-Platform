@@ -26,7 +26,7 @@ const createNewPost = (req, res) => {
 const getPostsbyUserId = (req, res) => {
   const user_id = req.params.user_id;
 
-  const query = `SELECT * FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=?;`;
+  const query = `SELECT * FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=? AND posts.is_deleted=0;`;
   const data = [user_id];
 
   connection.query(query, data, (err, results) => {
@@ -129,10 +129,46 @@ const updatePostById = (req, res) => {
 };
 /************************************* */
 
+const deletePostById = (req, res) => {
+  const id = req.params.id;
+
+  const query = `UPDATE Posts SET is_deleted=1 WHERE id=?;`;
+
+  const data = [id];
+
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        massage: "Server Error",
+        err: err,
+      });
+    }
+    if (!results.changedRows) {
+      return res.status(404).json({
+        success: false,
+        massage: `The Post: ${id} is not found`,
+        err: err,
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      massage: `Succeeded to delete Post with id: ${id}`,
+      results: results,
+    });
+  });
+};
+
 module.exports = {
   createNewPost,
   getAllPosts,
   getPostsbyUserId,
   getPostById,
+
   updatePostById,
+
+  deletePostById
+
+
 };
