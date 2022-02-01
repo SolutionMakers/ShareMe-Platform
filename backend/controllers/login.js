@@ -6,7 +6,7 @@ const login = (req, res) => {
   const password = req.body.password;
   const userName = req.body.userName;
 
-  const query = `SELECT * FROM users INNER JOIN roles ON users.role_id=roles.id WHERE userName=?`;
+  const query = `SELECT * FROM users WHERE userName=?`;
   const data = [userName];
   connection.query(query, data, (err, results) => {
     if (err) throw err;
