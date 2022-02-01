@@ -9,15 +9,6 @@ const createNewPost = (req, res) => {
 
   connection.query(query, data, (err, results) => {
     if (err) {
-    return  res.status(500).json({
-
-  const { description, media } = req.body;
-  const user_id = req.token.userId;
-  const query = `INSERT INTO posts (description,user_id,media) VALUES (?,?,?);`;
-  const data = [description, user_id, media];
-
-  connection.query(query, data, (err, results) => {
-    if (err) {
       return res.status(500).json({
 
         success: false,
@@ -35,7 +26,7 @@ const createNewPost = (req, res) => {
 
 
 /* **************************************** */ 
-const getPostsbyUserId = (req, res) => {
+const getPostsByUserId = (req, res) => {
   const user_id = req.params.user_id;
 
   const query = `SELECT * FROM posts WHERE user_id=? AND is_deleted=0;`;
@@ -83,6 +74,6 @@ const getAllPosts = (req, res) => {
 module.exports = {
   createNewPost,
   getAllPosts,
-  getPostsbyUserId
+  getPostsByUserId
 
 };
