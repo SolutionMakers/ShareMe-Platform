@@ -1,5 +1,6 @@
 DROP DATABASE MERAKI_Academy_Project_5;
 CREATE DATABASE MERAKI_Academy_Project_5;
+USE MERAKI_Academy_Project_5;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT NOT NULL,
@@ -41,9 +42,21 @@ CREATE TABLE comments(
     PRIMARY KEY (id)
 );
 
+
 CREATE TABLE roles (
     id INT AUTO_INCREMENT NOT NULL,
     role VARCHAR(255) NOT NULL UNIQUE,
     is_deleted TINYINT DEFAULT 0,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE likes(
+    id INT AUTO_INCREMENT NOT NULL,
+    users_id INT,
+    FOREIGN KEY (users_id) REFERENCES users(id),
+    post_id INT,
+    FOREIGN KEY (post_id) REFERENCES posts(id),
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (id)
+)
+
