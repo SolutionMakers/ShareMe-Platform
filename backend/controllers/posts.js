@@ -26,10 +26,10 @@ const createNewPost = (req, res) => {
 
 
 /* **************************************** */ 
-const getPostsByUserId = (req, res) => {
+const getPostsbyUserId = (req, res) => {
   const user_id = req.params.user_id;
 
-  const query = `SELECT * FROM posts WHERE user_id=? AND is_deleted=0;`;
+  const query = `SELECT * FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=?;`;
   const data = [user_id];
 
   connection.query(query, data, (err, results) => {
@@ -74,6 +74,6 @@ const getAllPosts = (req, res) => {
 module.exports = {
   createNewPost,
   getAllPosts,
-  getPostsByUserId
+  getPostsbyUserId,
 
 };
