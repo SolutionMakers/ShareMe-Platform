@@ -42,6 +42,14 @@ CREATE TABLE comments(
     PRIMARY KEY (id)
 );
 
+
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT NOT NULL,
+    role VARCHAR(255) NOT NULL UNIQUE,
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE likes(
     id INT AUTO_INCREMENT NOT NULL,
     users_id INT,
@@ -51,3 +59,4 @@ CREATE TABLE likes(
     is_deleted TINYINT DEFAULT 0,
     PRIMARY KEY (id)
 )
+
