@@ -6,6 +6,7 @@ const db = require("./database/db");
 const loginRouter = require("./routes/login");
 const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/post");
+const commentsRouter = require('./routes/comments')
 app.use(cors());
 
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use("/login", loginRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
+app.use('/',commentsRouter);
 
 const PORT = 5000;
 
