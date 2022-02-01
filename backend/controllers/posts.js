@@ -1,16 +1,14 @@
 const connection = require("../database/db");
 
 const createNewPost = (req, res) => {
-
-  const { description,media } = req.body;
+  const { description, media } = req.body;
   const user_id = req.token.userId;
   const query = `INSERT INTO posts (description,user_id,media) VALUES (?,?,?);`;
-  const data = [description, user_id,media];
+  const data = [description, user_id, media];
 
   connection.query(query, data, (err, results) => {
     if (err) {
       return res.status(500).json({
-
         success: false,
         massage: "Server error",
         err: err,
@@ -24,8 +22,7 @@ const createNewPost = (req, res) => {
   });
 };
 
-
-/* **************************************** */ 
+/* **************************************** */
 const getPostsbyUserId = (req, res) => {
   const user_id = req.params.user_id;
 
@@ -40,7 +37,7 @@ const getPostsbyUserId = (req, res) => {
         err: err,
       });
     }
- 
+
     res.status(200).json({
       success: true,
       massage: `All the posts for the user: ${user_id}`,
@@ -48,7 +45,6 @@ const getPostsbyUserId = (req, res) => {
     });
   });
 };
-
 
 /****************************************/
 const getAllPosts = (req, res) => {
@@ -86,19 +82,52 @@ const getPostById = (req, res) => {
       });
     }
     if (!results.length) {
-     return res.status(404).json({
+      return res.status(404).json({
         success: false,
         massage: "The post Not found",
       });
     }
-   
-   return res.status(200).json({
+
+    return res.status(200).json({
       success: true,
       massage: `The post ${id}`,
       results: results,
     });
   });
 };
+/************************************************** */
+const updatePostById = (req, res) => {
+  const { description, media } = req.body;
+  const id = req.params.id;
+
+  const query = `UPDATE posts SET description=?, media=? WHERE id=?;`;
+
+  const data = [description, media, id];
+
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(404).json({
+        success: false,
+        massage: `Server error`,
+        err: err,
+      });
+    }
+    if (results.changedRows == 0) {
+      res.status(404).json({
+        success: false,
+        massage: `The Post: ${id} is not found`,
+        err: err,
+      });
+    }
+    // result are the data returned by mysql server
+    res.status(201).json({
+      success: true,
+      massage: `Post updated`,
+      results: results,
+    });
+  });
+};
+/************************************* */
 
 const deletePostById = (req, res) => {
   const id = req.params.id;
@@ -136,6 +165,10 @@ module.exports = {
   getAllPosts,
   getPostsbyUserId,
   getPostById,
+
+  updatePostById,
+
   deletePostById
+
 
 };
