@@ -70,10 +70,40 @@ const getAllPosts = (req, res) => {
   });
 };
 /********************************** */
+const getPostById = (req, res) => {
+  const id = req.params.id;
+
+  const query = `SELECT description, userName,media,profileimage,user_id FROM users INNER JOIN posts ON users.id=posts.user_id WHERE posts.id=?
+  AND posts.is_deleted=0;`;
+  const data = [id];
+
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        massage: "Server Error",
+        err: err,
+      });
+    }
+    if (!results.length) {
+     return res.status(404).json({
+        success: false,
+        massage: "The post Not found",
+      });
+    }
+   
+   return res.status(200).json({
+      success: true,
+      massage: `The post ${id}`,
+      results: results,
+    });
+  });
+};
 
 module.exports = {
   createNewPost,
   getAllPosts,
   getPostsbyUserId,
+  getPostById
 
 };
