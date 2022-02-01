@@ -1,7 +1,7 @@
 const express = require("express");
 
 //controllers
-const { createNewComment } = require("../controllers/comment");
+const { createNewComment,getAllCommentsById } = require("../controllers/comment");
 
 //middlewares
 const {authentication} = require("../middleware/authentication");
@@ -13,5 +13,12 @@ commentsRouter.post(
   authentication,
   createNewComment
 );
+
+commentsRouter.get(
+  "/all/:id/comments",
+
+  getAllCommentsById
+);
+
 
 module.exports = commentsRouter;
