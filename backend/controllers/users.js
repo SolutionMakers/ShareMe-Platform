@@ -28,6 +28,40 @@ const createNewUser = async (req, res) => {
 };
 
 /************************************* */
+
+const updateProfilePhoto = (req, res) => {
+  const  profileimage = req.body.profileimage;
+  const id = req.params.id;
+
+  const query = `UPDATE users SET profileimage=? WHERE id=?;`;
+
+  const data = [profileimage, id];
+
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(404).json({
+        success: false,
+        massage: `Server error`,
+        err: err,
+      });
+    }
+    if (results.changedRows == 0) {
+      res.status(404).json({
+        success: false,
+        massage: `The User : ${id} is not found`,
+        err: err,
+      });
+    }
+    // result are the data returned by mysql server
+    res.status(201).json({
+      success: true,
+      massage: `profile image updated`,
+      results: results,
+    });
+  });
+};
+/************************************* */
+
 module.exports = {
-  createNewUser,
+  createNewUser,updateProfilePhoto
 };
