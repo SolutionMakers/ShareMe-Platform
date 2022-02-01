@@ -1,0 +1,51 @@
+const connection = require("../database/db");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const login = (req, res) => {
+  const password = req.body.password;
+  const userName = req.body.userName;
+
+  const query = `SELECT * FROM users INNER JOIN roles ON users.role_id=roles.id WHERE userName=?`;
+  const data = [userName];
+  connection.query(query, data, (err, results) => {
+    if (err) throw err;
+    // result are the data returned by mysql server
+    if (results.length) {
+      bcrypt.compare(password, results[0].password, (err, response) => {
+        if (err) res.json(err);
+        if (response) {
+          const payload = {
+            userId: results[0].id,
+            country: results[0].country,
+            role: results[0].role_id,
+          };
+          const options = {
+            expiresIn: '24h',
+          };
+          const secret = process.env.SECRET;
+
+          const token = jwt.sign(payload, secret,options);
+
+          res.status(200).json({
+            success: true,
+            message: "Valid login credentials",
+            token,
+          });
+        } else {
+          res.status(403).json({
+            success: false,
+            message: `The password you’ve entered is incorrect`,
+            err,
+          });
+        }
+      });
+    } else {
+      res
+        .status(404)
+        .json({ success: false, massege: "The email doesn't exist", err });
+    }
+  });
+};
+
+module.exports = {login};
