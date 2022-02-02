@@ -28,7 +28,7 @@ const postsReducer = (state = initialState, { type, payload }) => {
         }),
       };
     default:
-      break;
+     return state;
   }
 };
 
