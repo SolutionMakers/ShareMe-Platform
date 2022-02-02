@@ -1,4 +1,4 @@
-import React from "react";
+
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,42 +15,42 @@ const Login = () => {
       <div className="Sign_up">
         <input
           className="user_name"
-          type="text"
+          type="text"  placeholder="userName"
           onChange={(e) => {
             setUserName(e.target.value);
           }}
         />
         <input
           className="email"
-          type="text"
+          type="email"  placeholder="email"
           onChange={(e) => {
             setEmail(e.target.value);
           }}
         />
         <input
           className="date_birth"
-          type="text"
+          type="text" placeholder="date of birth"
           onChange={(e) => {
             setDate(e.target.value);
           }}
         />
         <input
           className="gender"
-          type="text"
+          type="text"  placeholder="gender"
           onChange={(e) => {
             setGender(e.target.value);
           }}
         />
         <input
           className="country"
-          type="text"
+          type="text"  placeholder="country"
           onChange={(e) => {
             setCountry(e.target.value);
           }}
         />
         <input
           className="password"
-          type="text"
+          type="password"   placeholder="password"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
