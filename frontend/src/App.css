@@ -1,3 +1,12 @@
 .App {
   text-align: center;
 }
+
+.Sign_up{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 20px;
+  gap: 20px;
+ 
+}
