@@ -43,8 +43,9 @@ const Login = () => {
   };
   /* *************************** */
   return (
-    <div>
-      <div>
+    <div className="all_start_page">
+      <div className="login">
+        <div>Login</div>
         <input
           type="text"
           placeholder="userName"
@@ -61,7 +62,8 @@ const Login = () => {
           Login
         </button>
       </div>
-      <div className="Sign_up">
+      <div className="Sign_up_box">
+      <div>signUp</div>
         <input
           className="user_name"
           type="text"
