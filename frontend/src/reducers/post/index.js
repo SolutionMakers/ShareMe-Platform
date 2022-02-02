@@ -28,23 +28,26 @@ const postsReducer = (state = initialState, { type, payload }) => {
         }),
       };
     default:
-     return state;
+      return state;
+
   }
 };
-
+export default postsReducer; 
 //actions
-const setPosts = (posts) => {
+export const setPosts = (posts) => {
   return { type: "SET_POSTS", payload: posts };
 };
 
-const addPost = (newPost) => {
+export const addPost = (newPost) => {
   return { type: "ADD_POST", payload: newPost };
 };
 
-const updatePost = (updatedPost) => {
+export const updatePost = (updatedPost) => {
   return { type: "UPDATE_POST", payload: updatedPost };
 };
 
-const deletePost = (id) => {
+export const deletePost = (id) => {
   return { type: "DELETE_POST", payload: id };
 };
+
+
