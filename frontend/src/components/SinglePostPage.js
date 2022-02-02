@@ -20,7 +20,9 @@ const getCommentsByUserID= async ()=>{
       },
     });
     if (res.data.success) {
-      setComments(response.data.results);
+      console.log(res.data.results)
+
+      setComments(res.data.results);
     } 
     
   } catch (error) {
@@ -35,7 +37,9 @@ const getCommentsByUserID= async ()=>{
     try {
       const res = await axios.get(`http://localhost:5000/posts/${id}/post`);
       if (res.data.success) {
-        setPost(response.data.result[0]);
+      // console.log(res.data.results)
+
+        setPost(res.data.results[0]);
       } 
       
     } catch (error) {
@@ -52,23 +56,21 @@ const getCommentsByUserID= async ()=>{
 
   return (
     <div>
-      {post ? (
+       
         <>
           <p>{post.userName}</p>
           <img src={post.profileimage} />
           <p>{post.description}</p>
           <img src={post.media} />
-          {comments?comments.map((element)=>{
-            <div>
+          {comments.length?comments.map((element)=>{
+            return (<div>
               <p>{element.userName}</p>
               <img src={element.profileimage}/>
               <p>{element.comment}</p>
-            </div>
+            </div>)
           }):<></>}
         </>
-      ) : (
-        <></>
-      )}
+       
     </div>
   );
 };
