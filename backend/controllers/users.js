@@ -30,7 +30,7 @@ const createNewUser = async (req, res) => {
 /************************************* */
 
 const updateProfilePhoto = (req, res) => {
-  const  profileimage = req.body.profileimage;
+  const profileimage = req.body.profileimage;
   const id = req.params.id;
 
   const query = `UPDATE users SET profileimage=? WHERE id=?;`;
@@ -61,7 +61,35 @@ const updateProfilePhoto = (req, res) => {
   });
 };
 /************************************* */
+const getInfoUser = (req, res) => {
+  const userId = req.params.id;
+  const query = `SELECT * FROM users WHERE id=? And is_deleted=0;`;
+  const data = [userId];
+  connection.query(query, data, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        success: false,
+        massage: "server error",
+        err: err,
+      });
+    }
 
+    if (result.length) {
+      return res.status(200).json({
+        success: true,
+        massage: `All info for users==>${userId} `,
+        Info: result,
+      });
+    }
+
+    return res.status(404).json({
+      success: false,
+      massage: `Dose Not Find User ==> ${userId} `,
+    });
+  });
+};
 module.exports = {
-  createNewUser,updateProfilePhoto
+  createNewUser,
+  updateProfilePhoto,
+  getInfoUser,
 };
