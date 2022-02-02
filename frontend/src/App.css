@@ -1,12 +1,63 @@
 .App {
   text-align: center;
-}
-
-.Sign_up{
   display: flex;
   flex-direction: column;
-  width: 300px;
-  height: 20px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+  font-size: 20px;
+}
+
+.Sign_up_box {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
- 
+  border: 0.5px solid brown;
+  width: 400px;
+  padding: 20px;
+}
+
+.body_create {
+  display: flex;
+  flex-direction: column;
+
+  width: 350px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.creat_post_all {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 400px;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid brown;
+
+  padding: 20px;
+}
+
+.all_start_page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.login {
+  border: 0.5px solid brown;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 400px;
+}
+.onePost {
+  border: 0.5px solid brown;
 }
