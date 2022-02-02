@@ -12,12 +12,14 @@ const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/post");
 const commentsRouter = require("./routes/comments");
 const rolesRouter = require("./routes/roles");
+const likesRouter=require ("./routes/like")
 /*************************************** */
 app.use("/login", loginRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
 app.use("/", commentsRouter);
 app.use("/roles", rolesRouter);
+app.use("/like",likesRouter)
 /*************************************** */
 app.listen(PORT, () => {
   console.log(`SERVER WORKING ON PORT: ${PORT}`);
