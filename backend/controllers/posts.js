@@ -48,7 +48,8 @@ const getPostsbyUserId = (req, res) => {
 
 /****************************************/
 const getAllPosts = (req, res) => {
-  const query = `SELECT * FROM posts WHERE is_deleted=0;`;
+  const query = `SELECT posts.id, description, userName,media,profileimage,user_id FROM users INNER JOIN posts ON users.id=posts.user_id WHERE posts.is_deleted=0;
+   `;
 
   connection.query(query, (err, result) => {
     if (err) {
@@ -97,12 +98,12 @@ const getPostById = (req, res) => {
 };
 
 const updatePostById = (req, res) => {
-  const { description, media } = req.body;
+  const { description } = req.body;
   const id = req.params.id;
 
-  const query = `UPDATE posts SET description=?, media=? WHERE id=?;`;
+  const query = `UPDATE posts SET description=? WHERE id=?;`;
 
-  const data = [description, media, id];
+  const data = [description, id];
 
   connection.query(query, data, (err, results) => {
     if (err) {
