@@ -7,6 +7,7 @@ import { login } from "../reducers/login";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const state = useSelector((state) => {
     return {
       isLoggedIn: state.loginReducer.isLoggedIn,
@@ -30,9 +31,10 @@ const Login = () => {
         password,
       });
       if (res.data.success) {
-        setSignupMessage ("");
+        setSignupMessage("");
         localStorage.setItem("token", res.data.token);
         dispatch(login(res.data.token));
+        navigate("/home");
       } else throw Error;
     } catch (error) {
       if (error.response && error.response.data) {
@@ -56,14 +58,10 @@ const Login = () => {
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button
-          onClick={logInUser}
-        >
-          Login
-        </button>
+        <button onClick={logInUser}>Login</button>
       </div>
       <div className="Sign_up_box">
-      <div>signUp</div>
+        <div>signUp</div>
         <input
           className="user_name"
           type="text"
