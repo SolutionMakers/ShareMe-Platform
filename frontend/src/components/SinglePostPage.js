@@ -12,6 +12,9 @@ const SinglePostPage = () => {
   });
   const [post, setPost] = useState({});
   const [comments,setComments]= useState([]);
+ const  [comment,setComment]=useState('');
+
+
 const getCommentsByUserID= async ()=>{
   try {
     const res = await axios.get(`http://localhost:5000/all/${id}/comments`, {
@@ -20,8 +23,6 @@ const getCommentsByUserID= async ()=>{
       },
     });
     if (res.data.success) {
-      console.log(res.data.results)
-
       setComments(res.data.results);
     } 
     
@@ -37,8 +38,6 @@ const getCommentsByUserID= async ()=>{
     try {
       const res = await axios.get(`http://localhost:5000/posts/${id}/post`);
       if (res.data.success) {
-      // console.log(res.data.results)
-
         setPost(res.data.results[0]);
       } 
       
@@ -49,10 +48,30 @@ const getCommentsByUserID= async ()=>{
       
     }
   };
+  const createNewComment = async ()=>{
+  try {
+    const res = await axios.post(`http://localhost:5000/posts/${id}/comments`,
+    { comment,},{
+      headers: {
+        Authorization: `Bearer ${state.token}`,
+      },
+    });
+    if (res.data.success) {
+      console.log('done')
+      setComment(res.data.results);
+    } 
+    
+  } catch (error) {
+    if (error.response && error.response.data) {
+     console.log(error.response.data);
+    }
+    
+  }
+}
   useEffect(() => {
     getPostByID();
     getCommentsByUserID();
-  },[]);
+  },[comment]);
 
   return (
     <div>
@@ -62,14 +81,22 @@ const getCommentsByUserID= async ()=>{
           <img src={post.profileimage} />
           <p>{post.description}</p>
           <img src={post.media} />
-          {comments.length?comments.map((element)=>{
-            return (<div>
+          {comments.length?comments.map((element,index)=>{
+            return (<div key ={index}>
               <p>{element.userName}</p>
               <img src={element.profileimage}/>
               <p>{element.comment}</p>
             </div>)
           }):<></>}
         </>
+        <input
+          type="text"
+          placeholder="Whats on your Mind ?"
+          onChange={(e) => {
+            setComment(e.target.value);
+          }}
+        />
+        <button onClick={createNewComment}>Comment</button>
        
     </div>
   );
