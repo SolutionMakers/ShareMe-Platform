@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { setPosts, updatePost } from "../reducers/post/index";
+import { setPosts, updatePost,deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 /************************** */
@@ -78,6 +78,23 @@ const Home = () => {
                   }}
                 >
                   Update
+                </button>
+
+                <button
+                  className="button_delete"
+                  onClick={(e) => {
+                    axios
+                      .delete(`http://localhost:5000/posts/${element.id}`)
+                      .then((result) => {
+                        console.log("delteeee");
+                        dispatch(deletePost(element.id));
+                      })
+                      .catch((err) => {
+                        throw err;
+                      });
+                  }}
+                >
+                  delete
                 </button>
               </div>
             </div>
