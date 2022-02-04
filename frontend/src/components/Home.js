@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { setPosts, updatePost, deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-
+import noAvatar from "../images/noAvatar.png";
 /************************** */
 const Home = () => {
   const [description, setDescription] = useState("");
@@ -121,7 +121,13 @@ const Home = () => {
 
                 <div>{element.media}</div>
                 <div>{element.description}</div>
-                <div>{element.profileimage}</div>
+                <img
+                  src={
+                    element.profileimage !== "undefined"
+                      ? element.profileimage
+                      : noAvatar
+                  }
+                />
                 <div>{element.userName}</div>
 
                 <button
@@ -140,4 +146,3 @@ const Home = () => {
 };
 
 export default Home;
-
