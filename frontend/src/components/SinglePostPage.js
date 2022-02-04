@@ -116,7 +116,7 @@ const SinglePostPage = () => {
   }, [comment,likes]);
   return (
     <div>
-      {post ? (
+      {post.is_deleted==0 ? (
         <>
           <p>{post.userName}</p>
           <img src={post.profileimage} />
@@ -149,7 +149,7 @@ const SinglePostPage = () => {
           <button onClick={createNewComment}>Comment</button>
         </>
       ) : (
-        <></>
+        <>No Posts</>
       )}
     </div>
   );

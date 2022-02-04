@@ -70,7 +70,7 @@ const getAllPosts = (req, res) => {
 const getPostById = (req, res) => {
   const id = req.params.id;
 
-  const query = `SELECT description, userName,media,profileimage,user_id FROM users INNER JOIN posts ON users.id=posts.user_id WHERE posts.id=?
+  const query = `SELECT description, userName,media,profileimage,user_id,posts.is_deleted FROM users INNER JOIN posts ON users.id=posts.user_id WHERE posts.id=?
   AND posts.is_deleted=0;`;
   const data = [id];
 
