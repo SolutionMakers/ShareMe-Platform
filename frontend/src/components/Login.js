@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { BsFillXCircleFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../reducers/login";
 
@@ -24,12 +24,11 @@ const Login = () => {
 
   const toggleModal = () => {
     setModalLogin(!modalLogin);
-  
-  }
+  };
 
   /* ************************* */
   const logInUser = async (e) => {
-    // e.preventDefault();
+  
 
     try {
       const res = await axios.post("http://localhost:5000/login", {
@@ -51,132 +50,180 @@ const Login = () => {
   };
   /* *************************** */
   return (
-    <div className="all_start_page">
+    <div className="container_for_all">
+      <div className="container_login">
+        <div className="flex_qout">
+          <div className="slogan"> Welcome to AAB</div>
+          <div className="qout">
+            {" "}
+            Connect with new friends and get to know a new world
+          </div>
+        </div>
+        <div className="Login">
+          <div className="all_input_login">
+            <div>
+              {" "}
+              <input
+                className="input_login"
+                type="email"
+                placeholder="username"
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
+              />
+            </div>
 
+            <div>
+              <input
+                className="input_login"
+                type="password"
+                placeholder="Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </div>
 
-      <div className="login">
-        <div>Login</div>
-        <input
-          type="text"
-          placeholder="userName"
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={logInUser}>Login</button>
-        <button onClick={toggleModal} className="btn-modal">
-  signup
-</button>
+            <button className="button_login" onClick={logInUser}>Login</button>
+          </div>
+
+          <div className="sperate_style">
+            <div className="line_login"></div>
+            <button className="craete_new_account" onClick={toggleModal}>
+              Craete new account
+            </button>
+          </div>
+        </div>
       </div>
+      
+      
+      {modalLogin && (
+        <div className="modal">
+          <div onClick={toggleModal} className="overlay"></div>
+          <div className="modal-content">
 
-
+          <div className="register">
+        <div className="register-content">
+          
+          <div className="title_close">
        
+            <div className="titRegis">Sign Up</div>
+            <BsFillXCircleFill className="icon_close" onClick={toggleModal}/>
+           
+          </div>
+          <div className="gap_inpt_signup">
+            <div className="line_signup"></div>
 
+            <div>
+              <input //1
+                    className="input_signup"
+                type="text"
+                placeholder="userName"
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
+              />
+            </div>   
 
-{modalLogin && (
-  <div className="modal">
-    <div onClick={toggleModal} className="overlay"></div>
-    <div className="modal-content">
-     
-    <div className="Sign_up_box">
-        <div>signUp</div>
-        <input
-          className="user_name"
-          type="text"
-          placeholder="userName"
-          onChange={(e) => {
-            setUserName(e.target.value);
-          }}
-        />
-        <input
-          className="email"
-          type="email"
-          placeholder="email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <input
-          className="date_birth"
-          type="date" 
-          placeholder="date of birth"
-          onChange={(e) => {
-            setDate(e.target.value);
-          }}
-        />
-        <input
-          className="gender"
-          type="text"
-          placeholder="gender"
-          onChange={(e) => {
-            setGender(e.target.value);
-          }}
-        />
-        <input
-          className="country"
-          type="text"
-          placeholder="country"
-          onChange={(e) => {
-            setCountry(e.target.value);
-          }}
-        />
-        <input
-          className="password"
-          type="password"
-          placeholder="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+            <div>
+              <input //2
+                  className="input_signup"
+                type="email"
+                placeholder="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </div>
 
-        <button
-          className="Sign_up"
-          onClick={(e) => {
-            axios
-              .post("http://localhost:5000/users/", {
-                userName: userName,
-                email: email,
-                dob: date,
-                gender: gender,
-                country: country,
-                password: password,
-              })
-              .then((result) => {
-                console.log(result.data);
+            <div>
+              <input //3
+                   className="input_signup"
+                type="date"
+                placeholder="date of birth"
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+              />
+            </div>
 
-                e.target.style.background =
-                  "linear-gradient(-45deg,#CAC531,#F3F9A7)";
-                e.target.style.color = "black";
+            <div className="border_bottom">
+              <input //4
+                 className="input_signup"
+                type="text"
+                placeholder="gender"
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
+              />
+            </div>
 
-                setSignupMessage("The user has been created successfully");
-              })
-              .catch((err) => {
-                e.target.style.background =
-                  "linear-gradient(-45deg,#f7797d,#f7797d)";
-                e.target.style.color = "black";
-                setSignupMessage(
-                  "Error happened while register, please try again"
-                );
-              });
-          }}
-        >
-          sing up
-        </button>
-        <div className="sing_up_message">{signuPMessage}</div>
+            <div className="border_bottom">
+              <input //5
+                 className="input_signup"
+                type="text"
+                placeholder="country"
+                onChange={(e) => {
+                  setCountry(e.target.value);
+                }}
+              />
+            </div>
+
+            <div>
+              <input //6
+                 className="input_signup"
+                type="password"
+                placeholder="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+
+          <button
+            className="buttonRegs"
+            onClick={(e) => {
+              axios
+                .post("http://localhost:5000/users/", {
+                  userName: userName,
+                  email: email,
+                  dob: date,
+                  gender: gender,
+                  country: country,
+                  password: password,
+                })
+                .then((result) => {
+                  console.log(result.data);
+
+                  e.target.style.background =
+                    "linear-gradient(-45deg,#CAC531,#F3F9A7)";
+                  e.target.style.color = "black";
+
+                  setSignupMessage("The user has been created successfully");
+                })
+                .catch((err) => {
+                  e.target.style.background =
+                    "linear-gradient(-45deg,#f7797d,#f7797d)";
+                  e.target.style.color = "black";
+                  setSignupMessage(
+                    "Error happened while register, please try again"
+                  );
+                });
+            }}
+          >
+            sing up
+          </button>
+
+          <div className="sing_up_message">{signuPMessage}</div>
+        </div>
       </div>
-
-      <button className="close-modal" onClick={toggleModal}>
-        CLOSE
-      </button>
-    </div>
-  </div>
-)}
-
-
-
+   
+            
+         
+          </div>
+        </div>
+      )}
     </div>
   );
 };
