@@ -5,6 +5,7 @@ import SinglePostPage from "./components/SinglePostPage";
 import NewPost from "./components/NewPost";
 import Home from "./components/Home";
 import Navigation from "./components/Navigation";
+import ProfilePage from "./components/ProfilePage";
 const App = () => {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/NewPost" element={<NewPost />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/post/:id" element={<SinglePostPage />} />
+        <Route path="/profile/:user_id" element={<ProfilePage />} />
       </Routes>
     </div>
   );
