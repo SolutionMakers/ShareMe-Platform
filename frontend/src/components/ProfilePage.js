@@ -1,11 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 const ProfilePage = () => {
   const { user_id } = useParams();
-
   const [userPosts, setUserPosts] = useState([]);
+  const state = useSelector((state) => {
+    return {
+      token: state.loginReducer.token,
+    };
+  });
   const getPostsByUserId = async () => {
     try {
       const res = await axios.get(`http://localhost:5000/posts/${user_id}`);
@@ -19,6 +25,27 @@ const ProfilePage = () => {
   };
   console.log(userPosts);
   /***************************************** */
+  const putNewLike = async (id) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:5000/like/${id}`,{},
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        console.log("done");
+      }
+    } catch (error) {
+      if (error.response && error.response.data) {
+        console.log(error.response.data);
+      }
+    }
+  };
+  /***************************************** */
+
   useEffect(() => {
     getPostsByUserId();
   }, []);
@@ -39,6 +66,7 @@ const ProfilePage = () => {
                 <h1>{element.country}</h1>
                 <h1>{element.profileimage}</h1>
                 <h1>{element.gender}</h1>
+                <button onClick={()=>putNewLike(element.id)}>Like</button>
               </div>
             );
           })
