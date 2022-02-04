@@ -65,30 +65,27 @@ const SinglePostPage = () => {
       }
     }
   };
-  const putNewLike = async () => {
-    try {
-      const res = await axios.post(
-        `http://localhost:5000/like/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
+    /* ****************************************************** */
+
+    const putNewLike = async () => {
+      try {
+        const res = await axios.post(
+          `http://localhost:5000/like/${id}`,{},
+          {
+            headers: {
+              Authorization: `Bearer ${state.token}`,
+            },
+          }
+        );
+        if (res.data.success) {
+          console.log("done");
         }
-      );
-      console.log(res)
-      if (res.data.success) {
-        console.log(state.token);
-
-        console.log("done");
+      } catch (error) {
+        if (error.response && error.response.data) {
+          console.log(error.response.data);
+        }
       }
-    } catch (error) {
-      if (error.response && error.response.data) {
-        console.log(state.token);
-        console.log(error.response.data);
-      }
-    }
-  };
-
+    };
   /* ****************************************************** */
   const createNewComment = async () => {
     try {
@@ -116,10 +113,10 @@ const SinglePostPage = () => {
     getPostByID();
     getCommentsByUserID();
     getLikesByUserID();
-  }, [comment]);
+  }, [comment,likes]);
   return (
     <div>
-      {post ? (
+      {post.is_deleted==0 ? (
         <>
           <p>{post.userName}</p>
           <img src={post.profileimage} />
@@ -152,7 +149,7 @@ const SinglePostPage = () => {
           <button onClick={createNewComment}>Comment</button>
         </>
       ) : (
-        <></>
+        <>No Posts</>
       )}
     </div>
   );
