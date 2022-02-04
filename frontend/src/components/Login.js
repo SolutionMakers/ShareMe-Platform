@@ -20,6 +20,12 @@ const Login = () => {
   const [country, setCountry] = useState("");
   const [gender, setGender] = useState("");
   const [signuPMessage, setSignupMessage] = useState("");
+  const [modalLogin, setModalLogin] = useState(false);
+
+  const toggleModal = () => {
+    setModalLogin(!modalLogin);
+  
+  }
 
   /* ************************* */
   const logInUser = async (e) => {
@@ -46,6 +52,8 @@ const Login = () => {
   /* *************************** */
   return (
     <div className="all_start_page">
+
+
       <div className="login">
         <div>Login</div>
         <input
@@ -59,8 +67,21 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={logInUser}>Login</button>
+        <button onClick={toggleModal} className="btn-modal">
+  signup
+</button>
       </div>
-      <div className="Sign_up_box">
+
+
+       
+
+
+{modalLogin && (
+  <div className="modal">
+    <div onClick={toggleModal} className="overlay"></div>
+    <div className="modal-content">
+     
+    <div className="Sign_up_box">
         <div>signUp</div>
         <input
           className="user_name"
@@ -80,7 +101,7 @@ const Login = () => {
         />
         <input
           className="date_birth"
-          type="text"
+          type="date" 
           placeholder="date of birth"
           onChange={(e) => {
             setDate(e.target.value);
@@ -146,6 +167,16 @@ const Login = () => {
         </button>
         <div className="sing_up_message">{signuPMessage}</div>
       </div>
+
+      <button className="close-modal" onClick={toggleModal}>
+        CLOSE
+      </button>
+    </div>
+  </div>
+)}
+
+
+
     </div>
   );
 };

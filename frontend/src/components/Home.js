@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { setPosts, updatePost,deletePost } from "../reducers/post/index";
+import { setPosts, updatePost, deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+
 /************************** */
 const Home = () => {
   const [description, setDescription] = useState("");
+  const [modal, setModal] = useState(false);
+  const [id, setId] = useState("");
+
+  const toggleModal = (id) => {
+    setModal(!modal);
+
+    setId(id);
+  };
+
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -26,7 +36,41 @@ const Home = () => {
     }
   };
 
-  /********************************************** */
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:5000/posts/${id}`)
+      .then((result) => {
+        dispatch(deletePost(id));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+
+  const handleUpdate = async (id) => {
+    try {
+      const newPost = {
+        description,
+      };
+      const res = await axios.put(
+        `http://localhost:5000/posts/${id}/post`,
+        newPost,
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+
+      if (res.data.success) {
+        dispatch(updatePost(newPost));
+        getAllPosts();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  /**************************************************************************************************************************/
 
   useEffect(() => {
     getAllPosts();
@@ -35,66 +79,56 @@ const Home = () => {
   return (
     <div className="post">
       <div>All Posts</div>
+
       {state.posts.map((element, i) => {
         return (
           <div key={i}>
             <div>
               <div className="onePost">
+                <div>
+                  {" "}
+                  {modal && id == element.id && (
+                    <div className="modal">
+                      <div onClick={toggleModal} className="overlay"></div>
+                      <div className="modal-content">
+                        <h2>Hello Modal</h2>
+                        <button
+                          className="button_delete"
+                          onClick={() => handleDelete(element.id)}
+                        >
+                          delete
+                        </button>
+                        <input
+                          type="text"
+                          placeholder="updated description"
+                          onChange={(e) => {
+                            setDescription(e.target.value);
+                          }}
+                        />
+                        <button onClick={() => handleUpdate(element.id)}>
+                          Update
+                        </button>
+                        <button
+                          className="close-modal"
+                          onClick={() => toggleModal("")}
+                        >
+                          CLOSE
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
                 <div>{element.media}</div>
                 <div>{element.description}</div>
                 <div>{element.profileimage}</div>
                 <div>{element.userName}</div>
-                <input
-                  type="text"
-                  placeholder="updated description"
-                  onChange={(e) => {
-                    setDescription(e.target.value);
-                  }}
-                />
-                <button
-                  onClick={async () => {
-                    try {
-                      const newPost = {
-                        description,
-                      };
-                      const res = await axios.put(
-                        `http://localhost:5000/posts/${element.id}/post`,
-                        newPost,
-                        {
-                          headers: {
-                            Authorization: `Bearer ${state.token}`,
-                          },
-                        }
-                      );
-                      console.log(newPost);
-                      if (res.data.success) {
-                        console.log(`done`);
-                        dispatch(updatePost(newPost));
-                        getAllPosts();
-                      }
-                    } catch (error) {
-                      console.log(error);
-                    }
-                  }}
-                >
-                  Update
-                </button>
 
                 <button
-                  className="button_delete"
-                  onClick={(e) => {
-                    axios
-                      .delete(`http://localhost:5000/posts/${element.id}`)
-                      .then((result) => {
-                        console.log("delteeee");
-                        dispatch(deletePost(element.id));
-                      })
-                      .catch((err) => {
-                        throw err;
-                      });
-                  }}
+                  onClick={() => toggleModal(element.id)}
+                  className="btn-modal"
                 >
-                  delete
+                  My Modal
                 </button>
               </div>
             </div>
@@ -106,3 +140,4 @@ const Home = () => {
 };
 
 export default Home;
+
