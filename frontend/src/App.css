@@ -401,6 +401,74 @@ body {
 }
 
 /*---------------------------------Home Page -------------------*/
+.contain_all_home {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding-top: 65px;
+}
+
+.middle_home {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.post {
+  position: relative;
+  width:40rem;
+
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: 26px 0;
+}
+
+.postWrapper {
+  padding: 17px;
+}
+
+.postTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postTopLeft {
+  display: flex;
+  align-items: center;
+}
+
+.icon_popup {
+  font-size: 20px;
+}
+
+.postTopRight {
+  cursor: pointer;
+  color: #645f5f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  width: 32px;
+  height: 32px;
+}
+.postTopRight:hover {
+  width: 32px;
+  height: 32px;
+  transition: all 0.3s;
+
+  background: #e9e0e0;
+}
+
+.postProfileImg {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
 .postUsername {
   font-size: 18px;
