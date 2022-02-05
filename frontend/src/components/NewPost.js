@@ -60,6 +60,7 @@ const NewPost = () => {
                 setcraetPostMessage("The post has been created successfully");
               })
               .catch((err) => {
+           
                 e.target.style.background =
                   "linear-gradient(-45deg,#f7797d,#f7797d)";
                 e.target.style.color = "black";
