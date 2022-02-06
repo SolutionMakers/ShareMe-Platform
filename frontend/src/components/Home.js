@@ -12,7 +12,7 @@ import {
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
 /******************************************************************************************************* */
-const Home = ({ myImg }) => {
+const Home = () => {
   const [description, setDescription] = useState("");
   const [modal, setModal] = useState(false);
   const [id, setId] = useState("");
