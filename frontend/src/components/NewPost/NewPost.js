@@ -1,14 +1,14 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { addPost } from "../reducers/post/index";
+import React, { useState } from "react";
+import { addPost } from "../../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
+import "../NewPost/NewPost.css";
 
 const NewPost = () => {
   const [description, setDescription] = useState("");
   const [media, setMedia] = useState("");
   const [craetPostMessage, setcraetPostMessage] = useState("");
-  const [uploadedImage,setUploadedImage]=useState('')
+  const [uploadedImage, setUploadedImage] = useState("");
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -17,22 +17,22 @@ const NewPost = () => {
     };
   });
   /******************************************* */
-  
-const uploadimage = async () =>{
-  const formData = new FormData();
-  formData.append("file", uploadedImage);
-  formData.append("upload_preset", "wyggi4ze");
 
-  await axios
-    .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
-    .then((response) => {
-      setMedia(response.data.secure_url);
-    })
-    .catch((err) => {
-      throw err;
-    });
-}
-/**************************************** */
+  const uploadimage = async () => {
+    const formData = new FormData();
+    formData.append("file", uploadedImage);
+    formData.append("upload_preset", "wyggi4ze");
+
+    await axios
+      .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
+      .then((response) => {
+        setMedia(response.data.secure_url);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+  /**************************************** */
 
   return (
     <div className="creat_post_all">
@@ -46,7 +46,7 @@ const uploadimage = async () =>{
           }}
         />
         <input
-        type='file'
+          type="file"
           onChange={(e) => {
             setUploadedImage(e.target.files[0]);
           }}
@@ -80,7 +80,6 @@ const uploadimage = async () =>{
                 setcraetPostMessage("The post has been created successfully");
               })
               .catch((err) => {
-           
                 e.target.style.background =
                   "linear-gradient(-45deg,#f7797d,#f7797d)";
                 e.target.style.color = "black";
