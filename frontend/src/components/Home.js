@@ -186,7 +186,7 @@ const Home = () => {
                 <div className="postWrapper">
                   <div className="postTop">
                     <div className="postTopLeft">
-                      <Link to={`/profile/${element.id}`}>
+                      <Link to={`/profile/${element.user_id}`}>
                         <img
                           className="postProfileImg"
                           width="100%"
