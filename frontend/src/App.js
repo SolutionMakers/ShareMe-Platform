@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Router, Routes } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Login from "./components/Login";
-import SinglePostPage from "./components/SinglePostPage";
+import SinglePostPage from "./components/SinglePostPage/SinglePostPage";
 import { useSelector, useDispatch } from "react-redux";
 import NewPost from "./components/NewPost/NewPost";
 import Home from "./components/Home";
