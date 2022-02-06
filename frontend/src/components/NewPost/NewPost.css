@@ -1,0 +1,255 @@
+.creat_post_all {
+  padding-top: 20%;
+}
+
+.create_post_pagePost {
+  position: relative;
+  width: 40rem;
+  height: 17.5rem;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  background-color: #ffffff;
+  /* margin: 5px 0; */
+}
+
+.pen_publish_pagePost {
+  display: flex;
+  gap: 5px;
+  padding-left: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  height: 3rem;
+  color: #6c708b;
+}
+
+.publish_pagePost {
+  font-size: 1.4rem;
+}
+
+.border_bottom_create_pagePost {
+  border: 0.5px solid #dbdbdb;
+}
+
+.content_create_post_pagePost {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  height: 11rem;
+  padding-left: 20px;
+}
+
+.img_user_creat_post_pagePost {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 25px;
+  box-shadow: 0 0 3px rgb(145, 144, 144);
+}
+
+.textarea_pagePost {
+  padding: 0;
+  border-color: transparent;
+  outline: none;
+  border: none;
+  resize: none;
+}
+
+.textarea_pagePost[rows] {
+  height: initial;
+  resize: none;
+}
+
+.textarea_pagePost {
+  display: block;
+
+  padding: calc(0.75em - 1px);
+  resize: vertical;
+}
+
+.textarea_pagePost,
+.input {
+  max-width: 100%;
+  width: 100%;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Helvetica", "Arial", sans-serif;
+  font-size: 0.9rem;
+}
+
+.upload_media_post_pagePost {
+  border-top: 0.5px solid #dbdbdb;
+  display: flex;
+  align-items: center;
+  padding: 7px 0px 5px 10px;
+  gap: 0.5rem;
+}
+
+.compose-option_pagePost {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  box-sizing: inherit;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6px 16px;
+  margin-right: 10px;
+  background: #f7f7f7;
+  border-radius: 500px;
+  font-size: 0.85rem;
+  color: #888da8;
+  transition: all 0.3s;
+}
+
+.upload_button {
+  cursor: pointer;
+  box-sizing: inherit;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  margin-right: 5px;
+  background: #c71717;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  color: #f4f4f5;
+  transition: all 0.3s;
+  border: none;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.upload_button:hover {
+  background: #a51010;
+}
+
+.button_craet_post_pagePost {
+  cursor: pointer;
+  box-sizing: inherit;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  margin-right: 5px;
+  background: #5596e6;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  width: 25rem;
+  color: #f4f4f5;
+  transition: all 0.3s;
+  border: none;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.button_craet_post_pagePost:hover {
+  background: #3572bd;
+}
+
+.media_pagePost {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #888da8;
+  box-sizing: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  display: block;
+  padding: 0 8px;
+}
+
+#feed-upload-input-2_pagePost {
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  box-sizing: inherit;
+  margin: 0;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Helvetica", "Arial", sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.compose-option_pagePost:hover {
+  color: black;
+  transition: all 0.3s;
+}
+
+.icon_pen_pagePost {
+  font-size: 1.25rem;
+}
+.icon_pen_pagePost:hover {
+  color: black;
+
+  transition: all 0.3s;
+}
+
+/*-----------modal  css for create post -------------*/
+
+.btn-modal {
+  display: block;
+  margin: 100px auto 0;
+  font-size: 15px;
+}
+
+.modal_create,
+.overlay_create {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay_create {
+  background: rgba(98, 98, 98, 0.4);
+}
+.modal-content_create {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.close-modal_create {
+  position: absolute;
+  top: 5.5px;
+  right: -25px;
+  padding: 5px 3px;
+  font-size: 37px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: rgb(119, 111, 111);
+}
+
+.close-modal_create :hover {
+  color: #a51010;
+  transition: all 0.2s;
+}
