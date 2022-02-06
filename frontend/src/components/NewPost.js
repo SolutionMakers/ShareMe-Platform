@@ -26,7 +26,6 @@ const uploadimage = async () =>{
   await axios
     .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
     .then((response) => {
-      console.log(response)
       setMedia(response.data.secure_url);
     })
     .catch((err) => {
