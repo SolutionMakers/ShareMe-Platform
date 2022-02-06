@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import "../SinglePostPage/SinglePostPage.css";
 
 const SinglePostPage = () => {
   const { id } = useParams();
@@ -65,27 +66,28 @@ const SinglePostPage = () => {
       }
     }
   };
-    /* ****************************************************** */
+  /* ****************************************************** */
 
-    const putNewLike = async () => {
-      try {
-        const res = await axios.post(
-          `http://localhost:5000/like/${id}`,{},
-          {
-            headers: {
-              Authorization: `Bearer ${state.token}`,
-            },
-          }
-        );
-        if (res.data.success) {
-          console.log("done");
+  const putNewLike = async () => {
+    try {
+      const res = await axios.post(
+        `http://localhost:5000/like/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
         }
-      } catch (error) {
-        if (error.response && error.response.data) {
-          console.log(error.response.data);
-        }
+      );
+      if (res.data.success) {
+        console.log("done");
       }
-    };
+    } catch (error) {
+      if (error.response && error.response.data) {
+        console.log(error.response.data);
+      }
+    }
+  };
   /* ****************************************************** */
   const createNewComment = async () => {
     try {
@@ -113,17 +115,17 @@ const SinglePostPage = () => {
     getPostByID();
     getCommentsByUserID();
     getLikesByUserID();
-  }, [comment,likes]);
+  }, [comment, likes]);
   return (
     <div>
-      {post.is_deleted==0 ? (
+      {post.is_deleted == 0 ? (
         <>
           <p>{post.userName}</p>
           <img src={post.profileimage} />
           <p>{post.description}</p>
           <img src={post.media} />
           <>
-            <p>{likeCount} LIKE</p> 
+            <p>{likeCount} LIKE</p>
             <button onClick={putNewLike}>LIKE</button>
           </>
           {comments.length ? (
