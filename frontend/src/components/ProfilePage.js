@@ -45,6 +45,18 @@ const ProfilePage = () => {
       console.log(err);
     }
   };
+  /**************************************** */
+  const updatProfileImage= async()=>{
+    try {
+      const res = await axios.put(`http://localhost:5000/users/image/${user_id}`,{profileimage});
+      if (res.data.success) {
+        console.log(res.data)
+        // console.log(`All the posts for this user_id ${user_id}`);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
   /***************************************** */
   const getUserInfo= async ()=>{
     
@@ -103,7 +115,7 @@ const ProfilePage = () => {
           }}
         />
         <button onClick={uploadimage}>upload</button>
-
+        <button onClick={updatProfileImage}>Edit Profile Image</button>
       </div>
       {userPosts.length
         ? userPosts.map((element, index) => {
