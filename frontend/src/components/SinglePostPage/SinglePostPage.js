@@ -1,21 +1,74 @@
 import React, { useState, useEffect } from "react";
+import { setPosts, updatePost, deletePost } from "../../reducers/post/index";
+import { useSelector, useDispatch } from "react-redux";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
+import {
+  BsThreeDotsVertical,
+  BsFillHeartFill,
+  BsFillHandThumbsUpFill,
+  BsPen,
+} from "react-icons/bs";
+
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import noAvatar from "../../images/noAvatar.png";
+
 import "../SinglePostPage/SinglePostPage.css";
 
 const SinglePostPage = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigation = useNavigate();
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
+      posts: state.postsReducer.posts,
     };
   });
   const [post, setPost] = useState([]);
+  const [modal, setModal] = useState(false);
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const [likes, setLikes] = useState([]);
   const [likeCount, setLikeCount] = useState(0);
+  const [description, setDescription] = useState("");
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:5000/posts/${id}`)
+      .then((result) => {
+        dispatch(deletePost(id));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+  /************************************************************************************************************* */
+  const handleUpdate = async (id) => {
+    try {
+      const newPost = {
+        description,
+      };
+      const res = await axios.put(
+        `http://localhost:5000/posts/${id}/post`,
+        newPost,
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        dispatch(updatePost(newPost));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   /* ****************************************************** */
 
   const getCommentsByUserID = async () => {
@@ -116,18 +169,118 @@ const SinglePostPage = () => {
     getCommentsByUserID();
     getLikesByUserID();
   }, [comment, likes]);
+
   return (
     <div>
       {post.is_deleted == 0 ? (
-        <>
-          <p>{post.userName}</p>
-          <img src={post.profileimage} />
-          <p>{post.description}</p>
-          <img src={post.media} />
-          <>
-            <p>{likeCount} LIKE</p>
-            <button onClick={putNewLike}>LIKE</button>
-          </>
+        <div className="Single_post">
+          <div className="post">
+            <div className="postWrapper">
+              <div className="postTop">
+                <div className="postTopLeft">
+                  <Link to={`/profile/${post.user_id}`}>
+                    <img
+                      className="postProfileImg"
+                      width="100%"
+                      src={
+                        post.profileimage !== "undefined"
+                          ? post.profileimage
+                          : noAvatar
+                      }
+                    />
+                  </Link>
+                  <span className="postUsername">{post.userName}</span>
+                  {/* <span className="postDate">{format(post.createdAt)}</span> */}
+                </div>
+                <div className="postTopRight">
+                  <BsThreeDotsVertical
+                    className="icon_popup"
+                    onClick={() => toggleModal(post.id)}
+                  />
+                  <div>
+                    {" "}
+                    {modal && (
+                      <div className="modal_post">
+                        <div
+                          onClick={toggleModal}
+                          className="overlay_post"
+                        ></div>
+                        <div className="modal-content_post">
+                          <h2>Edit Post</h2>
+                          <button
+                            className="button_delete"
+                            onClick={() => {
+                              navigation("/home");
+                              handleDelete(id);
+                            }}
+                          >
+                            delete
+                          </button>
+                          <input
+                            type="text"
+                            placeholder="updated description"
+                            onChange={(e) => {
+                              setDescription(e.target.value);
+                            }}
+                          />
+                          <button onClick={() => handleUpdate(id)}>
+                            Update
+                          </button>
+                          <button
+                            className="close-modal_post"
+                            onClick={() => toggleModal("")}
+                          >
+                            CLOSE
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="postCenter">
+                <p className="postText">{post.description}</p>
+                <img className="postImg" src={post.media} alt="" />
+              </div>
+
+              <div className="postBottom">
+                <div className="postBottomLeft">
+                  <BsFillHandThumbsUpFill
+                    className="likeIcon"
+                    onClick={(e) => {
+                      e.target.style.color = "#1877f2";
+                      e.target.style.transition = "all 0.5s";
+                    }}
+                  />
+                  <BsFillHeartFill
+                    className="likeIcon_heart"
+                    onClick={(e) => {
+                      putNewLike(post.id);
+                      e.target.style.color = "#e60023";
+                      e.target.style.transition = "all 0.5s";
+                    }}
+                  />
+
+                  <span className="postLikeCounter">
+                    {likes.length} People Like It
+                  </span>
+                </div>
+                <div className="postBottomRight">
+                  <span
+                    className="postCommentText"
+                    onClick={() => {
+                      navigation(`/post/${post.id}`);
+                    }}
+                  >
+                    {" "}
+                    comments
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {comments.length ? (
             comments.map((element, index) => {
               return (
@@ -141,15 +294,16 @@ const SinglePostPage = () => {
           ) : (
             <></>
           )}
+
           <input
             type="text"
-            placeholder="Whats on your Mind ?"
+            placeholder="write comment here ?"
             onChange={(e) => {
               setComment(e.target.value);
             }}
           />
           <button onClick={createNewComment}>Comment</button>
-        </>
+        </div>
       ) : (
         <>No Posts</>
       )}
