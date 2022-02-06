@@ -1,5 +1,6 @@
 import "./App.css";
 import { Route, Router, Routes } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Login from "./components/Login";
 import SinglePostPage from "./components/SinglePostPage";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,7 +16,7 @@ const App = () => {
   });
   return (
     <>
-      {state.isLoggedIn ? <Navigation />: <></>}
+      {state.isLoggedIn ? <Navigation /> : <></>}
       <div className="App">
         <div className="Home">
           <Routes>

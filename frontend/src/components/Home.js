@@ -6,20 +6,22 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
+  BsPen,
 } from "react-icons/bs";
+
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
 /************************** */
-const Home = () => {
+const Home = ({ myImg }) => {
   const [description, setDescription] = useState("");
   const [modal, setModal] = useState(false);
   const [id, setId] = useState("");
-const navigation=useNavigate();
+  const navigation = useNavigate();
   const toggleModal = (id) => {
     setModal(!modal);
-
     setId(id);
   };
+  const imgUser = localStorage.getItem("img");
 
   const dispatch = useDispatch();
   const state = useSelector((state) => {
@@ -76,18 +78,70 @@ const navigation=useNavigate();
       console.log(error);
     }
   };
+
   /**************************************************************************************************************************/
 
   useEffect(() => {
     getAllPosts();
   }, []);
-
+  console.log("Myyyy img", myImg);
   //------------------------------------------------------------
   return (
     <div className="contain_all_home">
       <div className="left_home"></div>
 
       <div className="middle_home">
+        <div className="create_post">
+          <div className="pen_publish">
+            <BsPen className="icon_pen" />
+            <div className="publish">publish</div>
+          </div>
+
+          <div className="border_bottom_create"></div>
+          <div className="content_create_post">
+            <img
+              className="img_user_creat_post"
+              src={imgUser !== "undefined" ? imgUser : noAvatar}
+            />
+            <textarea
+              id="publish"
+              className="textarea"
+              rows="3"
+              placeholder="Write something about you..."
+              spellCheck="false"
+              onClick={() => {
+                navigation("/NewPost");
+              }}
+            ></textarea>
+          </div>
+          <div className="upload_media_post">
+            <div className="compose-option">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-camera"
+                id="icon_cam_svg"
+              >
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+              <span className="media">Media</span>
+              <input
+                id="feed-upload-input-2"
+                type="file"
+                accept=".png, .jpg, .jpeg"
+                // onChange="readURL(this)"
+              />
+            </div>
+          </div>
+        </div>
         <div className="all_posts_home">
           {state.posts.map((element, i) => {
             return (
@@ -110,7 +164,8 @@ const navigation=useNavigate();
                       {/* <span className="postDate">{format(post.createdAt)}</span> */}
                     </div>
                     <div className="postTopRight">
-                      <BsThreeDotsVertical className="icon_popup"
+                      <BsThreeDotsVertical
+                        className="icon_popup"
                         onClick={() => toggleModal(element.id)}
                       />
                       <div>
@@ -163,15 +218,33 @@ const navigation=useNavigate();
 
                   <div className="postBottom">
                     <div className="postBottomLeft">
-                      <BsFillHandThumbsUpFill className="likeIcon" />
-                      <BsFillHeartFill className="likeIcon_heart" />
+                      <BsFillHandThumbsUpFill
+                        className="likeIcon"
+                        onClick={(e) => {
+                          e.target.style.color = "#1877f2";
+                          e.target.style.transition = "all 0.5s";
+                        }}
+                      />
+                      <BsFillHeartFill
+                        className="likeIcon_heart"
+                        onClick={(e) => {
+                          e.target.style.color = "#e60023";
+                          e.target.style.transition = "all 0.5s";
+                        }}
+                      />
 
                       <span className="postLikeCounter">people like it</span>
                     </div>
                     <div className="postBottomRight">
-                      <span className="postCommentText" onClick={()=>{
-                        navigation(`/post/${element.id}`)
-                      }}> comments</span>
+                      <span
+                        className="postCommentText"
+                        onClick={() => {
+                          navigation(`/post/${element.id}`);
+                        }}
+                      >
+                        {" "}
+                        comments
+                      </span>
                     </div>
                   </div>
                 </div>

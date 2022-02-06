@@ -31,6 +31,9 @@ const login = (req, res) => {
             success: true,
             message: "Valid login credentials",
             token,
+             userId: results[0].id,
+             imge:results[0].profileimage,
+            
           });
         } else {
           res.status(403).json({
