@@ -3,22 +3,21 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
 const ProfilePage = () => {
   const { user_id } = useParams();
   const [userPosts, setUserPosts] = useState([]);
-  const [uploadedImage,setUploadedImage]=useState('')
-  const [profileimage,setProfileimage]=useState('');
+  const [uploadedImage, setUploadedImage] = useState("");
+  const [profileimage, setProfileimage] = useState("");
   const [userInfo, setUserInfo] = useState([]);
- const [allLikes, setAllLikes] = useState([]);
+  const [allLikes, setAllLikes] = useState([]);
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
     };
   });
   /************************************* */
-  const uploadimage = async () =>{
-    console.log(uploadedImage)
+  const uploadimage = async () => {
+    console.log(uploadedImage);
     const formData = new FormData();
     formData.append("file", uploadedImage);
     formData.append("upload_preset", "wyggi4ze");
@@ -26,13 +25,13 @@ const ProfilePage = () => {
     await axios
       .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
       .then((response) => {
-        console.log(response)
+        console.log(response);
         setProfileimage(response.data.secure_url);
       })
       .catch((err) => {
         throw err;
       });
-  }
+  };
 
   /****************************************** */
   const getPostsByUserId = async () => {
@@ -46,46 +45,51 @@ const ProfilePage = () => {
     }
   };
   /******************************************** */
-const getAllLikes = async () => {
-  try {
-    const res = await axios.get(`http://localhost:5000/like`);
-    if (res.data.success) {
-      setAllLikes(res.data.results);
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-  /**************************************** */
-  
-  const updatProfileImage= async()=>{
+  const getAllLikes = async () => {
     try {
-      const res = await axios.put(`http://localhost:5000/users/image/${user_id}`,{profileimage});
+      const res = await axios.get(`http://localhost:5000/like`);
       if (res.data.success) {
-        console.log(res.data)
+        setAllLikes(res.data.results);
       }
     } catch (err) {
       console.log(err);
     }
-  }
-  /***************************************** */
-  const getUserInfo= async ()=>{
-    
+  };
+  /**************************************** */
+
+  const updatProfileImage = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/users/${user_id}/info`);
+      const res = await axios.put(
+        `http://localhost:5000/users/image/${user_id}`,
+        { profileimage }
+      );
       if (res.data.success) {
-        setUserInfo(res.data.Info[0]);
-            }
+        console.log(res.data);
+      }
     } catch (err) {
       console.log(err);
     }
-  }
+  };
+  /***************************************** */
+  const getUserInfo = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/users/${user_id}/info`
+      );
+      if (res.data.success) {
+        setUserInfo(res.data.Info[0]);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   /****************************************** */
 
   const putNewLike = async (id) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/like/${id}`,{},
+        `http://localhost:5000/like/${id}`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${state.token}`,
@@ -117,21 +121,28 @@ const getAllLikes = async () => {
   return (
     <>
       <div>Profile Page</div>
-      <div>userInfo
-      <p>{userInfo.userName}</p>
-        <img src={userInfo.profileimage}/>
+      <div>
+        userInfo
+        <p>{userInfo.userName}</p>
+        <img src={userInfo.profileimage} />
         <p>{userInfo.email}</p>
-                <p>{userInfo.dob}</p>
-                <p>{userInfo.country}</p>
-                <p>{userInfo.gender}</p>
-        <input
-        type='file'
-          onChange={(e) => {
-            setUploadedImage(e.target.files[0]);
-          }}
-        />
-        <button onClick={uploadimage}>upload</button>
-        <button onClick={updatProfileImage}>Edit Profile Image</button>
+        <p>{userInfo.dob}</p>
+        <p>{userInfo.country}</p>
+        <p>{userInfo.gender}</p>
+        {userInfo.id == user_id ? (
+          <div>
+            <input
+              type="file"
+              onChange={(e) => {
+                setUploadedImage(e.target.files[0]);
+              }}
+            />
+            <button onClick={uploadimage}>upload</button>
+            <button onClick={updatProfileImage}>Edit Profile Image</button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       {userPosts.length
         ? userPosts.map((element, index) => {
@@ -147,10 +158,18 @@ const getAllLikes = async () => {
                 <h1>{element.country}</h1>
                 <h1>{element.profileimage}</h1>
                 <h1>{element.gender}</h1>
-                <button onClick={()=>putNewLike(element.id)}>Like</button>
+                <button
+                  onClick={() => {
+                    if (filterArray(element.id).length === 0) {
+                      putNewLike(element.id);
+                    }
+                  }}
+                >
+                  Like
+                </button>
                 <span className="postLikeCounter">
-                        {filterArray(element.id).length} People Like It
-                      </span>
+                  {filterArray(element.id).length} People Like It
+                </span>
               </div>
             );
           })

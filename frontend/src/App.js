@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Login from "./components/Login";
 import SinglePostPage from "./components/SinglePostPage";
 import { useSelector, useDispatch } from "react-redux";
-import NewPost from "./components/NewPost";
+import NewPost from "./components/NewPost/NewPost";
 import Home from "./components/Home";
 import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";

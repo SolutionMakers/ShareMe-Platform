@@ -79,7 +79,7 @@ const Home = () => {
       console.log(error);
     }
   };
-  /****************************************************************** */
+  /******************************************************************************************************* */
   const putNewLike = async (id) => {
     try {
       const res = await axios.post(
@@ -100,7 +100,7 @@ const Home = () => {
       }
     }
   };
-  /***************************************************************************************************** */
+  /****************************************************************************************************************** */
   const getAllLikes = async () => {
     try {
       const res = await axios.get(`http://localhost:5000/like`);
@@ -174,7 +174,9 @@ const Home = () => {
                 id="feed-upload-input-2"
                 type="file"
                 accept=".png, .jpg, .jpeg"
-                // onChange="readURL(this)"
+                onClick={(e) => {
+                  navigation("/NewPost");
+                }}
               />
             </div>
           </div>
@@ -186,7 +188,7 @@ const Home = () => {
                 <div className="postWrapper">
                   <div className="postTop">
                     <div className="postTopLeft">
-                      <Link to={`/profile/${element.id}`}>
+                      <Link to={`/profile/${element.user_id}`}>
                         <img
                           className="postProfileImg"
                           width="100%"
@@ -246,11 +248,7 @@ const Home = () => {
 
                   <div className="postCenter">
                     <p className="postText">{element.description}</p>
-                    <img
-                      className="postImg"
-                      src="https://amusd.net/wp-content/uploads/2021/03/HD-Wallpaper.jpg"
-                      alt=""
-                    />
+                    <img className="postImg" src={element.media} alt="" />
                   </div>
 
                   <div className="postBottom">
@@ -265,9 +263,11 @@ const Home = () => {
                       <BsFillHeartFill
                         className="likeIcon_heart"
                         onClick={(e) => {
-                          putNewLike(element.id);
-                          e.target.style.color = "#e60023";
-                          e.target.style.transition = "all 0.5s";
+                          if (filterArray(element.id).length === 0) {
+                            putNewLike(element.id);
+                            e.target.style.color = "#e60023";
+                            e.target.style.transition = "all 0.5s";
+                          }
                         }}
                       />
 
