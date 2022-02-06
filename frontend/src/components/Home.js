@@ -30,7 +30,7 @@ const Home = ({ myImg }) => {
       posts: state.postsReducer.posts,
     };
   });
-  /************************************************* */
+  /*************************************************************************************************************** */
   const getAllPosts = async () => {
     try {
       const res = await axios.get("http://localhost:5000/posts");
@@ -43,7 +43,7 @@ const Home = ({ myImg }) => {
       }
     }
   };
-
+  /**************************************************************************************************************** */
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:5000/posts/${id}`)
@@ -54,7 +54,7 @@ const Home = ({ myImg }) => {
         throw err;
       });
   };
-
+  /************************************************************************************************************* */
   const handleUpdate = async (id) => {
     try {
       const newPost = {
@@ -69,13 +69,33 @@ const Home = ({ myImg }) => {
           },
         }
       );
-
       if (res.data.success) {
         dispatch(updatePost(newPost));
         getAllPosts();
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+  /****************************************************************** */
+  const putNewLike = async (id) => {
+    try {
+      const res = await axios.post(
+        `http://localhost:5000/like/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        console.log(res.data);
+      }
+    } catch (error) {
+      if (error.response && error.response.data) {
+        console.log(error.response.data);
+      }
     }
   };
 
@@ -228,6 +248,7 @@ const Home = ({ myImg }) => {
                       <BsFillHeartFill
                         className="likeIcon_heart"
                         onClick={(e) => {
+                          putNewLike(element.id);
                           e.target.style.color = "#e60023";
                           e.target.style.transition = "all 0.5s";
                         }}
