@@ -79,7 +79,7 @@ const Home = () => {
       console.log(error);
     }
   };
-  /****************************************************************** */
+  /******************************************************************************************************* */
   const putNewLike = async (id) => {
     try {
       const res = await axios.post(
@@ -100,7 +100,7 @@ const Home = () => {
       }
     }
   };
-  /***************************************************************************************************** */
+  /****************************************************************************************************************** */
   const getAllLikes = async () => {
     try {
       const res = await axios.get(`http://localhost:5000/like`);
@@ -261,9 +261,11 @@ const Home = () => {
                       <BsFillHeartFill
                         className="likeIcon_heart"
                         onClick={(e) => {
-                          putNewLike(element.id);
-                          e.target.style.color = "#e60023";
-                          e.target.style.transition = "all 0.5s";
+                          if (filterArray(element.id).length === 0) {
+                            putNewLike(element.id);
+                            e.target.style.color = "#e60023";
+                            e.target.style.transition = "all 0.5s";
+                          }
                         }}
                       />
 
