@@ -248,7 +248,10 @@ const Home = () => {
 
                   <div className="postCenter">
                     <p className="postText">{element.description}</p>
-                    <img className="postImg" src={element.media} alt="" />
+                    <img className="postImg" src={element.media} alt="" onClick={()=>{
+                      navigation(`/post/${element.id}`)
+                      
+                    }}/>
                   </div>
 
                   <div className="postBottom">
