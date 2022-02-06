@@ -416,8 +416,8 @@ body {
 
 .post {
   position: relative;
-  width:40rem;
-
+  width: 40rem;
+background-color: #ffffff;
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
@@ -464,10 +464,12 @@ body {
 }
 
 .postProfileImg {
-  width: 34px;
-  height: 34px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   object-fit: cover;
+  /* border: 0.1px solid rgb(238, 232, 232); */
+  box-shadow: 0 0 3px rgb(145, 144, 144);
 }
 
 .postUsername {
@@ -496,6 +498,7 @@ body {
   max-height: 500px;
   border-radius: 0.5rem;
   object-fit: contain;
+
 }
 
 .postBottom {
@@ -514,16 +517,18 @@ body {
   height: 22px;
   margin-right: 5px;
   cursor: pointer;
-  color: #1877f2;
+  color: #d1cacb;
 }
 
-.likeIcon_heart {
+ .likeIcon_heart {
   width: 22px;
   height: 22px;
   margin-right: 5px;
   cursor: pointer;
-  color: #e60023;
-}
+  color: #d1cacb;
+ 
+} 
+ 
 
 .postLikeCounter {
   font-size: 15px;
@@ -535,7 +540,160 @@ body {
   font-size: 18px;
 }
 
-/*-----------------------------New Post -------------------*/
+/*-----------------------------Create New Post Home -------------------*/
 .creat_post_all {
   padding-top: 20%;
 }
+
+.create_post {
+  position: relative;
+  width: 40rem;
+  height: 17.5rem;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  background-color: #ffffff;
+  /* margin: 5px 0; */
+}
+
+.pen_publish {
+  display: flex;
+  gap: 5px;
+  padding-left: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  height: 3rem;
+  color: #6c708b;
+}
+
+.publish {
+  font-size: 1.2rem;
+}
+
+.border_bottom_create {
+  border: 0.5px solid #dbdbdb;
+}
+
+.content_create_post {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  height: 11rem;
+  padding-left: 20px;
+}
+
+.img_user_creat_post {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 25px;
+  box-shadow: 0 0 3px rgb(145, 144, 144);
+}
+
+.textarea {
+  padding: 0;
+  border-color: transparent;
+  resize: none;
+  outline: none;
+  border: none;
+}
+
+.textarea[rows] {
+  height: initial;
+  resize: none;
+}
+
+.textarea {
+  display: block;
+
+  padding: calc(0.75em - 1px);
+  resize: vertical;
+}
+
+.textarea,
+.input {
+  max-width: 100%;
+  width: 100%;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Helvetica", "Arial", sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.upload_media_post {
+  border-top: 0.5px solid #dbdbdb;
+  display: flex;
+  align-items: center;
+  padding: 7px 0px 5px 10px;
+}
+
+.compose-option {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  box-sizing: inherit;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6px 16px;
+  margin-right: 10px;
+  background: #f7f7f7;
+  border-radius: 500px;
+  font-size: 0.85rem;
+  color: #888da8;
+  transition: all 0.3s;
+}
+
+.media {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #888da8;
+  box-sizing: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  display: block;
+  padding: 0 8px;
+}
+
+#feed-upload-input-2 {
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  box-sizing: inherit;
+  margin: 0;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Helvetica", "Arial", sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.compose-option:hover {
+  color: black;
+  transition: all 0.3s;
+}
+
+.icon_pen:hover{
+  color: black;
+  transition: all 0.3s;
+}
+
+/*-------------------------New Post Page Post--------------------*/
