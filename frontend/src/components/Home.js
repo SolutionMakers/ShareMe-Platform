@@ -11,11 +11,13 @@ import {
 
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
-/************************** */
+/******************************************************************************************************* */
 const Home = ({ myImg }) => {
   const [description, setDescription] = useState("");
   const [modal, setModal] = useState(false);
   const [id, setId] = useState("");
+  const [allLikes, setAllLikes] = useState([]);
+  /***************************************************************************************************************** */
   const navigation = useNavigate();
   const toggleModal = (id) => {
     setModal(!modal);
@@ -98,14 +100,29 @@ const Home = ({ myImg }) => {
       }
     }
   };
-
-  /**************************************************************************************************************************/
-
+  /***************************************************************************************************** */
+  const getAllLikes = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/like`);
+      if (res.data.success) {
+        setAllLikes(res.data.results);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  /**********************************************************************************************************************/
   useEffect(() => {
     getAllPosts();
-  }, []);
-  console.log("Myyyy img", myImg);
-  //------------------------------------------------------------
+    getAllLikes();
+  }, [allLikes]);
+  /**********************************************************************************************************************/
+  const filterArray = (id) => {
+    return allLikes.filter((e, i) => {
+      return e.post_id === id;
+    });
+  };
+  /**********************************************************************************************************************/
   return (
     <div className="contain_all_home">
       <div className="left_home"></div>
@@ -254,7 +271,9 @@ const Home = ({ myImg }) => {
                         }}
                       />
 
-                      <span className="postLikeCounter">people like it</span>
+                      <span className="postLikeCounter">
+                        {filterArray(element.id).length} People Like It
+                      </span>
                     </div>
                     <div className="postBottomRight">
                       <span
