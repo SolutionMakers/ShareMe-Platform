@@ -8,6 +8,7 @@ const NewPost = () => {
   const [description, setDescription] = useState("");
   const [media, setMedia] = useState("");
   const [craetPostMessage, setcraetPostMessage] = useState("");
+  const [uploadedImage,setUploadedImage]=useState('')
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -15,6 +16,24 @@ const NewPost = () => {
       posts: state.postsReducer.posts,
     };
   });
+  /******************************************* */
+  
+const uploadimage = async () =>{
+  const formData = new FormData();
+  formData.append("file", uploadedImage);
+  formData.append("upload_preset", "wyggi4ze");
+
+  await axios
+    .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
+    .then((response) => {
+      console.log(response)
+      setMedia(response.data.secure_url);
+    })
+    .catch((err) => {
+      throw err;
+    });
+}
+/**************************************** */
 
   return (
     <div className="creat_post_all">
@@ -28,10 +47,12 @@ const NewPost = () => {
           }}
         />
         <input
+        type='file'
           onChange={(e) => {
-            setMedia(e.target.value);
+            setUploadedImage(e.target.files[0]);
           }}
         />
+        <button onClick={uploadimage}>upload</button>
       </div>
 
       <div className="button_creat_and_messag">
