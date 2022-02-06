@@ -174,7 +174,9 @@ const Home = () => {
                 id="feed-upload-input-2"
                 type="file"
                 accept=".png, .jpg, .jpeg"
-                // onChange="readURL(this)"
+                onClick={(e) => {
+                  navigation("/NewPost");
+                }}
               />
             </div>
           </div>
