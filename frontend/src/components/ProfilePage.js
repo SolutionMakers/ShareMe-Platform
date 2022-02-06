@@ -9,6 +9,7 @@ const ProfilePage = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [uploadedImage,setUploadedImage]=useState('')
   const [profileimage,setProfileimage]=useState('');
+  const [userInfo, setUserInfo] = useState([]);
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
@@ -44,8 +45,22 @@ const ProfilePage = () => {
       console.log(err);
     }
   };
-  console.log(userPosts);
   /***************************************** */
+  const getUserInfo= async ()=>{
+    
+    try {
+      const res = await axios.get(`http://localhost:5000/users/${user_id}/info`);
+      if (res.data.success) {
+        console.log(res.data.Info)
+        setUserInfo(res.data.Info[0]);
+        console.log(`All the posts for this user_id ${user_id}`);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  /****************************************** */
+
   const putNewLike = async (id) => {
     try {
       const res = await axios.post(
@@ -69,12 +84,18 @@ const ProfilePage = () => {
 
   useEffect(() => {
     getPostsByUserId();
+    getUserInfo();
   }, []);
   return (
     <>
       <div>Profile Page</div>
       <div>userInfo
-
+      <p>{userInfo.userName}</p>
+        <img src={userInfo.profileimage}/>
+        <p>{userInfo.email}</p>
+                <p>{userInfo.dob}</p>
+                <p>{userInfo.country}</p>
+                <p>{userInfo.gender}</p>
         <input
         type='file'
           onChange={(e) => {
