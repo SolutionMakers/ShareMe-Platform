@@ -63,7 +63,6 @@ const ProfilePage = () => {
     try {
       const res = await axios.get(`http://localhost:5000/users/${user_id}/info`);
       if (res.data.success) {
-        console.log(res.data.Info)
         setUserInfo(res.data.Info[0]);
         console.log(`All the posts for this user_id ${user_id}`);
       }
