@@ -7,11 +7,32 @@ import { useSelector } from "react-redux";
 const ProfilePage = () => {
   const { user_id } = useParams();
   const [userPosts, setUserPosts] = useState([]);
+  const [uploadedImage,setUploadedImage]=useState('')
+  const [profileimage,setProfileimage]=useState('');
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
     };
   });
+  /************************************* */
+  const uploadimage = async () =>{
+    console.log(uploadedImage)
+    const formData = new FormData();
+    formData.append("file", uploadedImage);
+    formData.append("upload_preset", "wyggi4ze");
+
+    await axios
+      .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
+      .then((response) => {
+        console.log(response)
+        setProfileimage(response.data.secure_url);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  /****************************************** */
   const getPostsByUserId = async () => {
     try {
       const res = await axios.get(`http://localhost:5000/posts/${user_id}`);
@@ -52,6 +73,17 @@ const ProfilePage = () => {
   return (
     <>
       <div>Profile Page</div>
+      <div>userInfo
+
+        <input
+        type='file'
+          onChange={(e) => {
+            setUploadedImage(e.target.files[0]);
+          }}
+        />
+        <button onClick={uploadimage}>upload</button>
+
+      </div>
       {userPosts.length
         ? userPosts.map((element, index) => {
             return (
