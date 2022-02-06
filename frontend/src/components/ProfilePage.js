@@ -129,14 +129,20 @@ const ProfilePage = () => {
         <p>{userInfo.dob}</p>
         <p>{userInfo.country}</p>
         <p>{userInfo.gender}</p>
-        <input
-          type="file"
-          onChange={(e) => {
-            setUploadedImage(e.target.files[0]);
-          }}
-        />
-        <button onClick={uploadimage}>upload</button>
-        <button onClick={updatProfileImage}>Edit Profile Image</button>
+        {userInfo.id == user_id ? (
+          <div>
+            <input
+              type="file"
+              onChange={(e) => {
+                setUploadedImage(e.target.files[0]);
+              }}
+            />
+            <button onClick={uploadimage}>upload</button>
+            <button onClick={updatProfileImage}>Edit Profile Image</button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       {userPosts.length
         ? userPosts.map((element, index) => {
