@@ -246,11 +246,7 @@ const Home = () => {
 
                   <div className="postCenter">
                     <p className="postText">{element.description}</p>
-                    <img
-                      className="postImg"
-                      src="https://amusd.net/wp-content/uploads/2021/03/HD-Wallpaper.jpg"
-                      alt=""
-                    />
+                    <img className="postImg" src={element.media} alt="" />
                   </div>
 
                   <div className="postBottom">
