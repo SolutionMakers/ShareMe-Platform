@@ -10,6 +10,7 @@ const ProfilePage = () => {
   const [uploadedImage,setUploadedImage]=useState('')
   const [profileimage,setProfileimage]=useState('');
   const [userInfo, setUserInfo] = useState([]);
+ const [allLikes, setAllLikes] = useState([]);
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
@@ -39,19 +40,29 @@ const ProfilePage = () => {
       const res = await axios.get(`http://localhost:5000/posts/${user_id}`);
       if (res.data.success) {
         setUserPosts(res.data.results);
-        console.log(`All the posts for this user_id ${user_id}`);
       }
     } catch (err) {
       console.log(err);
     }
   };
+  /******************************************** */
+const getAllLikes = async () => {
+  try {
+    const res = await axios.get(`http://localhost:5000/like`);
+    if (res.data.success) {
+      setAllLikes(res.data.results);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
   /**************************************** */
+  
   const updatProfileImage= async()=>{
     try {
       const res = await axios.put(`http://localhost:5000/users/image/${user_id}`,{profileimage});
       if (res.data.success) {
         console.log(res.data)
-        // console.log(`All the posts for this user_id ${user_id}`);
       }
     } catch (err) {
       console.log(err);
@@ -64,8 +75,7 @@ const ProfilePage = () => {
       const res = await axios.get(`http://localhost:5000/users/${user_id}/info`);
       if (res.data.success) {
         setUserInfo(res.data.Info[0]);
-        console.log(`All the posts for this user_id ${user_id}`);
-      }
+            }
     } catch (err) {
       console.log(err);
     }
@@ -92,10 +102,17 @@ const ProfilePage = () => {
     }
   };
   /***************************************** */
+  const filterArray = (id) => {
+    return allLikes.filter((e, i) => {
+      return e.post_id === id;
+    });
+  };
+  /****************************************** */
 
   useEffect(() => {
     getPostsByUserId();
     getUserInfo();
+    getAllLikes();
   }, []);
   return (
     <>
@@ -131,6 +148,9 @@ const ProfilePage = () => {
                 <h1>{element.profileimage}</h1>
                 <h1>{element.gender}</h1>
                 <button onClick={()=>putNewLike(element.id)}>Like</button>
+                <span className="postLikeCounter">
+                        {filterArray(element.id).length} People Like It
+                      </span>
               </div>
             );
           })
