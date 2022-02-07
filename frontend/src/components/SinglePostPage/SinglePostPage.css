@@ -21,7 +21,7 @@
   padding-left: 16px;
 
   height: 100%;
-  width: 100%;
+  width:560px;
 }
 
 .comment_flex_row {
@@ -51,6 +51,10 @@
   box-shadow: -0.2px 1px 5px #cfd0d1;
   padding: 12px;
   align-items: center;
+  text-align: start;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  "Helvetica Neue", Arial, sans-serif;
+
 }
 
 .comment_flex_column {
@@ -60,13 +64,13 @@
 }
 
 .uesr_commenter_name {
-  font-size: 17px;
+    font-size: 1rem;
   font-weight: bold;
   display: flex;
 }
 
 .comment_font {
-  font-size: 19px;
+    font-size: 0.93rem;
 }
 
 .add_comment_syle {
@@ -74,6 +78,7 @@
   gap: 5px;
   align-items: center;
   padding-bottom: 1rem;
+  
 }
 
 .Add_comment {
