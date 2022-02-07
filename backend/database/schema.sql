@@ -56,3 +56,26 @@ CREATE TABLE likes(
     is_deleted TINYINT DEFAULT 0,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE rooms(
+    id INT AUTO_INCREMENT NOT NULL,
+    sender_id INT,
+    FOREIGN KEY (sender_id) REFERENCES users(id),
+    receiver_id INT,
+    FOREIGN KEY (receiver_id) REFERENCES users(id),
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE message(
+    id INT AUTO_INCREMENT NOT NULL,
+    room_id INT,
+    FOREIGN KEY (room_id) REFERENCES rooms(id),
+    sender_id INT,
+    FOREIGN KEY (sender_id) REFERENCES users(id),
+    message VARCHAR(500),
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (id)
+);
+
+
