@@ -21,7 +21,7 @@
   padding-left: 16px;
 
   height: 100%;
-  width: 100%;
+  width:560px;
 }
 
 .comment_flex_row {
@@ -51,6 +51,7 @@
   box-shadow: -0.2px 1px 5px #cfd0d1;
   padding: 12px;
   align-items: center;
+  text-align: start;
 }
 
 .comment_flex_column {
