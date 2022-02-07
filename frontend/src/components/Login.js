@@ -37,8 +37,9 @@ const Login = () => {
       if (res.data.success) {
         setSignupMessage("");
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user_id", res.data.userId);
         localStorage.setItem("img", res.data.imge);
-        dispatch(login(res.data.token));
+        dispatch(login({ token: res.data.token, user_id: res.data.userId }));
         navigate("/home");
       } else throw Error;
     } catch (error) {
