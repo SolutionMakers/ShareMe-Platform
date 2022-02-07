@@ -23,6 +23,33 @@ const createNewMessage
     });
   });
 };
+const getAllMessageByRoomId= (req, res, next) => {
+  const room_id = req.params.room_id;
+
+  const query = `SELECT * FROM message WHERE room_id=? `;
+  const data = [room_id];
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(409).json({
+        success: false,
+        massage: "Server Error",
+        err: err,
+      });
+    }
+    if (results.length) {
+      return res.status(201).json({
+        success: true,
+        massage: `all the message of room ${room_id}`,
+        results: results,
+      });
+    } else {
+       return res.status(409).json({
+        success: true,
+        massage: `No message in this room`,
+        results: results,
+    })}
+  });
+};
 module.exports = {
-createNewMessage
+createNewMessage,getAllMessageByRoomId
   };
