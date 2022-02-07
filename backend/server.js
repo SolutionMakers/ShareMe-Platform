@@ -14,6 +14,7 @@ const postsRouter = require("./routes/post");
 const commentsRouter = require("./routes/comments");
 const rolesRouter = require("./routes/roles");
 const likesRouter = require("./routes/like");
+const roomsRouter =require('./routes/rooms')
 /*************************************** */
 app.use("/login", loginRouter);
 app.use("/users", usersRouter);
@@ -21,6 +22,8 @@ app.use("/posts", postsRouter);
 app.use("/", commentsRouter);
 app.use("/roles", rolesRouter);
 app.use("/like", likesRouter);
+app.use("/rooms", roomsRouter);
+
 /*************************************** */
 const server = app.listen(PORT, () => {
   console.log(`SERVER WORKING ON PORT: ${PORT}`);
