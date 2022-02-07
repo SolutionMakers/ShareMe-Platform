@@ -24,7 +24,27 @@ const openRoom = (req, res, next) => {
     }
   });
 };
-
+const createRoom = (req, res) => {
+  const body = req.body.id;
+  const sender_id = req.token.userId;
+  const query = `INSERT INTO rooms (sender_id,receiver_id) VALUES (?,?);`;
+  const data = [sender_id, body];
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(409).json({
+        success: false,
+        massage: "The room already exists",
+        err: err,
+      });
+    }
+    res.status(200).json({
+      success: true,
+      massage: "Success to create a room",
+      results: results,
+    });
+  });
+};
 module.exports = {
     openRoom,
+    createRoom,
   };
