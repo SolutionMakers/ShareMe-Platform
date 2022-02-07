@@ -52,6 +52,9 @@
   padding: 12px;
   align-items: center;
   text-align: start;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  "Helvetica Neue", Arial, sans-serif;
+
 }
 
 .comment_flex_column {
@@ -61,13 +64,13 @@
 }
 
 .uesr_commenter_name {
-  font-size: 17px;
+    font-size: 1rem;
   font-weight: bold;
   display: flex;
 }
 
 .comment_font {
-  font-size: 19px;
+    font-size: 0.93rem;
 }
 
 .add_comment_syle {
@@ -75,6 +78,7 @@
   gap: 5px;
   align-items: center;
   padding-bottom: 1rem;
+  
 }
 
 .Add_comment {
