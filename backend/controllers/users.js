@@ -1,8 +1,7 @@
 const connection = require("../database/db");
-
 const bcrypt = require("bcrypt");
 const salt = 10;
-
+/********************************************************************************************* */
 const createNewUser = async (req, res) => {
   const { userName, email, password, dob, country, profileimage, gender } =
     req.body;
@@ -27,8 +26,7 @@ const createNewUser = async (req, res) => {
   });
 };
 
-/************************************* */
-
+/********************************************************************************************* */
 const updateProfilePhoto = (req, res) => {
   const profileimage = req.body.profileimage;
   const id = req.params.id;
@@ -52,7 +50,6 @@ const updateProfilePhoto = (req, res) => {
         err: err,
       });
     }
-    // result are the data returned by mysql server
     res.status(201).json({
       success: true,
       massage: `profile image updated`,
@@ -60,7 +57,7 @@ const updateProfilePhoto = (req, res) => {
     });
   });
 };
-/************************************* */
+/********************************************************************************************* */
 const getInfoUser = (req, res) => {
   const userId = req.params.id;
   const query = `SELECT * FROM users WHERE id=? And is_deleted=0;`;
@@ -88,8 +85,35 @@ const getInfoUser = (req, res) => {
     });
   });
 };
+/********************************************************************************************* */
+const getAllUsers = (req, res) => {
+  const query = `SELECT * FROM users WHERE is_deleted=0`;
+  connection.query(query, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        success: false,
+        massage: "server error",
+        err: err,
+      });
+    }
+    if (result.length) {
+      res.status(200).json({
+        success: true,
+        massage: "All the users",
+        results: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: "No users Found",
+      });
+    }
+  });
+};
+/********************************************************************************************* */
 module.exports = {
   createNewUser,
   updateProfilePhoto,
   getInfoUser,
+  getAllUsers,
 };

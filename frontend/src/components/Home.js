@@ -30,6 +30,7 @@ const Home = () => {
     return {
       token: state.loginReducer.token,
       posts: state.postsReducer.posts,
+      user_id: state.loginReducer.user_id,
     };
   });
   /*************************************************************************************************************** */
@@ -183,6 +184,7 @@ const Home = () => {
         </div>
         <div className="all_posts_home">
           {state.posts.map((element, i) => {
+            console.log(element);
             return (
               <div className="post">
                 <div className="postWrapper">
@@ -203,55 +205,64 @@ const Home = () => {
                       {/* <span className="postDate">{format(post.createdAt)}</span> */}
                     </div>
                     <div className="postTopRight">
-                      <BsThreeDotsVertical
-                        className="icon_popup"
-                        onClick={() => toggleModal(element.id)}
-                      />
-                      <div>
-                        {" "}
-                        {modal && id == element.id && (
-                          <div className="modal_post">
-                            <div
-                              onClick={toggleModal}
-                              className="overlay_post"
-                            ></div>
-                            <div className="modal-content_post">
-                              <h2>Edit Post</h2>
-                              <button
-                                className="button_delete"
-                                onClick={() => handleDelete(element.id)}
-                              >
-                                delete
-                              </button>
-                              <input
-                                type="text"
-                                placeholder="updated description"
-                                onChange={(e) => {
-                                  setDescription(e.target.value);
-                                }}
-                              />
-                              <button onClick={() => handleUpdate(element.id)}>
-                                Update
-                              </button>
-                              <button
-                                className="close-modal_post"
-                                onClick={() => toggleModal("")}
-                              >
-                                CLOSE
-                              </button>
+                      {element.user_id == state.user_id ? (
+                        <div>
+                          <BsThreeDotsVertical
+                            className="icon_popup"
+                            onClick={() => toggleModal(element.id)}
+                          />
+                          {modal && id == element.id && (
+                            <div className="modal_post">
+                              <div
+                                onClick={toggleModal}
+                                className="overlay_post"
+                              ></div>
+                              <div className="modal-content_post">
+                                <h2>Edit Post</h2>
+                                <button
+                                  className="button_delete"
+                                  onClick={() => handleDelete(element.id)}
+                                >
+                                  delete
+                                </button>
+                                <input
+                                  type="text"
+                                  placeholder="updated description"
+                                  onChange={(e) => {
+                                    setDescription(e.target.value);
+                                  }}
+                                />
+                                <button
+                                  onClick={() => handleUpdate(element.id)}
+                                >
+                                  Update
+                                </button>
+                                <button
+                                  className="close-modal_post"
+                                  onClick={() => toggleModal("")}
+                                >
+                                  CLOSE
+                                </button>
+                              </div>
                             </div>
-                          </div>
-                        )}
-                      </div>
+                          )}
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>
 
                   <div className="postCenter">
                     <p className="postText">{element.description}</p>
-                    <img className="postImg" src={element.media} alt="" onClick={()=>{
-                      navigation(`/post/${element.id}`)
-                      
-                    }}/>
+                    <img
+                      className="postImg"
+                      src={element.media}
+                      alt=""
+                      onClick={() => {
+                        navigation(`/post/${element.id}`);
+                      }}
+                    />
                   </div>
 
                   <div className="postBottom">

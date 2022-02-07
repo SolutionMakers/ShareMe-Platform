@@ -13,8 +13,10 @@ const ProfilePage = () => {
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
+      user_id: state.loginReducer.user_id,
     };
   });
+  console.log("user_id", state.user_id);
   /************************************* */
   const uploadimage = async () => {
     console.log(uploadedImage);
@@ -129,7 +131,7 @@ const ProfilePage = () => {
         <p>{userInfo.dob}</p>
         <p>{userInfo.country}</p>
         <p>{userInfo.gender}</p>
-        {userInfo.id == user_id ? (
+        {userInfo.id == state.user_id ? (
           <div>
             <input
               type="file"
