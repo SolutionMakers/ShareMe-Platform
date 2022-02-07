@@ -1,0 +1,22 @@
+.Chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  border: solid 1px gray;
+}
+li {
+  padding: 0.1rem;
+}
+li:nth-child(odd) {
+  background: #79b893;
+  text-align: right;
+}
