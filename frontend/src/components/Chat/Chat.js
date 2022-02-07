@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "../Chat/Chat.css";
 import { io } from "socket.io-client";
 
@@ -8,15 +9,16 @@ const socket = io.connect(ENDPOINT);
 const Chat = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [message, setMessage] = useState("");
-  const [room, setRoom] = useState("");
+  const [roomId, setRoomId] = useState("");
   const [userName, setUserName] = useState("");
   const [messageList, setMessageList] = useState([]);
-
+  const { room} = useParams();
   useEffect(() => {
     socket.on("RECEIVE_MESSAGE", (data) => {
       setMessageList([...messageList, data]);
     });
-  });
+    joinRoom();
+  }, []);
 
   const joinRoom = () => {
     setLoggedIn(true);
@@ -81,7 +83,7 @@ const Chat = () => {
               type={"text"}
               placeholder="Room ID"
               onChange={(e) => {
-                setRoom(e.target.value);
+                setRoomId(e.target.value);
               }}
             />
             <button onClick={joinRoom}>Enter Room</button>
