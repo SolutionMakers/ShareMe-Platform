@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
   const { user_id } = useParams();
+  const navigation = useNavigate();
   const [userPosts, setUserPosts] = useState([]);
   const [uploadedImage, setUploadedImage] = useState("");
   const [profileimage, setProfileimage] = useState("");
@@ -125,6 +126,38 @@ const ProfilePage = () => {
       <div>Profile Page</div>
       <div>
         userInfo
+        <button
+          className="chat_button"
+          onClick={() => {
+            axios
+              .post(
+                `http://localhost:5000/rooms/`,
+                {
+                  id: user_id,
+                },
+                {
+                  headers: {
+                    Authorization: ` Bearer ${state.token}`,
+                  },
+                }
+              )
+              .then((result) => {
+                console.log(result.data.results[0].id);
+                if (result.data.results[0].id) {
+                  navigation(`/chat/${result.data.results[0].id}`);
+                }
+
+                if (result.data.results[0].insertId) {
+                  navigation(`/chat/${result.data.results[0].insertId}`);
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
+        >
+          Chat Rooms
+        </button>
         <p>{userInfo.userName}</p>
         <img src={userInfo.profileimage} />
         <p>{userInfo.email}</p>
