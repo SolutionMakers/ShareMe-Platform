@@ -277,11 +277,9 @@ const Home = () => {
                       <BsFillHeartFill
                         className="likeIcon_heart"
                         onClick={(e) => {
-                          if (filterArray(element.id).length === 0) {
-                            putNewLike(element.id);
-                            e.target.style.color = "#e60023";
-                            e.target.style.transition = "all 0.5s";
-                          }
+                          putNewLike(element.id);
+                          e.target.style.color = "#e60023";
+                          e.target.style.transition = "all 0.5s";
                         }}
                       />
 

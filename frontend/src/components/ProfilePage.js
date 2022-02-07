@@ -162,9 +162,7 @@ const ProfilePage = () => {
                 <h1>{element.gender}</h1>
                 <button
                   onClick={() => {
-                    if (filterArray(element.id).length === 0) {
-                      putNewLike(element.id);
-                    }
+                    putNewLike(element.id);
                   }}
                 >
                   Like
