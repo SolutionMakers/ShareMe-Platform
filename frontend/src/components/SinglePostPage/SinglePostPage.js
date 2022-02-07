@@ -6,7 +6,7 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
-  BsPen,
+  BsPlusCircleFill,
 } from "react-icons/bs";
 
 import axios from "axios";
@@ -155,6 +155,7 @@ const SinglePostPage = () => {
       );
       if (res.data.success) {
         setComment(res.data.results);
+        setComment("");
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -279,15 +280,25 @@ const SinglePostPage = () => {
                 </div>
               </div>
             </div>
-          </div>
 
+            <div className="all_comments">
           {comments.length ? (
             comments.map((element, index) => {
               return (
-                <div key={index}>
-                  <p>{element.userName}</p>
-                  <img src={element.profileimage} />
-                  <p>{element.comment}</p>
+                <div className="comment_style">
+                  <div className="comment_flex_row">
+                    <img className="img_profile_single" src={element.profileimage} />
+
+                    <div className="one_comment">
+                      <div className="comment_flex_column">
+                        <div className="uesr_commenter_name">
+                          {element.userName}
+                        </div>
+
+                        <div className="comment_font">{element.comment}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               );
             })
@@ -295,14 +306,23 @@ const SinglePostPage = () => {
             <></>
           )}
 
-          <input
-            type="text"
-            placeholder="write comment here ?"
-            onChange={(e) => {
-              setComment(e.target.value);
-            }}
-          />
-          <button onClick={createNewComment}>Comment</button>
+          </div>
+
+          <div className="add_comment_syle">
+            <input
+              className="Add_comment"
+              value={comment}
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
+              type="text"
+              placeholder="write comment here..."
+            />{" "}
+            <BsPlusCircleFill className="apple" onClick={createNewComment} />
+          </div>
+          </div>
+
+        
         </div>
       ) : (
         <>No Posts</>
