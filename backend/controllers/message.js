@@ -1,13 +1,12 @@
 const connection = require("../database/db");
 
-const createNewMessage
-= (req, res) => {
+const createNewMessage = (req, res) => {
   const message = req.body.message;
   const sender_id = req.token.userId;
   const room_id = req.params.room_id;
 
   const query = `INSERT INTO message (sender_id,message,room_id) VALUES (?,?,?);`;
-  const data = [sender_id,message,room_id];
+  const data = [sender_id, message, room_id];
   connection.query(query, data, (err, results) => {
     if (err) {
       return res.status(409).json({
@@ -23,7 +22,7 @@ const createNewMessage
     });
   });
 };
-const getAllMessageByRoomId= (req, res, next) => {
+const getAllMessageByRoomId = (req, res, next) => {
   const room_id = req.params.room_id;
 
   const query = `SELECT * FROM message WHERE room_id=? `;
@@ -43,13 +42,15 @@ const getAllMessageByRoomId= (req, res, next) => {
         results: results,
       });
     } else {
-       return res.status(409).json({
+      return res.status(409).json({
         success: true,
         massage: `No message in this room`,
         results: results,
-    })}
+      });
+    }
   });
 };
 module.exports = {
-createNewMessage,getAllMessageByRoomId
-  };
+  createNewMessage,
+  getAllMessageByRoomId,
+};
