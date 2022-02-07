@@ -25,7 +25,7 @@ const App = () => {
             <Route path="/Home" element={<Home />} />
             <Route path="/post/:id" element={<SinglePostPage />} />
             <Route path="/profile/:user_id" element={<ProfilePage />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat/:room" element={<Chat />} />
           </Routes>
         </div>
         {state.isLoggedIn ? <></> : <Login />}
