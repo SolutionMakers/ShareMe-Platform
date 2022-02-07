@@ -4,7 +4,7 @@ const express = require("express");
 const {
   getAllLikesByPostId,
   createNewLike,
-  getAllLikes,
+  getAllLikes,likesByPostIdAndUserId
 } = require("../controllers/like");
 
 //middlewares
@@ -12,8 +12,7 @@ const { authentication } = require("../middleware/authentication");
 
 const likesRouter = express.Router();
 
-likesRouter.post("/:post_id", authentication, createNewLike);
-
+likesRouter.post("/:post_id", authentication,likesByPostIdAndUserId, createNewLike);
 likesRouter.get(
   "/:post_id",
 
