@@ -66,9 +66,36 @@ const getAllLikes = (req, res) => {
     });
   });
 };
+const likesByPostIdAndUserId = (req, res,next) => {
+  const post_id = req.params.post_id;
+  const user_id=req.token.userId;
+
+  const query = `SELECT * FROM likes WHERE post_id=? AND user_id=?;`;
+  const data = [post_id,user_id];
+
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(409).json({
+        success: false,
+        massage: "Server Error",
+        err: err,
+      });
+    }
+    if (results.length) {
+      res.status(200).json({
+        success: false,
+        massage: `cant put Like again`,
+        results: results,
+      });
+    } else {
+      next();
+    }
+  });
+};
 
 module.exports = {
   createNewLike,
   getAllLikesByPostId,
   getAllLikes,
+  likesByPostIdAndUserId
 };
