@@ -108,6 +108,37 @@ const ProfilePage = () => {
       }
     }
   };
+
+  /**************************************** */
+
+  const joinRoom =()=>{
+    axios
+    .post(
+      `http://localhost:5000/rooms/`,
+      {
+        id: user_id,
+      },
+      {
+        headers: {
+          Authorization: ` Bearer ${state.token}`,
+        },
+      }
+    )
+    .then((result) => {
+      console.log(result.data.results[0].id);
+      if (result.data.results[0].id) {
+        navigation(`/chat/${result.data.results[0].id}`);
+      }
+
+      if (result.data.results[0].insertId) {
+        navigation(`/chat/${result.data.results[0].insertId}`);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }
   /***************************************** */
   const filterArray = (id) => {
     return allLikes.filter((e, i) => {
@@ -128,33 +159,7 @@ const ProfilePage = () => {
         userInfo
         <button
           className="chat_button"
-          onClick={() => {
-            axios
-              .post(
-                `http://localhost:5000/rooms/`,
-                {
-                  id: user_id,
-                },
-                {
-                  headers: {
-                    Authorization: ` Bearer ${state.token}`,
-                  },
-                }
-              )
-              .then((result) => {
-                console.log(result.data.results[0].id);
-                if (result.data.results[0].id) {
-                  navigation(`/chat/${result.data.results[0].id}`);
-                }
-
-                if (result.data.results[0].insertId) {
-                  navigation(`/chat/${result.data.results[0].insertId}`);
-                }
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          }}
+          onClick={joinRoom}
         >
           Chat Rooms
         </button>
