@@ -735,20 +735,7 @@ body {
 .mid_profile_page {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  padding-top: 5rem;
-}
-.userBasicInfo {
-  width: 20rem;
-  height: 15rem;
-  position: relative;
-
-  background-color: #ffffff;
-  border-radius: 0.6rem;
-  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  margin: 26px 0;
-
-  margin-left: 12rem;
+  margin-bottom: 30rem;
 }
 
 .all_posts_profile_page {
@@ -808,17 +795,20 @@ body {
   color: #a51010;
   transition: all 0.2s;
 }
+
+.all_avatar {
+  display: flex;
+  flex-direction: column;
+}
 .avatar {
   color: #344258;
-  box-sizing: inherit;
-  position: absolute;
+
   left: 0;
   right: 0;
-  margin: 0 auto;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
   z-index: 1;
 }
 
@@ -868,6 +858,20 @@ body {
   cursor: pointer;
 }
 
+.userName_profile {
+  padding-top: 75px;
+  font-size: 1.75rem;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+  box-sizing: inherit;
+  margin: 0;
+
+  font-weight: 600;
+  color: #393a4f;
+  line-height: 1.2;
+}
+
 .cover_photo {
   background-color: #3bb1e7;
   width: 70.5rem;
@@ -909,4 +913,126 @@ body {
     "Helvetica Neue", Arial, sans-serif;
   position: absolute;
   z-index: 2;
+}
+
+.userBasicInfo {
+  width: 20rem;
+  height: 15rem;
+display: flex;
+flex-direction: column;
+/* gap: 5px; */
+  background-color: #ffffff;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: 26px 0;
+}
+
+
+
+.userBasicInfo_title {
+  display: flex;
+
+  flex-direction: column;
+  width: 20rem;
+
+  height: 3rem;
+
+  background-color: #ffffff;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+
+  margin: 26px 0;
+
+  margin-left: 17rem;
+}
+
+
+.title_font {
+ font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+ 
+  display: flex;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  line-height: 1.5;
+  font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  color: #344258;
+  box-sizing: inherit;
+  margin: 0;
+ 
+  font-weight: 500;
+  padding: 5px 8px;
+}
+
+.username_info{
+
+border-bottom:0.5px solid #dbdbdb;
+font-size: 1.05rem;
+display: flex;
+align-items: center;
+/* justify-content: center; */
+
+display: flex;
+-webkit-font-smoothing: antialiased;
+text-rendering: optimizeLegibility;
+text-size-adjust: 100%;
+line-height: 1.5;
+font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+color: #344258;
+box-sizing: inherit;
+margin: 0;
+
+font-weight: 500;
+padding: 5px 8px;
+}
+
+.gender_info{
+
+  border-bottom:0.5px solid #dbdbdb;
+  font-size: 1.05rem;
+display: flex;
+align-items: center;
+/* justify-content: center; */
+
+display: flex;
+-webkit-font-smoothing: antialiased;
+text-rendering: optimizeLegibility;
+text-size-adjust: 100%;
+line-height: 1.5;
+font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+color: #344258;
+box-sizing: inherit;
+margin: 0;
+
+font-weight: 500;
+padding: 5px 8px;
+}
+
+.dob_info{
+
+  
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  
+  display: flex;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  line-height: 1.5;
+  font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  color: #344258;
+  box-sizing: inherit;
+  margin: 0;
+  
+  font-weight: 500;
+  padding: 5px 8px;
+  display: flex ;
+  align-items: center;
 }
