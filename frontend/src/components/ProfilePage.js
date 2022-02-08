@@ -11,6 +11,7 @@ import {
 
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
+import cover from "../images/cover.png";
 
 const ProfilePage = () => {
   const { user_id } = useParams();
@@ -207,7 +208,6 @@ const ProfilePage = () => {
     getUserInfo();
     getAllLikes();
   }, []);
-  console.log("img", profileimage);
   return (
     <>
       <div className="top_profile_page">
@@ -215,11 +215,22 @@ const ProfilePage = () => {
           <button className="edit_cover_button">Edit Cover</button>
           <img
             className="cover_photo"
-            src="https://friendkit.cssninja.io/assets/img/demo/bg/4.png"
+            src={
+              userInfo.profilecover !== "undefined"
+                ? userInfo.profilecover
+                : cover
+            }
           />
         </div>
         <div className="avatar">
-          <img className="avatar-image" src={userInfo.profileimage} />
+          <img
+            className="avatar-image"
+            src={
+              userInfo.profileimage !== "undefined"
+                ? userInfo.profileimage
+                : noAvatar
+            }
+          />
           <div class="avatar-button" onClick={toggleModalImg}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
