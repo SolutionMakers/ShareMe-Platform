@@ -1,16 +1,30 @@
+import React, { useState, useEffect } from "react";
+import { setPosts, updatePost, deletePost } from "../reducers/post/index";
+import { useSelector, useDispatch } from "react-redux";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
+import {
+  BsThreeDotsVertical,
+  BsFillHeartFill,
+  BsFillHandThumbsUpFill,
+  BsPen,
+} from "react-icons/bs";
+
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import noAvatar from "../images/noAvatar.png";
 
 const ProfilePage = () => {
   const { user_id } = useParams();
+  const [modal, setModal] = useState(false);
+  const [id, setId] = useState("");
   const navigation = useNavigate();
+  const [description, setDescription] = useState("");
   const [userPosts, setUserPosts] = useState([]);
   const [uploadedImage, setUploadedImage] = useState("");
   const [profileimage, setProfileimage] = useState("");
   const [userInfo, setUserInfo] = useState([]);
   const [allLikes, setAllLikes] = useState([]);
+  const [modalImg, setTModalImg] = useState(false);
+  const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
@@ -19,6 +33,15 @@ const ProfilePage = () => {
   });
   console.log("user_id", state.user_id);
   /************************************* */
+  const toggleModal = (id) => {
+    setModal(!modal);
+    setId(id);
+  };
+
+  const toggleModalImg = () => {
+    setTModalImg(!modalImg);
+  };
+  /***************************************** */
   const uploadimage = async () => {
     console.log(uploadedImage);
     const formData = new FormData();
@@ -111,34 +134,33 @@ const ProfilePage = () => {
 
   /**************************************** */
 
-  const joinRoom =()=>{
+  const joinRoom = () => {
     axios
-    .post(
-      `http://localhost:5000/rooms/`,
-      {
-        id: user_id,
-      },
-      {
-        headers: {
-          Authorization: ` Bearer ${state.token}`,
+      .post(
+        `http://localhost:5000/rooms/`,
+        {
+          id: user_id,
         },
-      }
-    )
-    .then((result) => {
-      console.log(result.data.results[0].id);
-      if (result.data.results[0].id) {
-        navigation(`/chat/${result.data.results[0].id}`);
-      }
+        {
+          headers: {
+            Authorization: ` Bearer ${state.token}`,
+          },
+        }
+      )
+      .then((result) => {
+        console.log(result.data.results[0].id);
+        if (result.data.results[0].id) {
+          navigation(`/chat/${result.data.results[0].id}`);
+        }
 
-      if (result.data.results[0].insertId) {
-        navigation(`/chat/${result.data.results[0].insertId}`);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
-  }
+        if (result.data.results[0].insertId) {
+          navigation(`/chat/${result.data.results[0].insertId}`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   /***************************************** */
   const filterArray = (id) => {
     return allLikes.filter((e, i) => {
@@ -146,72 +168,79 @@ const ProfilePage = () => {
     });
   };
   /****************************************** */
+  const handleUpdate = async (id) => {
+    try {
+      const newPost = {
+        description,
+      };
+      const res = await axios.put(
+        `http://localhost:5000/posts/${id}/post`,
+        newPost,
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        dispatch(updatePost(newPost));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  /******************************************* */
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:5000/posts/${id}`)
+      .then((result) => {
+        dispatch(deletePost(id));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+  /******************************************* */
 
   useEffect(() => {
     getPostsByUserId();
     getUserInfo();
     getAllLikes();
   }, []);
+console.log("img",profileimage);
   return (
     <>
-      <div>Profile Page</div>
-      <div>
-        userInfo
-        <button
-          className="chat_button"
-          onClick={joinRoom}
-        >
+    <div className="top_profile_page">
+
+<div className="cover_and_button">
+  <button className="edit_cover_button">Edit Cover</button>
+<img className="cover_photo" src="https://friendkit.cssninja.io/assets/img/demo/bg/4.png"/>
+</div>
+        <div className="avatar">
+          <img className="avatar-image" src={userInfo.profileimage}/>
+        <div class="avatar-button" onClick={toggleModalImg}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="feather_feather-plus"
+          >
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </div>
+
+        </div>
+
+        {/* <button className="chat_button" onClick={joinRoom}>
           Chat Rooms
-        </button>
-        <p>{userInfo.userName}</p>
-        <img src={userInfo.profileimage} />
-        <p>{userInfo.email}</p>
-        <p>{userInfo.dob}</p>
-        <p>{userInfo.country}</p>
-        <p>{userInfo.gender}</p>
-        {userInfo.id == state.user_id ? (
-          <div>
-            <input
-              type="file"
-              onChange={(e) => {
-                setUploadedImage(e.target.files[0]);
-              }}
-            />
-            <button onClick={uploadimage}>upload</button>
-            <button onClick={updatProfileImage}>Edit Profile Image</button>
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-      {userPosts.length
-        ? userPosts.map((element, index) => {
-            return (
-              <div key={index}>
-                <h1>User Posts:</h1>
-                <h1>{element.media}</h1>
-                <h1>{element.description}</h1>
-                <h1>user Info</h1>
-                <h1>{element.userName}</h1>
-                <h1>{element.email}</h1>
-                <h1>{element.dob}</h1>
-                <h1>{element.country}</h1>
-                <h1>{element.profileimage}</h1>
-                <h1>{element.gender}</h1>
-                <button
-                  onClick={() => {
-                    putNewLike(element.id);
-                  }}
-                >
-                  Like
-                </button>
-                <span className="postLikeCounter">
-                  {filterArray(element.id).length} People Like It
-                </span>
-              </div>
-            );
-          })
-        : "No Posts for this user"}
+        </button> */}
     </>
   );
 };
