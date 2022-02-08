@@ -219,7 +219,14 @@ const ProfilePage = () => {
           />
         </div>
         <div className="avatar">
-          <img className="avatar-image" src={userInfo.profileimage} />
+          <img
+            className="avatar-image"
+            src={
+              userInfo.profileimage !== "undefined"
+                ? userInfo.profileimage
+                : noAvatar
+            }
+          />
           <div class="avatar-button" onClick={toggleModalImg}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
