@@ -9,31 +9,36 @@ const ENDPOINT = "http://localhost:5000";
 const socket = io.connect(ENDPOINT);
 
 const Chat = () => {
+    /********************************************* */
+    const state = useSelector((state) => {
+      return {
+        token: state.loginReducer.token,
+        posts: state.postsReducer.posts,
+        user_id: state.loginReducer.user_id,
+        userName: state.loginReducer.userName,
+      };
+    });
+    console.log(state.userName)
   const [loggedIn, setLoggedIn] = useState(false);
   const [message, setMessage] = useState("");
   const [roomId, setRoomId] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(state.userName);
   const [messageList, setMessageList] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
   const  [room,setRoom] = useState(0);
-  /********************************************* */
-  const state = useSelector((state) => {
-    return {
-      token: state.loginReducer.token,
-      posts: state.postsReducer.posts,
-      user_id: state.loginReducer.user_id,
-      userName: state.loginReducer.userName,
-    };
-  });
+
+
+
   /************************************************************** */
-  useEffect(() => {
+  const reciveMessage =()=>{
     socket.on("RECEIVE_MESSAGE", (data) => {
       setMessageList([...messageList, data]);
+      console.log('frontend',data)
+
     });
-    joinRoom();
-    getAllUsers();
-  }, []);
+  }
   /************************************************************** */
+
   const joinRoom = () => {
     setLoggedIn(true);
     socket.emit("JOIN_ROOM", room);
@@ -43,7 +48,7 @@ const Chat = () => {
     const messageContent = {
       room,
       content: {
-        sender: userName,
+        sender:state.userName,
         message: message,
       },
     };
@@ -76,7 +81,7 @@ const Chat = () => {
   }
   /************************************************************ */
 const createMessage = async ()=>{
-  const res = await axios.post(`http://localhost:5000/message/${room}`,{message,room},  {
+  const res = await axios.post(`http://localhost:5000/message/${room}`,{message},  {
     headers: {
       Authorization: `Bearer ${state.token}`,
     },
@@ -117,6 +122,14 @@ sendMessage();
     }
   };
   /*********************************************************** */
+    /************************************************************** */
+    useEffect(() => {
+      joinRoom();
+      getAllUsers();
+      reciveMessage();
+      getAllMessages(room);
+
+    }, []);
   return (
     <>
       <div className="AllUsers">
@@ -142,16 +155,16 @@ sendMessage();
         {loggedIn ? (
           <div>
             <ul>
-              {messageList.map((element, index) => {
+              {messageList.length? messageList.map((element, index) => {
                 console.log(element);
                 return (
                   <li key={index}>
                     <p>
-                      {element.sender}: {element.message}
+                      {element.userName}: {element.message}
                     </p>
                   </li>
                 );
-              })}
+              }):<></>}
             </ul>
             <input
               style={{ width: "450px" }}
@@ -174,7 +187,7 @@ sendMessage();
               type={"text"}
               placeholder="username"
               onChange={(e) => {
-                setUserName(e.target.value);
+                // setUserName(e.target.value);
               }}
             />
             <input
