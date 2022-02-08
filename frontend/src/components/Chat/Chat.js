@@ -9,33 +9,29 @@ const ENDPOINT = "http://localhost:5000";
 const socket = io.connect(ENDPOINT);
 
 const Chat = () => {
-    /********************************************* */
-    const state = useSelector((state) => {
-      return {
-        token: state.loginReducer.token,
-        posts: state.postsReducer.posts,
-        user_id: state.loginReducer.user_id,
-        userName: state.loginReducer.userName,
-      };
-    });
+  /********************************************* */
+  const state = useSelector((state) => {
+    return {
+      token: state.loginReducer.token,
+      posts: state.postsReducer.posts,
+      user_id: state.loginReducer.user_id,
+      userName: state.loginReducer.userName,
+    };
+  });
   const [loggedIn, setLoggedIn] = useState(false);
   const [message, setMessage] = useState("");
   const [roomId, setRoomId] = useState("");
   const [userName, setUserName] = useState(state.userName);
   const [messageList, setMessageList] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
-  const  [room,setRoom] = useState(0);
-
-
+  const [room, setRoom] = useState(0);
 
   /************************************************************** */
-  const reciveMessage =()=>{
+  const reciveMessage = () => {
     socket.on("RECEIVE_MESSAGE", (data) => {
-      setMessageList([...messageList, data]);
-      console.log('frontend',data)
-
+      getAllMessages(room);
     });
-  }
+  };
   /************************************************************** */
 
   const joinRoom = () => {
@@ -47,12 +43,11 @@ const Chat = () => {
     const messageContent = {
       room,
       content: {
-        sender:state.userName,
+        sender: state.userName,
         message: message,
       },
     };
     socket.emit("SEND_MESSAGE", messageContent);
-    // setMessageList([...messageList, messageContent.content]);
     setMessage("");
     getAllMessages(room);
   };
@@ -68,27 +63,31 @@ const Chat = () => {
     }
   };
   /*************************************************************** */
-  const getAllMessages = async (room)=>{
-    const res = await axios.get(`http://localhost:5000/message/${room}`,  {
+  const getAllMessages = async (room) => {
+    const res = await axios.get(`http://localhost:5000/message/${room}`, {
       headers: {
         Authorization: `Bearer ${state.token}`,
       },
-    })
-    if(res.data.success){
-  setMessageList(res.data.results)
+    });
+    if (res.data.success) {
+      setMessageList(res.data.results);
     }
-  }
+  };
   /************************************************************ */
-const createMessage = async ()=>{
-  const res = await axios.post(`http://localhost:5000/message/${room}`,{message},  {
-    headers: {
-      Authorization: `Bearer ${state.token}`,
-    },
-  })
-  if(res.data.success){
-sendMessage();
-  }
-}
+  const createMessage = async () => {
+    const res = await axios.post(
+      `http://localhost:5000/message/${room}`,
+      { message },
+      {
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      }
+    );
+    if (res.data.success) {
+      sendMessage();
+    }
+  };
   /************************************************************ */
   const joinRoomData = async (receiver_id) => {
     try {
@@ -103,32 +102,32 @@ sendMessage();
           },
         }
       );
+      /*********************************************************** */
+
       // use the optional chaining to prevent the error when it access on the id and insertId
       if (res.data.results[0]?.id) {
         console.log(`done to open the room`);
-        setRoom(res.data.results[0]?.id)
-        setMessageList([])
-        getAllMessages(res.data.results[0].id)
+        setRoom(res.data.results[0]?.id);
+        setMessageList([]);
+        getAllMessages(res.data.results[0].id);
       }
       if (res.data.results?.insertId) {
-        setRoom(res.data.results?.insertId)
+        setRoom(res.data.results?.insertId);
         console.log(`done to create the room`);
-        setMessageList([])
-        getAllMessages(res.data.results.insertId)
+        setMessageList([]);
+        getAllMessages(res.data.results.insertId);
       }
     } catch (err) {
       console.log(err);
     }
   };
-  /*********************************************************** */
-    /************************************************************** */
-    useEffect(() => {
-      joinRoom();
-      getAllUsers();
-      reciveMessage();
-      getAllMessages(room);
-
-    }, []);
+  /************************************************************** */
+  useEffect(() => {
+    joinRoom();
+    getAllUsers();
+    reciveMessage();
+    getAllMessages(room);
+  }, []);
   return (
     <>
       <div className="AllUsers">
@@ -154,15 +153,19 @@ sendMessage();
         {loggedIn ? (
           <div>
             <ul>
-              {messageList.length? messageList.map((element, index) => {
-                return (
-                  <li key={index}>
-                    <p>
-                      {element.userName}: {element.message}
-                    </p>
-                  </li>
-                );
-              }):<></>}
+              {messageList.length ? (
+                messageList.map((element, index) => {
+                  return (
+                    <li key={index}>
+                      <p>
+                        {element.userName}: {element.message}
+                      </p>
+                    </li>
+                  );
+                })
+              ) : (
+                <></>
+              )}
             </ul>
             <input
               style={{ width: "450px" }}
