@@ -50,6 +50,7 @@ const Chat = () => {
     socket.emit("SEND_MESSAGE", messageContent);
     setMessageList([...messageList, messageContent.content]);
     setMessage("");
+    getAllMessages(room);
   };
   /************************************************************** */
   const getAllUsers = async () => {
@@ -63,7 +64,7 @@ const Chat = () => {
     }
   };
   /*************************************************************** */
-  const getAllMessages = async ()=>{
+  const getAllMessages = async (room)=>{
     const res = await axios.get(`http://localhost:5000/message/${room}`,  {
       headers: {
         Authorization: `Bearer ${state.token}`,
@@ -73,6 +74,17 @@ const Chat = () => {
   setMessageList(res.data.results)
     }
   }
+  /************************************************************ */
+const createMessage = async ()=>{
+  const res = await axios.post(`http://localhost:5000/message/${room}`,{message,room},  {
+    headers: {
+      Authorization: `Bearer ${state.token}`,
+    },
+  })
+  if(res.data.success){
+sendMessage();
+  }
+}
   /************************************************************ */
   const joinRoomData = async (receiver_id) => {
     try {
@@ -91,10 +103,14 @@ const Chat = () => {
       if (res.data.results[0]?.id) {
         console.log(`done to open the room`);
         setRoom(res.data.results[0]?.id)
+        setMessageList([])
+        getAllMessages(res.data.results[0].id)
       }
       if (res.data.results?.insertId) {
         setRoom(res.data.results?.insertId)
         console.log(`done to create the room`);
+        setMessageList([])
+        getAllMessages(res.data.results.insertId)
       }
     } catch (err) {
       console.log(err);
@@ -146,7 +162,7 @@ const Chat = () => {
               }}
             />
             <button
-              onClick={sendMessage}
+              onClick={createMessage}
               style={{ backgroundColor: "#79b893" }}
             >
               send
