@@ -15,7 +15,7 @@ const Chat = () => {
   const [userName, setUserName] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
-  const { room } = useParams();
+  const  [room,setRoom] = useState(0);
   /********************************************* */
   const state = useSelector((state) => {
     return {
@@ -79,8 +79,10 @@ const Chat = () => {
       // use the optional chaining to prevent the error when it access on the id and insertId
       if (res.data.results[0]?.id) {
         console.log(`done to open the room`);
+        setRoom(res.data.results[0]?.id)
       }
-      if (res.data.results[0]?.insertId) {
+      if (res.data.results?.insertId) {
+        setRoom(res.data.results?.insertId)
         console.log(`done to create the room`);
       }
     } catch (err) {
