@@ -127,7 +127,7 @@ sendMessage();
       joinRoom();
       getAllUsers();
       reciveMessage();
-      getAllMessages(room);
+      // getAllMessages(room);
 
     }, []);
   return (
@@ -155,6 +155,7 @@ sendMessage();
         {loggedIn ? (
           <div>
             <ul>
+              {console.log(messageList)}
               {messageList.length? messageList.map((element, index) => {
                 console.log(element);
                 return (
