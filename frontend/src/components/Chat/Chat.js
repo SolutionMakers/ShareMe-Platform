@@ -22,6 +22,7 @@ const Chat = () => {
       token: state.loginReducer.token,
       posts: state.postsReducer.posts,
       user_id: state.loginReducer.user_id,
+      userName: state.loginReducer.userName,
     };
   });
   /************************************************************** */
