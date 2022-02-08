@@ -41,13 +41,13 @@ const io = socket(server, {
 io.on("connection", (socket) => {
   console.log(`${socket.id} is connected`);
   socket.on("JOIN_ROOM", (data) => {
-    console.log(data);
     socket.join(data);
   });
 
   socket.on("SEND_MESSAGE", (data) => {
-    console.log(data);
     socket.to(data.room).emit("RECEIVE_MESSAGE", data.content);
+
+
   });
 
   socket.on("disconnect", () => {
