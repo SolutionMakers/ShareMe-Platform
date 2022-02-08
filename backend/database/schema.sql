@@ -19,6 +19,7 @@ CREATE TABLE users (
     dob DATETIME,
     country VARCHAR(255),
     profileimage VARCHAR(255),
+    profilecover VARCHAR(255),
     gender VARCHAR(255),
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES roles(id),
