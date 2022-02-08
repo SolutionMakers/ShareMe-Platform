@@ -87,6 +87,7 @@
   right: 0;
   bottom: 0;
   position: fixed;
+  z-index: 1;
 }
 
 .overlay_post {
@@ -98,11 +99,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #9c2b2b;
+  background: #aa1824;
   padding: 14px 28px;
+  color: #ffffff;
   border-radius: 3px;
   max-width: 600px;
   min-width: 300px;
+  z-index: 2;
 }
 
 .close-modal_post {
@@ -321,7 +324,7 @@
   justify-content: space-evenly;
   align-items: center;
   position: fixed;
-  z-index: 2;
+  z-index: 3;
 }
 
 body {
@@ -366,7 +369,22 @@ body {
   transition: 0.6s;
   box-shadow: 0.5px 0.5px 3px #d9dbdf;
 }
-
+.my_profile {
+  cursor: pointer;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c71717;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  color: #f4f4f5;
+  transition: all 0.3s;
+  border: none;
+  width: 7rem;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+}
 .style_logOut {
   display: flex;
   gap: 5px;
@@ -386,7 +404,7 @@ body {
   width: 110px;
   height: 27px;
   font-size: 15px;
-  background-color: #df0021;
+  background-color: #c71717;
   font-weight: bold;
 }
 
@@ -417,7 +435,7 @@ body {
 .post {
   position: relative;
   width: 40rem;
-background-color: #ffffff;
+  background-color: #ffffff;
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
@@ -498,7 +516,6 @@ background-color: #ffffff;
   max-height: 500px;
   border-radius: 0.5rem;
   object-fit: contain;
-
 }
 
 .postBottom {
@@ -520,15 +537,13 @@ background-color: #ffffff;
   color: #d1cacb;
 }
 
- .likeIcon_heart {
+.likeIcon_heart {
   width: 22px;
   height: 22px;
   margin-right: 5px;
   cursor: pointer;
   color: #d1cacb;
- 
-} 
- 
+}
 
 .postLikeCounter {
   font-size: 15px;
@@ -661,7 +676,7 @@ background-color: #ffffff;
     "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
   font-size: 0.85rem;
-  color: #888da8;
+  color: #000000;
   box-sizing: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -691,7 +706,7 @@ background-color: #ffffff;
   transition: all 0.3s;
 }
 
-.icon_pen:hover{
+.icon_pen:hover {
   color: black;
   transition: all 0.3s;
 }
@@ -714,4 +729,184 @@ background-color: #ffffff;
   border: none;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
+}
+
+/*--------------------------Profile Page Css ------------------------------------------*/
+.mid_profile_page {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 5rem;
+}
+.userBasicInfo {
+  width: 20rem;
+  height: 15rem;
+  position: relative;
+
+  background-color: #ffffff;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: 26px 0;
+
+  margin-left: 12rem;
+}
+
+.all_posts_profile_page {
+  margin-right: 12rem;
+}
+
+.top_profile_page {
+  padding-top: 2.5rem;
+}
+.btn-modal_profile {
+  display: block;
+  margin: 100px auto 0;
+  font-size: 15px;
+}
+
+.modal_profile,
+.overlay_profile {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.overlay_profile {
+  background: rgba(98, 98, 98, 0.4);
+}
+.modal-content_profile {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+  z-index: 2;
+}
+
+.close-modal_profile {
+  position: absolute;
+  top: 5.5px;
+  right: -25px;
+  padding: 5px 3px;
+  font-size: 37px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: rgb(119, 111, 111);
+}
+
+.close-modal_profile :hover {
+  color: #a51010;
+  transition: all 0.2s;
+}
+.avatar {
+  color: #344258;
+  box-sizing: inherit;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.avatar-button {
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background: #3d70b2;
+  box-shadow: 0 14px 26px -12px rgba(61, 112, 178, 0.42),
+    0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(61, 112, 178, 0.2) !important;
+  cursor: pointer;
+  margin-top: 7rem;
+  margin-left: 4.5rem;
+  z-index: 3;
+}
+
+.avatar-button:hover {
+  background: #265694;
+  transition: all 0.3s;
+}
+
+.feather_feather-plus {
+  color: #344258;
+
+  border-radius: 50%;
+  box-shadow: 0 14px 26px -12px rgba(85, 150, 230, 0.42),
+    0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(85, 150, 230, 0.2) !important;
+
+  cursor: pointer;
+  color: #fff;
+}
+
+.avatar-image {
+  color: #344258;
+  box-sizing: inherit;
+  max-width: 100%;
+  position: absolute;
+  object-fit: cover;
+  height: 140px;
+  width: 139px;
+  border-radius: 50%;
+  box-shadow: 0px 15px 32px rgba(0, 0, 0, 0.3) !important;
+  cursor: pointer;
+}
+
+.cover_photo {
+  background-color: #3bb1e7;
+  width: 70.5rem;
+  height: 20rem;
+  position: relative;
+
+  height: auto;
+  max-width: 100%;
+  display: block;
+  border-radius: 3px;
+  /* object-position: top; */
+  object-fit: cover;
+
+  max-height: 350px;
+  cursor: pointer;
+}
+
+.cover_and_button {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit_cover_button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+
+  margin: 10px;
+  background: #c71717;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  color: #f4f4f5;
+  transition: all 0.3s;
+  border: none;
+  width: 7rem;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  position: absolute;
+  z-index: 2;
 }
