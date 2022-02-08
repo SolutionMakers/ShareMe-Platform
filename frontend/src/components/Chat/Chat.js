@@ -13,6 +13,7 @@ const Chat = () => {
   const [roomId, setRoomId] = useState("");
   const [userName, setUserName] = useState("");
   const [messageList, setMessageList] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const { room } = useParams();
   /************************************************************** */
   useEffect(() => {
@@ -45,7 +46,7 @@ const Chat = () => {
     try {
       const res = await axios.get("http://localhost:5000/users");
       if (res.data.success) {
-        console.log(res.data.results);
+        setAllUsers(res.data.results);
       } else throw Error;
     } catch (err) {
       console.log(err.response.data);
@@ -54,6 +55,18 @@ const Chat = () => {
 
   return (
     <>
+      <div className="AllUsers">
+        {allUsers.map((element, index) => {
+          return (
+            <>
+              <img src={element.profileimage} />
+              <h1>{element.userName}</h1>
+              <button className="joinRoom">Chat</button>
+            </>
+          );
+        })}
+      </div>
+
       <div className="Chat">
         {loggedIn ? (
           <div>
