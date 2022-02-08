@@ -32,7 +32,7 @@ const ProfilePage = () => {
       user_id: state.loginReducer.user_id,
     };
   });
-  console.log("user_id", state.user_id);
+
   /************************************* */
   const toggleModal = (id) => {
     setModal(!modal);
@@ -223,7 +223,9 @@ const ProfilePage = () => {
             }
           />
         </div>
-        <div className="avatar">
+
+        <div className="all_avatar">
+          <div className="avatar">
           <img
             className="avatar-image"
             src={
@@ -249,6 +251,11 @@ const ProfilePage = () => {
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
           </div>
+
+        
+          </div>
+        
+          <div className="userName_profile">{userInfo.userName}</div>
         </div>
 
         {/* <button className="chat_button" onClick={joinRoom}>
@@ -282,16 +289,21 @@ const ProfilePage = () => {
             </div>
           </div>
         )}
-      </div>
 
+        
+      </div>
+      
       <div className="mid_profile_page">
+        
         {userInfo ? (
+<div className="userBasicInfo_title"> 
+<div className="title_font">Basic Infos</div>
           <div className="userBasicInfo">
-            <div>BasicInfo</div>
             <div className="username_info">{userInfo.userName}</div>
             {/* <img src={userInfo.profileimage} /> */}
             <div className="gender_info">{userInfo.gender}</div>
             <div className="dob_info">{userInfo.dob?.slice(0, 10)}</div>
+          </div>
           </div>
         ) : (
           <div></div>
