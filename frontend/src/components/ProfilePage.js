@@ -53,7 +53,7 @@ const ProfilePage = () => {
       .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
       .then((response) => {
         console.log(response);
-        setProfileimage(response.data.secure_url);
+        updatProfileImage(response.data.secure_url);
       })
       .catch((err) => {
         throw err;
@@ -84,7 +84,7 @@ const ProfilePage = () => {
   };
   /**************************************** */
 
-  const updatProfileImage = async () => {
+  const updatProfileImage = async (profileimage) => {
     try {
       const res = await axios.put(
         `http://localhost:5000/users/image/${user_id}`,
@@ -105,6 +105,7 @@ const ProfilePage = () => {
       );
       if (res.data.success) {
         setUserInfo(res.data.Info[0]);
+        getUserInfo();
       }
     } catch (err) {
       console.log(err);
@@ -266,9 +267,13 @@ const ProfilePage = () => {
                       setUploadedImage(e.target.files[0]);
                     }}
                   />
-                  <button onClick={uploadimage}>upload</button>
-                  <button onClick={updatProfileImage}>
-                    Edit Profile Image
+                  <button
+                    onClick={() => {
+                      uploadimage();
+                      toggleModalImg();
+                    }}
+                  >
+                    upload
                   </button>
                 </div>
               ) : (
@@ -293,120 +298,120 @@ const ProfilePage = () => {
         )}
 
         <div className="all_posts_profile_page">
-          {userPosts.length
-            ? userPosts.map((element, index) => {
-                return (
-                  <div className="post">
-                    <div className="postWrapper">
-                      <div className="postTop">
-                        <div className="postTopLeft">
-                          <Link to={`/profile/${element.user_id}`}>
-                            <img
-                              className="postProfileImg"
-                              width="100%"
-                              src={
-                                element.profileimage !== "undefined"
-                                  ? element.profileimage
-                                  : noAvatar
-                              }
-                            />
-                          </Link>
-                          <span className="postUsername">
-                            {element.userName}
-                          </span>
-                          {/* <span className="postDate">{format(post.createdAt)}</span> */}
-                        </div>
-                        <div className="postTopRight">
-                          <BsThreeDotsVertical
-                            className="icon_popup"
-                            onClick={() => toggleModal(element.id)}
+          {userPosts.length ? (
+            userPosts.map((element, index) => {
+              return (
+                <div className="post">
+                  <div className="postWrapper">
+                    <div className="postTop">
+                      <div className="postTopLeft">
+                        <Link to={`/profile/${element.user_id}`}>
+                          <img
+                            className="postProfileImg"
+                            width="100%"
+                            src={
+                              element.profileimage !== "undefined"
+                                ? element.profileimage
+                                : noAvatar
+                            }
                           />
-                          <div>
-                            {" "}
-                            {modal && id == element.id && (
-                              <div className="modal_post">
-                                <div
-                                  onClick={toggleModal}
-                                  className="overlay_post"
-                                ></div>
-                                <div className="modal-content_post">
-                                  <h2>Edit Post</h2>
-                                  <button
-                                    className="button_delete"
-                                    onClick={() => {
-                                      navigation("/home");
-                                      handleDelete(id);
-                                    }}
-                                  >
-                                    delete
-                                  </button>
-                                  <input
-                                    type="text"
-                                    placeholder="updated description"
-                                    onChange={(e) => {
-                                      setDescription(e.target.value);
-                                    }}
-                                  />
-                                  <button onClick={() => handleUpdate(id)}>
-                                    Update
-                                  </button>
-                                  <button
-                                    className="close-modal_post"
-                                    onClick={() => toggleModal("")}
-                                  >
-                                    CLOSE
-                                  </button>
-                                </div>
+                        </Link>
+                        <span className="postUsername">{element.userName}</span>
+                        {/* <span className="postDate">{format(post.createdAt)}</span> */}
+                      </div>
+                      <div className="postTopRight">
+                        <BsThreeDotsVertical
+                          className="icon_popup"
+                          onClick={() => toggleModal(element.id)}
+                        />
+                        <div>
+                          {" "}
+                          {modal && id == element.id && (
+                            <div className="modal_post">
+                              <div
+                                onClick={toggleModal}
+                                className="overlay_post"
+                              ></div>
+                              <div className="modal-content_post">
+                                <h2>Edit Post</h2>
+                                <button
+                                  className="button_delete"
+                                  onClick={() => {
+                                    navigation("/home");
+                                    handleDelete(id);
+                                  }}
+                                >
+                                  delete
+                                </button>
+                                <input
+                                  type="text"
+                                  placeholder="updated description"
+                                  onChange={(e) => {
+                                    setDescription(e.target.value);
+                                  }}
+                                />
+                                <button onClick={() => handleUpdate(id)}>
+                                  Update
+                                </button>
+                                <button
+                                  className="close-modal_post"
+                                  onClick={() => toggleModal("")}
+                                >
+                                  CLOSE
+                                </button>
                               </div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="postCenter">
-                        <p className="postText">{element.description}</p>
-                        <img className="postImg" src={element.media} alt="" />
-                      </div>
-
-                      <div className="postBottom">
-                        <div className="postBottomLeft">
-                          <BsFillHandThumbsUpFill
-                            className="likeIcon"
-                            onClick={(e) => {
-                              e.target.style.color = "#1877f2";
-                              e.target.style.transition = "all 0.5s";
-                            }}
-                          />
-                          <BsFillHeartFill
-                            className="likeIcon_heart"
-                            onClick={(e) => {
-                              putNewLike(element.id);
-                              e.target.style.color = "#e60023";
-                              e.target.style.transition = "all 0.5s";
-                            }}
-                          />
-
-                          <span className="postLikeCounter">
-                            {filterArray(element.id).length} People Like It
-                          </span>
-                        </div>
-                        <div className="postBottomRight">
-                          <span
-                            className="postCommentText"
-                            onClick={() => {
-                              navigation(`/post/${element.id}`);
-                            }}
-                          >
-                            {" "}
-                            comments
-                          </span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
+
+                    <div className="postCenter">
+                      <p className="postText">{element.description}</p>
+                      <img className="postImg" src={element.media} alt="" />
+                    </div>
+
+                    <div className="postBottom">
+                      <div className="postBottomLeft">
+                        <BsFillHandThumbsUpFill
+                          className="likeIcon"
+                          onClick={(e) => {
+                            e.target.style.color = "#1877f2";
+                            e.target.style.transition = "all 0.5s";
+                          }}
+                        />
+                        <BsFillHeartFill
+                          className="likeIcon_heart"
+                          onClick={(e) => {
+                            putNewLike(element.id);
+                            e.target.style.color = "#e60023";
+                            e.target.style.transition = "all 0.5s";
+                          }}
+                        />
+
+                        <span className="postLikeCounter">
+                          {filterArray(element.id).length} People Like It
+                        </span>
+                      </div>
+                      <div className="postBottomRight">
+                        <span
+                          className="postCommentText"
+                          onClick={() => {
+                            navigation(`/post/${element.id}`);
+                          }}
+                        >
+                          {" "}
+                          comments
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                );
-              })
-            : "No Posts for this user"}
+                </div>
+              );
+            })
+          ) : (
+            <div>No Posts for this user</div>
+          )}
         </div>
       </div>
     </>
