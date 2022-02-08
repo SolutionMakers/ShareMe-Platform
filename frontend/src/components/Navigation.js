@@ -9,6 +9,8 @@ const Navigation = () => {
   const state = useSelector((state) => {
     return {
       isLoggedIn: state.loginReducer.isLoggedIn,
+      user_id: state.loginReducer.user_id,
+
     };
   });
   return (
@@ -32,10 +34,12 @@ const Navigation = () => {
       </Link>
     </div>
   
-    <div>
-      <Link to="/NewPost">New Post</Link>
+    <div className="empty">
+     
     </div>
-    <div>My profile</div>
+    <div className="my_profile" onClick={()=>{
+       navigate(`/profile/${state.user_id}`);
+    }}>My profile</div>
     <div className="style_logOut">
       <button className="LogOut"
         onClick={() => {
