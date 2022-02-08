@@ -126,8 +126,7 @@ const Chat = () => {
     joinRoom();
     getAllUsers();
     reciveMessage();
-    getAllMessages(room);
-  }, []);
+  }, [messageList]);
   return (
     <>
       <div className="AllUsers">
