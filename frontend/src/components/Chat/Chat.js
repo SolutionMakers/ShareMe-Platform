@@ -32,7 +32,6 @@ const Chat = () => {
   const reciveMessage =()=>{
     socket.on("RECEIVE_MESSAGE", (data) => {
       setMessageList([...messageList, data]);
-      console.log('frontend',data)
 
     });
   }
