@@ -735,3 +735,16 @@ body {
 
   margin-left: 12rem;
 }
+
+.all_posts_profile_page {
+  margin-right: 12rem;
+}
+
+.top_profile_page {
+  padding-top: 2.5rem;
+}
+.btn-modal_profile {
+  display: block;
+  margin: 100px auto 0;
+  font-size: 15px;
+}
