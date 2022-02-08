@@ -21,19 +21,19 @@ const login = (req, res) => {
             role: results[0].role_id,
           };
           const options = {
-            expiresIn: '24h',
+            expiresIn: "24h",
           };
           const secret = process.env.SECRET;
 
-          const token = jwt.sign(payload, secret,options);
+          const token = jwt.sign(payload, secret, options);
 
           res.status(200).json({
             success: true,
             message: "Valid login credentials",
             token,
-             userId: results[0].id,
-             imge:results[0].profileimage,
-            
+            userId: results[0].id,
+            imge: results[0].profileimage,
+            userName: results[0].userName,
           });
         } else {
           res.status(403).json({
@@ -51,4 +51,4 @@ const login = (req, res) => {
   });
 };
 
-module.exports = {login};
+module.exports = { login };
