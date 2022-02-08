@@ -51,7 +51,6 @@ const Chat = () => {
       },
     };
     socket.emit("SEND_MESSAGE", messageContent);
-    // setMessageList([...messageList, messageContent.content]);
     setMessage("");
     getAllMessages(room);
   };
