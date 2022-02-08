@@ -266,7 +266,19 @@ console.log("img",profileimage);
           </div>
         )}
       </div>
-
+  
+      <div className="mid_profile_page">
+        {userInfo ? (
+          <div className="userBasicInfo">
+            <div>BasicInfo</div>
+            <div className="username_info">{userInfo.userName}</div>
+            {/* <img src={userInfo.profileimage} /> */}
+            <div className="gender_info">{userInfo.gender}</div>
+            <div className="dob_info">{userInfo.dob?.slice(0, 10)}</div>
+          </div>
+        ) : (
+          <div></div>
+        )}
 
 
     </>
