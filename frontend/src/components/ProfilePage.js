@@ -207,42 +207,43 @@ const ProfilePage = () => {
     getUserInfo();
     getAllLikes();
   }, []);
-console.log("img",profileimage);
+  console.log("img", profileimage);
   return (
     <>
-    <div className="top_profile_page">
-
-<div className="cover_and_button">
-  <button className="edit_cover_button">Edit Cover</button>
-<img className="cover_photo" src="https://friendkit.cssninja.io/assets/img/demo/bg/4.png"/>
-</div>
-        <div className="avatar">
-          <img className="avatar-image" src={userInfo.profileimage}/>
-        <div class="avatar-button" onClick={toggleModalImg}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            className="feather_feather-plus"
-          >
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
+      <div className="top_profile_page">
+        <div className="cover_and_button">
+          <button className="edit_cover_button">Edit Cover</button>
+          <img
+            className="cover_photo"
+            src="https://friendkit.cssninja.io/assets/img/demo/bg/4.png"
+          />
         </div>
-
+        <div className="avatar">
+          <img className="avatar-image" src={userInfo.profileimage} />
+          <div class="avatar-button" onClick={toggleModalImg}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="feather_feather-plus"
+            >
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </div>
         </div>
 
         {/* <button className="chat_button" onClick={joinRoom}>
           Chat Rooms
         </button> */}
 
-{modalImg && (
+        {modalImg && (
           <div className="modal_profile">
             <div onClick={toggleModalImg} className="overlay_profile"></div>
             <div className="modal-content_profile">
@@ -266,7 +267,7 @@ console.log("img",profileimage);
           </div>
         )}
       </div>
-  
+
       <div className="mid_profile_page">
         {userInfo ? (
           <div className="userBasicInfo">
@@ -280,7 +281,7 @@ console.log("img",profileimage);
           <div></div>
         )}
 
-<div className="all_posts_profile_page">
+        <div className="all_posts_profile_page">
           {userPosts.length
             ? userPosts.map((element, index) => {
                 return (
@@ -397,8 +398,6 @@ console.log("img",profileimage);
             : "No Posts for this user"}
         </div>
       </div>
-
-
     </>
   );
 };
