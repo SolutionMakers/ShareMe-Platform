@@ -39,7 +39,8 @@ const Login = () => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user_id", res.data.userId);
         localStorage.setItem("img", res.data.imge);
-        dispatch(login({ token: res.data.token, user_id: res.data.userId }));
+        localStorage.setItem("userName", res.data.userName);
+        dispatch(login({ token: res.data.token, user_id: res.data.userId ,userName:res.data.userName}));
         navigate("/home");
       } else throw Error;
     } catch (error) {

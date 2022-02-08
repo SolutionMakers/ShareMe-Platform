@@ -9,30 +9,35 @@ const ENDPOINT = "http://localhost:5000";
 const socket = io.connect(ENDPOINT);
 
 const Chat = () => {
+    /********************************************* */
+    const state = useSelector((state) => {
+      return {
+        token: state.loginReducer.token,
+        posts: state.postsReducer.posts,
+        user_id: state.loginReducer.user_id,
+        userName: state.loginReducer.userName,
+      };
+    });
   const [loggedIn, setLoggedIn] = useState(false);
   const [message, setMessage] = useState("");
   const [roomId, setRoomId] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(state.userName);
   const [messageList, setMessageList] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
-  const { room } = useParams();
-  /********************************************* */
-  const state = useSelector((state) => {
-    return {
-      token: state.loginReducer.token,
-      posts: state.postsReducer.posts,
-      user_id: state.loginReducer.user_id,
-    };
-  });
+  const  [room,setRoom] = useState(0);
+
+
+
   /************************************************************** */
-  useEffect(() => {
+  const reciveMessage =()=>{
     socket.on("RECEIVE_MESSAGE", (data) => {
       setMessageList([...messageList, data]);
+      console.log('frontend',data)
+
     });
-    joinRoom();
-    getAllUsers();
-  }, []);
+  }
   /************************************************************** */
+
   const joinRoom = () => {
     setLoggedIn(true);
     socket.emit("JOIN_ROOM", room);
@@ -42,13 +47,14 @@ const Chat = () => {
     const messageContent = {
       room,
       content: {
-        sender: userName,
+        sender:state.userName,
         message: message,
       },
     };
     socket.emit("SEND_MESSAGE", messageContent);
-    setMessageList([...messageList, messageContent.content]);
+    // setMessageList([...messageList, messageContent.content]);
     setMessage("");
+    getAllMessages(room);
   };
   /************************************************************** */
   const getAllUsers = async () => {
@@ -62,6 +68,28 @@ const Chat = () => {
     }
   };
   /*************************************************************** */
+  const getAllMessages = async (room)=>{
+    const res = await axios.get(`http://localhost:5000/message/${room}`,  {
+      headers: {
+        Authorization: `Bearer ${state.token}`,
+      },
+    })
+    if(res.data.success){
+  setMessageList(res.data.results)
+    }
+  }
+  /************************************************************ */
+const createMessage = async ()=>{
+  const res = await axios.post(`http://localhost:5000/message/${room}`,{message},  {
+    headers: {
+      Authorization: `Bearer ${state.token}`,
+    },
+  })
+  if(res.data.success){
+sendMessage();
+  }
+}
+  /************************************************************ */
   const joinRoomData = async (receiver_id) => {
     try {
       const res = await axios.post(
@@ -78,15 +106,29 @@ const Chat = () => {
       // use the optional chaining to prevent the error when it access on the id and insertId
       if (res.data.results[0]?.id) {
         console.log(`done to open the room`);
+        setRoom(res.data.results[0]?.id)
+        setMessageList([])
+        getAllMessages(res.data.results[0].id)
       }
-      if (res.data.results[0]?.insertId) {
+      if (res.data.results?.insertId) {
+        setRoom(res.data.results?.insertId)
         console.log(`done to create the room`);
+        setMessageList([])
+        getAllMessages(res.data.results.insertId)
       }
     } catch (err) {
       console.log(err);
     }
   };
   /*********************************************************** */
+    /************************************************************** */
+    useEffect(() => {
+      joinRoom();
+      getAllUsers();
+      reciveMessage();
+      getAllMessages(room);
+
+    }, []);
   return (
     <>
       <div className="AllUsers">
@@ -112,16 +154,15 @@ const Chat = () => {
         {loggedIn ? (
           <div>
             <ul>
-              {messageList.map((element, index) => {
-                console.log(element);
+              {messageList.length? messageList.map((element, index) => {
                 return (
                   <li key={index}>
                     <p>
-                      {element.sender}: {element.message}
+                      {element.userName}: {element.message}
                     </p>
                   </li>
                 );
-              })}
+              }):<></>}
             </ul>
             <input
               style={{ width: "450px" }}
@@ -132,7 +173,7 @@ const Chat = () => {
               }}
             />
             <button
-              onClick={sendMessage}
+              onClick={createMessage}
               style={{ backgroundColor: "#79b893" }}
             >
               send
@@ -144,7 +185,7 @@ const Chat = () => {
               type={"text"}
               placeholder="username"
               onChange={(e) => {
-                setUserName(e.target.value);
+                // setUserName(e.target.value);
               }}
             />
             <input
