@@ -369,7 +369,22 @@ body {
   transition: 0.6s;
   box-shadow: 0.5px 0.5px 3px #d9dbdf;
 }
-
+.my_profile {
+  cursor: pointer;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c71717;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  color: #f4f4f5;
+  transition: all 0.3s;
+  border: none;
+  width: 7rem;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+}
 .style_logOut {
   display: flex;
   gap: 5px;
