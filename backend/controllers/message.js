@@ -45,7 +45,6 @@ const getAllMessageByRoomId = (req, res, next) => {
       return res.status(409).json({
         success: true,
         massage: `No message in this room`,
-        results: results,
       });
     }
   });
