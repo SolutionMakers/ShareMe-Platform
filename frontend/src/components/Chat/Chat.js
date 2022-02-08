@@ -18,7 +18,6 @@ const Chat = () => {
         userName: state.loginReducer.userName,
       };
     });
-    console.log(state.userName)
   const [loggedIn, setLoggedIn] = useState(false);
   const [message, setMessage] = useState("");
   const [roomId, setRoomId] = useState("");
@@ -127,7 +126,7 @@ sendMessage();
       joinRoom();
       getAllUsers();
       reciveMessage();
-      // getAllMessages(room);
+      getAllMessages(room);
 
     }, []);
   return (
@@ -155,9 +154,7 @@ sendMessage();
         {loggedIn ? (
           <div>
             <ul>
-              {console.log(messageList)}
               {messageList.length? messageList.map((element, index) => {
-                console.log(element);
                 return (
                   <li key={index}>
                     <p>
