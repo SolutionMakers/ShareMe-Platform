@@ -87,6 +87,7 @@
   right: 0;
   bottom: 0;
   position: fixed;
+  z-index: 1;
 }
 
 .overlay_post {
@@ -98,11 +99,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #9c2b2b;
+  background: #aa1824;
   padding: 14px 28px;
+  color: #ffffff;
   border-radius: 3px;
   max-width: 600px;
   min-width: 300px;
+  z-index: 2;
 }
 
 .close-modal_post {
@@ -321,7 +324,7 @@
   justify-content: space-evenly;
   align-items: center;
   position: fixed;
-  z-index: 2;
+  z-index: 3;
 }
 
 body {
@@ -386,7 +389,7 @@ body {
   width: 110px;
   height: 27px;
   font-size: 15px;
-  background-color: #df0021;
+  background-color: #c71717;
   font-weight: bold;
 }
 
@@ -417,7 +420,7 @@ body {
 .post {
   position: relative;
   width: 40rem;
-background-color: #ffffff;
+  background-color: #ffffff;
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
@@ -498,7 +501,6 @@ background-color: #ffffff;
   max-height: 500px;
   border-radius: 0.5rem;
   object-fit: contain;
-
 }
 
 .postBottom {
@@ -520,15 +522,13 @@ background-color: #ffffff;
   color: #d1cacb;
 }
 
- .likeIcon_heart {
+.likeIcon_heart {
   width: 22px;
   height: 22px;
   margin-right: 5px;
   cursor: pointer;
   color: #d1cacb;
- 
-} 
- 
+}
 
 .postLikeCounter {
   font-size: 15px;
@@ -661,7 +661,7 @@ background-color: #ffffff;
     "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
   font-size: 0.85rem;
-  color: #888da8;
+  color: #000000;
   box-sizing: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -691,7 +691,7 @@ background-color: #ffffff;
   transition: all 0.3s;
 }
 
-.icon_pen:hover{
+.icon_pen:hover {
   color: black;
   transition: all 0.3s;
 }
@@ -714,4 +714,24 @@ background-color: #ffffff;
   border: none;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
+}
+
+/*--------------------------Profile Page Css ------------------------------------------*/
+.mid_profile_page {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 5rem;
+}
+.userBasicInfo {
+  width: 20rem;
+  height: 15rem;
+  position: relative;
+
+  background-color: #ffffff;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: 26px 0;
+
+  margin-left: 12rem;
 }
