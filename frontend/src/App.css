@@ -852,3 +852,46 @@ body {
   box-shadow: 0px 15px 32px rgba(0, 0, 0, 0.3) !important;
   cursor: pointer;
 }
+
+.cover_photo {
+  background-color: #3bb1e7;
+  width: 70.5rem;
+  height: 20rem;
+  position: relative;
+
+  height: auto;
+  max-width: 100%;
+  display: block;
+  border-radius: 3px;
+  /* object-position: top; */
+  object-fit: cover;
+
+  max-height: 350px;
+  cursor: pointer;
+}
+
+.cover_and_button {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit_cover_button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+
+  margin: 10px;
+  background: #c71717;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  color: #f4f4f5;
+  transition: all 0.3s;
+  border: none;
+  width: 7rem;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  position: absolute;
+  z-index: 2;
+}
