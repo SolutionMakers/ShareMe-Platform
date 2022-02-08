@@ -241,6 +241,34 @@ console.log("img",profileimage);
         {/* <button className="chat_button" onClick={joinRoom}>
           Chat Rooms
         </button> */}
+
+{modalImg && (
+          <div className="modal_profile">
+            <div onClick={toggleModalImg} className="overlay_profile"></div>
+            <div className="modal-content_profile">
+              {userInfo.id == state.user_id ? (
+                <div>
+                  <input
+                    type="file"
+                    onChange={(e) => {
+                      setUploadedImage(e.target.files[0]);
+                    }}
+                  />
+                  <button onClick={uploadimage}>upload</button>
+                  <button onClick={updatProfileImage}>
+                    Edit Profile Image
+                  </button>
+                </div>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+
+
     </>
   );
 };
