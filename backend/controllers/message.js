@@ -25,7 +25,7 @@ const createNewMessage = (req, res) => {
 const getAllMessageByRoomId = (req, res, next) => {
   const room_id = req.params.room_id;
 
-  const query = `SELECT * FROM message WHERE room_id=? `;
+  const query = `SELECT * FROM message INNER JOIN users ON users.id=sender_id WHERE room_id=?   `;
   const data = [room_id];
   connection.query(query, data, (err, results) => {
     if (err) {
@@ -36,14 +36,14 @@ const getAllMessageByRoomId = (req, res, next) => {
       });
     }
     if (results.length) {
-      return res.status(201).json({
+       return res.status(201).json({
         success: true,
         massage: `all the message of room ${room_id}`,
         results: results,
       });
     } else {
-      return res.status(409).json({
-        success: true,
+     return  res.status(200).json({
+        success: false,
         massage: `No message in this room`,
       });
     }
