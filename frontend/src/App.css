@@ -748,3 +748,48 @@ body {
   margin: 100px auto 0;
   font-size: 15px;
 }
+
+.modal_profile,
+.overlay_profile {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.overlay_profile {
+  background: rgba(98, 98, 98, 0.4);
+}
+.modal-content_profile {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+  z-index: 2;
+}
+
+.close-modal_profile {
+  position: absolute;
+  top: 5.5px;
+  right: -25px;
+  padding: 5px 3px;
+  font-size: 37px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: rgb(119, 111, 111);
+}
+
+.close-modal_profile :hover {
+  color: #a51010;
+  transition: all 0.2s;
+}
