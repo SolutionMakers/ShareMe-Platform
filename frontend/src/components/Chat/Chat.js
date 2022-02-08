@@ -63,6 +63,17 @@ const Chat = () => {
     }
   };
   /*************************************************************** */
+  const getAllMessages = async ()=>{
+    const res = await axios.get(`http://localhost:5000/message/${room}`,  {
+      headers: {
+        Authorization: `Bearer ${state.token}`,
+      },
+    })
+    if(res.data.success){
+  setMessageList(res.data.results)
+    }
+  }
+  /************************************************************ */
   const joinRoomData = async (receiver_id) => {
     try {
       const res = await axios.post(
