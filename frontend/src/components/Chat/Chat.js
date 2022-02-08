@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../Chat/Chat.css";
 import { io } from "socket.io-client";
+import axios from "axios";
 
 const ENDPOINT = "http://localhost:5000";
 const socket = io.connect(ENDPOINT);
@@ -12,19 +13,21 @@ const Chat = () => {
   const [roomId, setRoomId] = useState("");
   const [userName, setUserName] = useState("");
   const [messageList, setMessageList] = useState([]);
-  const { room} = useParams();
+  const { room } = useParams();
+  /************************************************************** */
   useEffect(() => {
     socket.on("RECEIVE_MESSAGE", (data) => {
       setMessageList([...messageList, data]);
     });
     joinRoom();
+    getAllUsers();
   }, []);
-
+  /************************************************************** */
   const joinRoom = () => {
     setLoggedIn(true);
     socket.emit("JOIN_ROOM", room);
   };
-
+  /************************************************************** */
   const sendMessage = () => {
     const messageContent = {
       room,
@@ -36,6 +39,17 @@ const Chat = () => {
     socket.emit("SEND_MESSAGE", messageContent);
     setMessageList([...messageList, messageContent.content]);
     setMessage("");
+  };
+  /************************************************************** */
+  const getAllUsers = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/users");
+      if (res.data.success) {
+        console.log(res.data.results);
+      } else throw Error;
+    } catch (err) {
+      console.log(err.response.data);
+    }
   };
 
   return (
