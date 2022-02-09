@@ -6,8 +6,13 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
-  BsPen,
+ 
 } from "react-icons/bs";
+
+
+import { AiFillHourglass} from "react-icons/ai";
+import { ImHome3 } from "react-icons/im";
+import { FaUserGraduate ,FaVenusMars,FaUserCircle} from "react-icons/fa";
 
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
@@ -226,35 +231,33 @@ const ProfilePage = () => {
 
         <div className="all_avatar">
           <div className="avatar">
-          <img
-            className="avatar-image"
-            src={
-              userInfo.profileimage !== "undefined"
-                ? userInfo.profileimage
-                : noAvatar
-            }
-          />
-          <div class="avatar-button" onClick={toggleModalImg}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              className="feather_feather-plus"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
+            <img
+              className="avatar-image"
+              src={
+                userInfo.profileimage !== "undefined"
+                  ? userInfo.profileimage
+                  : noAvatar
+              }
+            />
+            <div class="avatar-button" onClick={toggleModalImg}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="feather_feather-plus"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
           </div>
 
-        
-          </div>
-        
           <div className="userName_profile">{userInfo.userName}</div>
         </div>
 
@@ -289,21 +292,104 @@ const ProfilePage = () => {
             </div>
           </div>
         )}
-
-        
       </div>
-      
+
       <div className="mid_profile_page">
-        
         {userInfo ? (
-<div className="userBasicInfo_title"> 
-<div className="title_font">Basic Infos</div>
-          <div className="userBasicInfo">
-            <div className="username_info">{userInfo.userName}</div>
-            {/* <img src={userInfo.profileimage} /> */}
-            <div className="gender_info">{userInfo.gender}</div>
-            <div className="dob_info">{userInfo.dob?.slice(0, 10)}</div>
-          </div>
+          <div className="userBasicInfo_title">
+            <div className="title_font">Basic Infos</div>
+
+            <div className="userBasicInfo">
+
+              
+            
+             
+            
+          
+       
+      
+          
+          
+            
+       
+
+
+  
+             <div className="flex_row">
+            
+              <div className="flex_col_info">
+                <div className="title_info_info">Name</div>
+              <div className="_info">{userInfo.userName}</div>
+              <div className="border_info"></div>
+
+              </div>
+              <FaUserCircle className="info_icon"/>
+              </div>
+
+              <div className="flex_row">
+             
+              <div className="flex_col_info">
+              <div className="title_info_info">Gender</div>
+              <div className="_info">{userInfo.gender}</div>
+              <div className="border_info"></div>
+              </div>
+              <FaVenusMars className="info_icon"/>
+              </div>
+
+             
+              <div className="flex_row">
+            
+              <div className="flex_col_info">
+            
+              <div className="title_info_info">Date of Birth</div>
+              <div className="_info">{userInfo.dob?.slice(0, 10)}</div>
+              <div className="border_info"></div>
+              </div>
+              <AiFillHourglass className="info_icon"/>
+              </div>
+
+             
+
+            
+                
+            
+              
+        
+
+              <div className="flex_row">
+             
+              <div className="flex_col_info">
+              <div className="title_info_info">Lives in</div>
+              <div className="_info">{userInfo.country}</div>
+              <div className="border_info"></div>
+              </div>
+              <ImHome3  className="info_icon"/>
+              </div>
+
+
+              <div className="flex_row">
+       
+              <div className="flex_col_info">
+              <div className="title_info_info">Studied at</div>
+              <div className="_info">Meraki Academy</div>
+              <div className="border_info"></div>
+              </div>
+              <FaUserGraduate className="info_icon"/>
+              </div>
+
+              <div className="flex_row">
+              
+              <div className="flex_col_info">
+              <div className="title_info_info">Relationship</div>
+              <div className="_info_re">Single</div>
+           
+              </div>
+              <BsFillHeartFill className="info_icon"/>
+              </div>
+         
+            </div>
+
+
           </div>
         ) : (
           <div></div>
