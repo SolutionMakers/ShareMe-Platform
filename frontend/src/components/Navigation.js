@@ -7,7 +7,6 @@ import axios from "axios";
 
 const Navigation = () => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
   const state = useSelector((state) => {
     return {
@@ -20,7 +19,8 @@ const Navigation = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
 
-  /*********************************************************** */
+  /***************************************************************************************** */
+
   const getAllUsers = async () => {
     try {
       const res = await axios.get("http://localhost:5000/users");
