@@ -134,6 +134,8 @@ const SinglePostPage = () => {
       );
       if (res.data.success) {
         console.log("done");
+        getPostByID();
+        getLikesByUserID();
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -156,6 +158,8 @@ const SinglePostPage = () => {
       if (res.data.success) {
         setComment(res.data.results);
         setComment("");
+        getPostByID();
+        getCommentsByUserID();
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -169,7 +173,7 @@ const SinglePostPage = () => {
     getPostByID();
     getCommentsByUserID();
     getLikesByUserID();
-  }, [comment, likes]);
+  }, []);
 
   return (
     <div>
@@ -285,7 +289,7 @@ const SinglePostPage = () => {
           {comments.length ? (
             comments.map((element, index) => {
               return (
-                <div className="comment_style">
+                <div key ={index} className="comment_style">
                   <div className="comment_flex_row">
                     <img className="img_profile_single" src={element.profileimage} />
 
