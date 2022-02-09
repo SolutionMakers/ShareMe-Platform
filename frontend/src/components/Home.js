@@ -187,7 +187,7 @@ const Home = () => {
         <div className="all_posts_home">
           {state.posts.map((element, i) => {
             return (
-              <div className="post">
+              <div key ={i} className="post">
                 <div className="postWrapper">
                   <div className="postTop">
                     <div className="postTopLeft">
