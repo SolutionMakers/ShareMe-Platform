@@ -289,7 +289,7 @@ const SinglePostPage = () => {
           {comments.length ? (
             comments.map((element, index) => {
               return (
-                <div className="comment_style">
+                <div key ={index} className="comment_style">
                   <div className="comment_flex_row">
                     <img className="img_profile_single" src={element.profileimage} />
 
