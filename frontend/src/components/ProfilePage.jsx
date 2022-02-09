@@ -52,7 +52,7 @@ const ProfilePage = () => {
   const toggleModalCover = () => {
     setCoverModal(!coverModal);
   };
-  /*************************************** */
+  /********************************************************************************************************* */
   const uploadCoverPhoto = async () => {
     const formData = new FormData();
     formData.append("file", uploadedCover);
@@ -66,6 +66,20 @@ const ProfilePage = () => {
       .catch((err) => {
         throw err;
       });
+  };
+  /********************************************************************************************************** */
+  const updateProfileCover = async (profileCover) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/users/cover/${user_id}`,
+        { profileCover: profileCover }
+      );
+      if (res.data.success) {
+        console.log(res.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   /***************************************** */
   const uploadimage = async () => {
