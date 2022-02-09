@@ -6,13 +6,11 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
- 
 } from "react-icons/bs";
 
-
-import { AiFillHourglass} from "react-icons/ai";
+import { AiFillHourglass } from "react-icons/ai";
 import { ImHome3 } from "react-icons/im";
-import { FaUserGraduate ,FaVenusMars,FaUserCircle} from "react-icons/fa";
+import { FaUserGraduate, FaVenusMars, FaUserCircle } from "react-icons/fa";
 
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
@@ -27,9 +25,12 @@ const ProfilePage = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [uploadedImage, setUploadedImage] = useState("");
   const [profileimage, setProfileimage] = useState("");
+  const [profileCover, setProfileCover] = useState("");
   const [userInfo, setUserInfo] = useState([]);
   const [allLikes, setAllLikes] = useState([]);
   const [modalImg, setTModalImg] = useState(false);
+  const [coverModal, setCoverModal] = useState(false);
+  const [uploadedCover, setUploadedCover] = useState("");
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -43,9 +44,28 @@ const ProfilePage = () => {
     setModal(!modal);
     setId(id);
   };
-
+  /********************************** */
   const toggleModalImg = () => {
     setTModalImg(!modalImg);
+  };
+  /*********************************** */
+  const toggleModalCover = () => {
+    setCoverModal(!coverModal);
+  };
+  /*************************************** */
+  const uploadCoverPhoto = async () => {
+    const formData = new FormData();
+    formData.append("file", uploadedCover);
+    formData.append("upload_preset", "wyggi4ze");
+
+    await axios
+      .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
+      .then((response) => {
+        updateProfileCover(response.data.secure_url);
+      })
+      .catch((err) => {
+        throw err;
+      });
   };
   /***************************************** */
   const uploadimage = async () => {
@@ -300,96 +320,59 @@ const ProfilePage = () => {
             <div className="title_font">Basic Infos</div>
 
             <div className="userBasicInfo">
-
-              
-            
-             
-            
-          
-       
-      
-          
-          
-            
-       
-
-
-  
-             <div className="flex_row">
-            
-              <div className="flex_col_info">
-                <div className="title_info_info">Name</div>
-              <div className="_info">{userInfo.userName}</div>
-              <div className="border_info"></div>
-
-              </div>
-              <FaUserCircle className="info_icon"/>
+              <div className="flex_row">
+                <div className="flex_col_info">
+                  <div className="title_info_info">Name</div>
+                  <div className="_info">{userInfo.userName}</div>
+                  <div className="border_info"></div>
+                </div>
+                <FaUserCircle className="info_icon" />
               </div>
 
               <div className="flex_row">
-             
-              <div className="flex_col_info">
-              <div className="title_info_info">Gender</div>
-              <div className="_info">{userInfo.gender}</div>
-              <div className="border_info"></div>
-              </div>
-              <FaVenusMars className="info_icon"/>
-              </div>
-
-             
-              <div className="flex_row">
-            
-              <div className="flex_col_info">
-            
-              <div className="title_info_info">Date of Birth</div>
-              <div className="_info">{userInfo.dob?.slice(0, 10)}</div>
-              <div className="border_info"></div>
-              </div>
-              <AiFillHourglass className="info_icon"/>
-              </div>
-
-             
-
-            
-                
-            
-              
-        
-
-              <div className="flex_row">
-             
-              <div className="flex_col_info">
-              <div className="title_info_info">Lives in</div>
-              <div className="_info">{userInfo.country}</div>
-              <div className="border_info"></div>
-              </div>
-              <ImHome3  className="info_icon"/>
-              </div>
-
-
-              <div className="flex_row">
-       
-              <div className="flex_col_info">
-              <div className="title_info_info">Studied at</div>
-              <div className="_info">Meraki Academy</div>
-              <div className="border_info"></div>
-              </div>
-              <FaUserGraduate className="info_icon"/>
+                <div className="flex_col_info">
+                  <div className="title_info_info">Gender</div>
+                  <div className="_info">{userInfo.gender}</div>
+                  <div className="border_info"></div>
+                </div>
+                <FaVenusMars className="info_icon" />
               </div>
 
               <div className="flex_row">
-              
-              <div className="flex_col_info">
-              <div className="title_info_info">Relationship</div>
-              <div className="_info_re">Single</div>
-           
+                <div className="flex_col_info">
+                  <div className="title_info_info">Date of Birth</div>
+                  <div className="_info">{userInfo.dob?.slice(0, 10)}</div>
+                  <div className="border_info"></div>
+                </div>
+                <AiFillHourglass className="info_icon" />
               </div>
-              <BsFillHeartFill className="info_icon"/>
+
+              <div className="flex_row">
+                <div className="flex_col_info">
+                  <div className="title_info_info">Lives in</div>
+                  <div className="_info">{userInfo.country}</div>
+                  <div className="border_info"></div>
+                </div>
+                <ImHome3 className="info_icon" />
               </div>
-         
+
+              <div className="flex_row">
+                <div className="flex_col_info">
+                  <div className="title_info_info">Studied at</div>
+                  <div className="_info">Meraki Academy</div>
+                  <div className="border_info"></div>
+                </div>
+                <FaUserGraduate className="info_icon" />
+              </div>
+
+              <div className="flex_row">
+                <div className="flex_col_info">
+                  <div className="title_info_info">Relationship</div>
+                  <div className="_info_re">Single</div>
+                </div>
+                <BsFillHeartFill className="info_icon" />
+              </div>
             </div>
-
-
           </div>
         ) : (
           <div></div>
