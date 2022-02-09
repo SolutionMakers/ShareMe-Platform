@@ -6,13 +6,11 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
- 
 } from "react-icons/bs";
 
-
-import { AiFillHourglass} from "react-icons/ai";
+import { AiFillHourglass } from "react-icons/ai";
 import { ImHome3 } from "react-icons/im";
-import { FaUserGraduate ,FaVenusMars,FaUserCircle} from "react-icons/fa";
+import { FaUserGraduate, FaVenusMars, FaUserCircle } from "react-icons/fa";
 
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
@@ -27,9 +25,12 @@ const ProfilePage = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [uploadedImage, setUploadedImage] = useState("");
   const [profileimage, setProfileimage] = useState("");
+  const [profileCover, setProfileCover] = useState("");
   const [userInfo, setUserInfo] = useState([]);
   const [allLikes, setAllLikes] = useState([]);
   const [modalImg, setTModalImg] = useState(false);
+  const [coverModal, setCoverModal] = useState(false);
+  const [uploadedCover, setUploadedCover] = useState("");
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -43,9 +44,42 @@ const ProfilePage = () => {
     setModal(!modal);
     setId(id);
   };
-
+  /********************************** */
   const toggleModalImg = () => {
     setTModalImg(!modalImg);
+  };
+  /*********************************** */
+  const toggleModalCover = () => {
+    setCoverModal(!coverModal);
+  };
+  /********************************************************************************************************* */
+  const uploadCoverPhoto = async () => {
+    const formData = new FormData();
+    formData.append("file", uploadedCover);
+    formData.append("upload_preset", "wyggi4ze");
+
+    await axios
+      .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
+      .then((response) => {
+        updateProfileCover(response.data.secure_url);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+  /********************************************************************************************************** */
+  const updateProfileCover = async (profileCover) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/users/cover/${user_id}`,
+        { profileCover: profileCover }
+      );
+      if (res.data.success) {
+        console.log(res.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   /***************************************** */
   const uploadimage = async () => {
@@ -218,7 +252,36 @@ const ProfilePage = () => {
     <>
       <div className="top_profile_page">
         <div className="cover_and_button">
-          <button className="edit_cover_button">Edit Cover</button>
+          {userInfo.id == state.user_id ? (
+            <button onClick={toggleModalCover} className="edit_cover_button">
+              Edit Cover
+            </button>
+          ) : (
+            <></>
+          )}
+          {coverModal && (
+            <div className="modal_profile">
+              <div onClick={toggleModalCover} className="overlay_profile"></div>
+              <div className="modal-content_profile">
+                <div>
+                  <input
+                    type="file"
+                    onChange={(e) => {
+                      setUploadedCover(e.target.files[0]);
+                    }}
+                  />
+                  <button
+                    onClick={() => {
+                      uploadCoverPhoto();
+                      toggleModalCover();
+                    }}
+                  >
+                    upload
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           <img
             className="cover_photo"
             src={
@@ -239,23 +302,27 @@ const ProfilePage = () => {
                   : noAvatar
               }
             />
-            <div class="avatar-button" onClick={toggleModalImg}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="feather_feather-plus"
-              >
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </div>
+            {userInfo.id == state.user_id ? (
+              <div className="avatar-button" onClick={toggleModalImg}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="feather_feather-plus"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
 
           <div className="userName_profile">{userInfo.userName}</div>
@@ -269,26 +336,22 @@ const ProfilePage = () => {
           <div className="modal_profile">
             <div onClick={toggleModalImg} className="overlay_profile"></div>
             <div className="modal-content_profile">
-              {userInfo.id == state.user_id ? (
-                <div>
-                  <input
-                    type="file"
-                    onChange={(e) => {
-                      setUploadedImage(e.target.files[0]);
-                    }}
-                  />
-                  <button
-                    onClick={() => {
-                      uploadimage();
-                      toggleModalImg();
-                    }}
-                  >
-                    upload
-                  </button>
-                </div>
-              ) : (
-                <></>
-              )}
+              <div>
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    setUploadedImage(e.target.files[0]);
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    uploadimage();
+                    toggleModalImg();
+                  }}
+                >
+                  upload
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -300,96 +363,59 @@ const ProfilePage = () => {
             <div className="title_font">Basic Infos</div>
 
             <div className="userBasicInfo">
-
-              
-            
-             
-            
-          
-       
-      
-          
-          
-            
-       
-
-
-  
-             <div className="flex_row">
-            
-              <div className="flex_col_info">
-                <div className="title_info_info">Name</div>
-              <div className="_info">{userInfo.userName}</div>
-              <div className="border_info"></div>
-
-              </div>
-              <FaUserCircle className="info_icon"/>
+              <div className="flex_row">
+                <div className="flex_col_info">
+                  <div className="title_info_info">Name</div>
+                  <div className="_info">{userInfo.userName}</div>
+                  <div className="border_info"></div>
+                </div>
+                <FaUserCircle className="info_icon" />
               </div>
 
               <div className="flex_row">
-             
-              <div className="flex_col_info">
-              <div className="title_info_info">Gender</div>
-              <div className="_info">{userInfo.gender}</div>
-              <div className="border_info"></div>
-              </div>
-              <FaVenusMars className="info_icon"/>
-              </div>
-
-             
-              <div className="flex_row">
-            
-              <div className="flex_col_info">
-            
-              <div className="title_info_info">Date of Birth</div>
-              <div className="_info">{userInfo.dob?.slice(0, 10)}</div>
-              <div className="border_info"></div>
-              </div>
-              <AiFillHourglass className="info_icon"/>
-              </div>
-
-             
-
-            
-                
-            
-              
-        
-
-              <div className="flex_row">
-             
-              <div className="flex_col_info">
-              <div className="title_info_info">Lives in</div>
-              <div className="_info">{userInfo.country}</div>
-              <div className="border_info"></div>
-              </div>
-              <ImHome3  className="info_icon"/>
-              </div>
-
-
-              <div className="flex_row">
-       
-              <div className="flex_col_info">
-              <div className="title_info_info">Studied at</div>
-              <div className="_info">Meraki Academy</div>
-              <div className="border_info"></div>
-              </div>
-              <FaUserGraduate className="info_icon"/>
+                <div className="flex_col_info">
+                  <div className="title_info_info">Gender</div>
+                  <div className="_info">{userInfo.gender}</div>
+                  <div className="border_info"></div>
+                </div>
+                <FaVenusMars className="info_icon" />
               </div>
 
               <div className="flex_row">
-              
-              <div className="flex_col_info">
-              <div className="title_info_info">Relationship</div>
-              <div className="_info_re">Single</div>
-           
+                <div className="flex_col_info">
+                  <div className="title_info_info">Date of Birth</div>
+                  <div className="_info">{userInfo.dob?.slice(0, 10)}</div>
+                  <div className="border_info"></div>
+                </div>
+                <AiFillHourglass className="info_icon" />
               </div>
-              <BsFillHeartFill className="info_icon"/>
+
+              <div className="flex_row">
+                <div className="flex_col_info">
+                  <div className="title_info_info">Lives in</div>
+                  <div className="_info">{userInfo.country}</div>
+                  <div className="border_info"></div>
+                </div>
+                <ImHome3 className="info_icon" />
               </div>
-         
+
+              <div className="flex_row">
+                <div className="flex_col_info">
+                  <div className="title_info_info">Studied at</div>
+                  <div className="_info">Meraki Academy</div>
+                  <div className="border_info"></div>
+                </div>
+                <FaUserGraduate className="info_icon" />
+              </div>
+
+              <div className="flex_row">
+                <div className="flex_col_info">
+                  <div className="title_info_info">Relationship</div>
+                  <div className="_info_re">Single</div>
+                </div>
+                <BsFillHeartFill className="info_icon" />
+              </div>
             </div>
-
-
           </div>
         ) : (
           <div></div>
