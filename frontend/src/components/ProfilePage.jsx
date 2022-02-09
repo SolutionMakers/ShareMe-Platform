@@ -252,7 +252,36 @@ const ProfilePage = () => {
     <>
       <div className="top_profile_page">
         <div className="cover_and_button">
-          <button className="edit_cover_button">Edit Cover</button>
+          {userInfo.id == state.user_id ? (
+            <button onClick={toggleModalCover} className="edit_cover_button">
+              Edit Cover
+            </button>
+          ) : (
+            <></>
+          )}
+          {coverModal && (
+            <div className="modal_profile">
+              <div onClick={toggleModalCover} className="overlay_profile"></div>
+              <div className="modal-content_profile">
+                <div>
+                  <input
+                    type="file"
+                    onChange={(e) => {
+                      setUploadedCover(e.target.files[0]);
+                    }}
+                  />
+                  <button
+                    onClick={() => {
+                      uploadCoverPhoto();
+                      toggleModalCover();
+                    }}
+                  >
+                    upload
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           <img
             className="cover_photo"
             src={
