@@ -94,6 +94,8 @@ const Home = () => {
       );
       if (res.data.success) {
         console.log(res.data);
+        getAllPosts();
+        getAllLikes();
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -116,7 +118,7 @@ const Home = () => {
   useEffect(() => {
     getAllPosts();
     getAllLikes();
-  }, [allLikes]);
+  }, []);
   /**********************************************************************************************************************/
   const filterArray = (id) => {
     return allLikes.filter((e, i) => {
@@ -184,6 +186,7 @@ const Home = () => {
         </div>
         <div className="all_posts_home">
           {state.posts.map((element, i) => {
+            console.log(element);
             return (
               <div className="post">
                 <div className="postWrapper">
