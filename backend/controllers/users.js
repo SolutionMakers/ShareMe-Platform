@@ -65,7 +65,37 @@ const updateProfilePhoto = (req, res) => {
     });
   });
 };
-/********************************************************************************************* */
+/******************************************************************************** */
+const updateProfileCover = (req, res) => {
+  const profileCover = req.body.profileCover;
+  const id = req.params.id;
+  const query = `UPDATE users SET profilecover=? WHERE id=?;`;
+
+  const data = [profileCover, id];
+
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(404).json({
+        success: false,
+        massage: `Server error`,
+        err: err,
+      });
+    }
+    if (results.changedRows == 0) {
+      res.status(404).json({
+        success: false,
+        massage: `The User : ${id} is not found`,
+        err: err,
+      });
+    }
+    res.status(201).json({
+      success: true,
+      massage: `profile cover updated successfully`,
+      results: results,
+    });
+  });
+};
+/********************************************************************************* */
 const getInfoUser = (req, res) => {
   const userId = req.params.id;
   const query = `SELECT * FROM users WHERE id=? And is_deleted=0;`;
@@ -122,6 +152,7 @@ const getAllUsers = (req, res) => {
 module.exports = {
   createNewUser,
   updateProfilePhoto,
+  updateProfileCover,
   getInfoUser,
   getAllUsers,
 };
