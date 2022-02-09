@@ -186,7 +186,6 @@ const Home = () => {
         </div>
         <div className="all_posts_home">
           {state.posts.map((element, i) => {
-            console.log(element);
             return (
               <div className="post">
                 <div className="postWrapper">
