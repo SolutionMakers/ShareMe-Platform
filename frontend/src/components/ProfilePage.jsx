@@ -302,23 +302,27 @@ const ProfilePage = () => {
                   : noAvatar
               }
             />
-            <div class="avatar-button" onClick={toggleModalImg}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                className="feather_feather-plus"
-              >
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </div>
+            {userInfo.id == state.user_id ? (
+              <div class="avatar-button" onClick={toggleModalImg}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="feather_feather-plus"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
 
           <div className="userName_profile">{userInfo.userName}</div>
@@ -332,26 +336,22 @@ const ProfilePage = () => {
           <div className="modal_profile">
             <div onClick={toggleModalImg} className="overlay_profile"></div>
             <div className="modal-content_profile">
-              {userInfo.id == state.user_id ? (
-                <div>
-                  <input
-                    type="file"
-                    onChange={(e) => {
-                      setUploadedImage(e.target.files[0]);
-                    }}
-                  />
-                  <button
-                    onClick={() => {
-                      uploadimage();
-                      toggleModalImg();
-                    }}
-                  >
-                    upload
-                  </button>
-                </div>
-              ) : (
-                <></>
-              )}
+              <div>
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    setUploadedImage(e.target.files[0]);
+                  }}
+                />
+                <button
+                  onClick={() => {
+                    uploadimage();
+                    toggleModalImg();
+                  }}
+                >
+                  upload
+                </button>
+              </div>
             </div>
           </div>
         )}
