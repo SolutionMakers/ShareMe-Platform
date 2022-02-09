@@ -303,7 +303,7 @@ const ProfilePage = () => {
               }
             />
             {userInfo.id == state.user_id ? (
-              <div class="avatar-button" onClick={toggleModalImg}>
+              <div className="avatar-button" onClick={toggleModalImg}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
