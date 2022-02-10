@@ -6,6 +6,7 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
+  BsChatDotsFill
 } from "react-icons/bs";
 
 import { AiFillHourglass } from "react-icons/ai";
@@ -422,6 +423,10 @@ const ProfilePage = () => {
         )}
 
         <div className="all_posts_profile_page">
+          <div className="userBasicInfo_title_post">
+          <span className="post_title">Posts</span>
+          </div>
+         
           {userPosts.length ? (
             userPosts.map((element, index) => {
               return (
@@ -518,16 +523,16 @@ const ProfilePage = () => {
                         </span>
                       </div>
                       <div className="postBottomRight">
-                        <span
-                          className="postCommentText"
-                          onClick={() => {
-                            navigation(`/post/${element.id}`);
-                          }}
-                        >
-                          {" "}
-                          comments
-                        </span>
-                      </div>
+                     comments
+                  <BsChatDotsFill className="postCommentText"
+                        onClick={() => {
+                          navigation(`/post/${element.id}`);
+                        }}/>
+                        
+                    
+                       
+                      
+                    </div>
                     </div>
                   </div>
                 </div>
