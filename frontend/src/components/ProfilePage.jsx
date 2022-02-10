@@ -165,6 +165,7 @@ const ProfilePage = () => {
       );
       if (res.data.success) {
         console.log("done");
+        getAllLikes();
       }
     } catch (error) {
       if (error.response && error.response.data) {
