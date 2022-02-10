@@ -7,6 +7,7 @@ import {
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
   BsPen,
+  BsChatDotsFill
 } from "react-icons/bs";
 
 import axios from "axios";
@@ -288,16 +289,17 @@ const Home = () => {
                         {filterArray(element.id).length} People Like It
                       </span>
                     </div>
+                    
                     <div className="postBottomRight">
-                      <span
-                        className="postCommentText"
+                     comments
+                  <BsChatDotsFill className="postCommentText"
                         onClick={() => {
                           navigation(`/post/${element.id}`);
-                        }}
-                      >
-                        {" "}
-                        comments
-                      </span>
+                        }}/>
+                        
+                    
+                       
+                      
                     </div>
                   </div>
                 </div>
