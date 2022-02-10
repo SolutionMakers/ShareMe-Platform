@@ -205,7 +205,7 @@ const Home = () => {
                         />
                       </Link>
                       <span className="postUsername">{element.userName}</span>
-                      <div className="postDate">{format(element.created_at)}</div>
+                      {/* <div className="postDate">{format(element.created_at)}</div> */}
                     </div>
                     <div className="postTopRight">
                       {element.user_id == state.user_id ? (
