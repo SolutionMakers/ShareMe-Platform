@@ -199,9 +199,9 @@ const Login = () => {
                       })
                       .then((result) => {
                         console.log(result.data);
-                        toast('🦄 Wow so easy!', {
+                        toast.success(' The user has been created successfully', {
                           position: "top-right",
-                          autoClose: 5000,
+                          autoClose: 4000,
                           hideProgressBar: false,
                           closeOnClick: true,
                           pauseOnHover: true,
@@ -211,18 +211,23 @@ const Login = () => {
                         e.target.style.background =
                           "linear-gradient(-45deg,#CAC531,#F3F9A7)";
                         e.target.style.color = "black";
-
-                        setSignupMessage(
-                          "The user has been created successfully"
-                        );
+                        toggleModal()
+                     
                       })
                       .catch((err) => {
+                        toast.error(' Error happened while register, please try again', {
+                          position: "top-right",
+                          autoClose: 4000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          });
                         e.target.style.background =
                           "linear-gradient(-45deg,#f7797d,#f7797d)";
                         e.target.style.color = "black";
-                        setSignupMessage(
-                          "Error happened while register, please try again"
-                        );
+                       
                       });
                   }}
                 >
