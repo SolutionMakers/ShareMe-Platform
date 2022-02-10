@@ -145,7 +145,6 @@ const ProfilePage = () => {
       );
       if (res.data.success) {
         setUserInfo(res.data.Info[0]);
-        getUserInfo();
       }
     } catch (err) {
       console.log(err);
@@ -429,8 +428,9 @@ const ProfilePage = () => {
          
           {userPosts.length ? (
             userPosts.map((element, index) => {
+              {console.log(element)}
               return (
-                <div className="post">
+                <div  className="post">
                   <div className="postWrapper">
                     <div className="postTop">
                       <div className="postTopLeft">
