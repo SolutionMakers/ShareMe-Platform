@@ -25,7 +25,7 @@ const createNewMessage = (req, res) => {
 const getAllMessageByRoomId = (req, res, next) => {
   const room_id = req.params.room_id;
 
-  const query = `SELECT message.id,message,userName,room_id FROM message INNER JOIN users ON users.id=sender_id WHERE room_id=?  ORDER BY message.id ASC `;
+  const query = `SELECT message.id,message,profileimage,userName,room_id FROM message INNER JOIN users ON users.id=sender_id WHERE room_id=?  ORDER BY message.id ASC `;
   const data = [room_id];
   connection.query(query, data, (err, results) => {
     if (err) {

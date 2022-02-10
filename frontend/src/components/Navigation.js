@@ -5,13 +5,16 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { FaFacebookMessenger } from "react-icons/fa";
 const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const imgUser = localStorage.getItem("img");
   const state = useSelector((state) => {
     return {
       isLoggedIn: state.loginReducer.isLoggedIn,
       user_id: state.loginReducer.user_id,
+      userName: state.loginReducer.userName,
     };
   });
   /***************************************************************************************** */
@@ -59,21 +62,24 @@ const Navigation = () => {
           />
         </div>
       </div>
-
+     
+      < FaFacebookMessenger
+        className="chat"
+        onClick={() => {
+          navigate(`/chat`);
+        }}
+     />
       <div className="home_nav">
         <Link to="/home">
           <AiFillHome className="home_icon" />
         </Link>
       </div>
 
-      <div className="empty"></div>
-      <div
-        className="my_profile"
-        onClick={() => {
-          navigate(`/profile/${state.user_id}`);
-        }}
-      >
-        My profile
+      <div className="user_nav" onClick={()=>{
+           navigate(`/profile/${state.user_id}`);
+        }}>
+        <img className="img_user_nav" src={imgUser}  />
+        <div className="userName_font_nav" >{state.userName}</div>
       </div>
       <div className="style_logOut">
         <button
