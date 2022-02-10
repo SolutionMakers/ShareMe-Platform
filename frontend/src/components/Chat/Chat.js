@@ -129,12 +129,18 @@ const Chat = () => {
   }, [messageList]);
   return (
     <>
-      <div className="AllUsers">
+      <div className="All_chat">
+
+        <div className="left_side_chat">
         {allUsers.map((element, index) => {
           return (
-            <div key={index}>
-              <img src={element.profileimage} />
-              <h1>{element.userName}</h1>
+
+         
+            <div key={index} >
+
+<div className="name_img">
+              <img src={element.profileimage} className="img_user_chat" />
+              <div>{element.userName}</div>
               <button
                 onClick={() => {
                   joinRoomData(element.id);
@@ -143,31 +149,38 @@ const Chat = () => {
               >
                 Chat
               </button>
+              </div>
+            
+              
             </div>
+
+
           );
         })}
-      </div>
+  </div>
 
-      <div className="Chat">
+      <div className="mid_side_chat">
         {loggedIn ? (
-          <div>
-            <ul>
+          <div className="chat_page">
+          
               {messageList.length ? (
                 messageList.map((element, index) => {
                   return (
-                    <li key={index}>
-                      <p>
-                        {element.userName}: {element.message}
-                      </p>
-                    </li>
+                    <div key={index} className="chat_rod">
+                      <div className="words_chat">
+                        <img className="img_user_chat" src={element.profileimage}/> <div className="message">{element.message}</div>
+                      </div>
+                    </div>
                   );
                 })
               ) : (
                 <></>
               )}
-            </ul>
-            <input
-              style={{ width: "450px" }}
+      
+
+
+            <input className="input_send_chat"
+             
               type={"text"}
               placeholder="Message ..."
               onChange={(e) => {
@@ -176,30 +189,23 @@ const Chat = () => {
             />
             <button
               onClick={createMessage}
-              style={{ backgroundColor: "#79b893" }}
+              style={{ backgroundColor: "#4ba9d4" }}
             >
               send
             </button>
+
+
           </div>
         ) : (
           <div>
-            <input
-              type={"text"}
-              placeholder="username"
-              onChange={(e) => {
-                // setUserName(e.target.value);
-              }}
-            />
-            <input
-              type={"text"}
-              placeholder="Room ID"
-              onChange={(e) => {
-                setRoomId(e.target.value);
-              }}
-            />
+           
+           
             <button onClick={joinRoom}>Enter Room</button>
           </div>
         )}
+      </div>
+
+<div className="right_side_chat">Details</div>
       </div>
     </>
   );
