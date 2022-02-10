@@ -8,9 +8,12 @@
   width: 100%;
 }
 
-* {
+
+ *{
   box-sizing: border-box;
-}
+  font-family: "Roboto", -apple-system, system-ui, BlinkMacSystemFont, Segoe UI,
+  Helvetica Neue, Arial, sans-serif;
+} 
 .App {
   display: flex;
   flex-direction: row;
@@ -332,6 +335,7 @@ body {
   padding: 0;
 }
 
+
 .logo_search {
   display: flex;
   align-items: center;
@@ -369,31 +373,14 @@ body {
   transition: 0.6s;
   box-shadow: 0.5px 0.5px 3px #d9dbdf;
 }
-.my_profile {
-  cursor: pointer;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #c71717;
-  border-radius: 8px;
-  font-size: 0.93rem;
-  color: #f4f4f5;
-  transition: all 0.3s;
-  border: none;
-  width: 7rem;
-  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
-}
+
 .style_logOut {
   display: flex;
   gap: 5px;
   align-items: center;
 }
 
-.LogOut:hover {
-  background-color: #b6001b;
-}
+
 
 .LogOut {
   border: none;
@@ -404,18 +391,23 @@ body {
   width: 110px;
   height: 27px;
   font-size: 15px;
-  background-color: #c71717;
+  background-color:  #17a6e6;;
   font-weight: bold;
 }
 
+.LogOut:hover {
+  background-color: #0982b9;;
+}
+
+
 .home_icon {
   font-size: 37px;
-  color: #df0021;
+  color:  #17a6e6;
   cursor: pointer;
 }
 
 .home_icon:hover {
-  color: #b6001b;
+  color: #0982b9;;
 }
 
 /*---------------------------------Home Page -------------------*/
@@ -551,9 +543,11 @@ body {
 
 .postCommentText {
   cursor: pointer;
-  border-bottom: 1px dashed gray;
-  font-size: 18px;
+
+  font-size: 21px;
+  color: #17a6e6;
 }
+
 
 /*-----------------------------Create New Post Home -------------------*/
 .creat_post_all {
@@ -579,6 +573,7 @@ body {
   justify-content: flex-start;
   height: 3rem;
   color: #6c708b;
+  
 }
 
 .publish {
@@ -660,10 +655,10 @@ body {
   align-items: center;
   padding: 6px 16px;
   margin-right: 10px;
-  background: #f7f7f7;
+  background: #17a6e6;
   border-radius: 500px;
   font-size: 0.85rem;
-  color: #888da8;
+  color: #fdfdfd;
   transition: all 0.3s;
 }
 
@@ -676,7 +671,7 @@ body {
     "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
   font-size: 0.85rem;
-  color: #000000;
+  color: #ffffff;
   box-sizing: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -701,10 +696,10 @@ body {
   cursor: pointer;
 }
 
-.compose-option:hover {
+/* .compose-option:hover {
   color: black;
   transition: all 0.3s;
-}
+} */
 
 .icon_pen:hover {
   color: black;
@@ -934,11 +929,26 @@ height: 35rem;
   margin: 26px 0;
 }
 
-.userBasicInfo_title {
+.userBasicInfo_title_post {
+  position: relative;
+  width: 40rem;
+  height: 3rem;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  background-color: #ffffff;
+  margin: 26px 0; 
+
+
+ 
+ 
+}
+
+.userBasicInfo_title{
   display: flex;
 
   flex-direction: column;
-  width: 20rem;
+   width: 20rem; 
 
   height: 3rem;
 
@@ -947,9 +957,26 @@ height: 35rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
 
-  margin: 26px 0;
+   margin: 26px 0; 
 
-  margin-left: 17rem;
+   margin-left: 12.2rem; 
+
+}
+.post_title{
+
+  font-size: 1.1rem;
+  display: flex;
+
+  
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  color: #344258;
+
+
+  font-weight: 500;
+ padding: 9px 0px 0px 10px; 
+ 
 }
 
 .title_font {
