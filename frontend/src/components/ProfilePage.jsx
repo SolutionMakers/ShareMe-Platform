@@ -145,7 +145,6 @@ const ProfilePage = () => {
       );
       if (res.data.success) {
         setUserInfo(res.data.Info[0]);
-        getUserInfo();
       }
     } catch (err) {
       console.log(err);
@@ -166,6 +165,7 @@ const ProfilePage = () => {
       );
       if (res.data.success) {
         console.log("done");
+        getAllLikes();
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -430,7 +430,7 @@ const ProfilePage = () => {
           {userPosts.length ? (
             userPosts.map((element, index) => {
               return (
-                <div className="post">
+                <div key={index} className="post">
                   <div className="postWrapper">
                     <div className="postTop">
                       <div className="postTopLeft">
