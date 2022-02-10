@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { BsFillXCircleFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../reducers/login";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -197,7 +199,15 @@ const Login = () => {
                       })
                       .then((result) => {
                         console.log(result.data);
-
+                        toast('🦄 Wow so easy!', {
+                          position: "top-right",
+                          autoClose: 5000,
+                          hideProgressBar: false,
+                          closeOnClick: true,
+                          pauseOnHover: true,
+                          draggable: true,
+                          progress: undefined,
+                          });
                         e.target.style.background =
                           "linear-gradient(-45deg,#CAC531,#F3F9A7)";
                         e.target.style.color = "black";
