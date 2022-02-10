@@ -16,6 +16,7 @@ const rolesRouter = require("./routes/roles");
 const likesRouter = require("./routes/like");
 const roomsRouter =require('./routes/rooms')
 const messageRouter = require ('./routes/message')
+const friendsRouter = require ('./routes/friends')
 /*************************************** */
 app.use("/login", loginRouter);
 app.use("/users", usersRouter);
@@ -25,6 +26,7 @@ app.use("/roles", rolesRouter);
 app.use("/like", likesRouter);
 app.use("/rooms", roomsRouter);
 app.use("/message",messageRouter)
+app.use("/follow",friendsRouter)
 
 /*************************************** */
 const server = app.listen(PORT, () => {
