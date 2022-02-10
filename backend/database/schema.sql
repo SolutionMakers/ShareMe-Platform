@@ -80,4 +80,13 @@ CREATE TABLE message(
     PRIMARY KEY (id)
 );
 
+CREATE TABLE friends(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    friend INT,
+    FOREIGN KEY (friend) REFERENCES users(id),
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (id)
+);
 
