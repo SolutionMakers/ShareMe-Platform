@@ -551,7 +551,23 @@ cursor: pointer;
   align-items: center;
   justify-content: space-between;
 }
-
+.postBottomRight{
+  font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .postCommentText:hover{
+    color: #20498f;
+    transition: all .3s;
+  }
+  .postBottomRight:hover{
+    color: #20498f;
+    transition: all .3s;
+  }
+  
 .postBottomLeft {
   display: flex;
   align-items: center;
