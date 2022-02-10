@@ -21,5 +21,32 @@ const AddFriend = (req, res) => {
     });
   });
 };
-
-module.exports = { AddFriend };
+/*************************************************** */
+const getAllFriendsByUserId = (req, res) => {
+  //const user_id = req.params.user_id
+  const user_id = req.token.userId;
+  const query = `SELECT * FROM friends INNER JOIN users ON users.id = friends.friend where user_id = ?`;
+  const data = [user_id];
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        massage: "Server error",
+        err: err,
+      });
+    }
+    if (results.length) {
+      res.status(200).json({
+        success: true,
+        massage: `Success to get all friends for this user ${user_id}`,
+        results: results,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: `No friends for this user ${user_id}`,
+      });
+    }
+  });
+};
+module.exports = { AddFriend, getAllFriendsByUserId };
