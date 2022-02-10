@@ -430,7 +430,7 @@ const ProfilePage = () => {
           {userPosts.length ? (
             userPosts.map((element, index) => {
               return (
-                <div  className="post">
+                <div key={index} className="post">
                   <div className="postWrapper">
                     <div className="postTop">
                       <div className="postTopLeft">
