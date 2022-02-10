@@ -49,4 +49,30 @@ const getAllFriendsByUserId = (req, res) => {
     }
   });
 };
-module.exports = { AddFriend, getAllFriendsByUserId };
+/*************************************************************** */
+
+const getAllFriends = (req, res) => {
+  const query = `select * from friends where is_deleted = 0`;
+  connection.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        massage: "Server error",
+        err: err,
+      });
+    }
+    if (results.length) {
+      res.status(200).json({
+        success: true,
+        massage: `Success to get all the friends`,
+        results: results,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        massage: `No friends yet`,
+      });
+    }
+  });
+};
+module.exports = { AddFriend, getAllFriendsByUserId, getAllFriends };
