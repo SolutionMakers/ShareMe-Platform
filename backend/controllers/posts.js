@@ -48,7 +48,7 @@ const getPostsbyUserId = (req, res) => {
 
 /****************************************/
 const getAllPosts = (req, res) => {
-  const query = `SELECT posts.id, description, userName,media,profileimage,user_id FROM users INNER JOIN posts ON users.id=posts.user_id WHERE posts.is_deleted=0 ORDER BY posts.id DESC;
+  const query = `SELECT posts.id, description, userName,media,profileimage,created_at,user_id FROM users INNER JOIN posts ON users.id=posts.user_id WHERE posts.is_deleted=0 ORDER BY posts.id DESC;
    `;
 
   connection.query(query, (err, result) => {

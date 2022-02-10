@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { setPosts, updatePost, deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { format, render, cancel, register } from 'timeago.js';
 import {
   BsThreeDotsVertical,
   BsFillHeartFill,
@@ -204,7 +205,7 @@ const Home = () => {
                         />
                       </Link>
                       <span className="postUsername">{element.userName}</span>
-                      {/* <span className="postDate">{format(post.createdAt)}</span> */}
+                      {/* <div className="postDate">{format(element.created_at)}</div> */}
                     </div>
                     <div className="postTopRight">
                       {element.user_id == state.user_id ? (

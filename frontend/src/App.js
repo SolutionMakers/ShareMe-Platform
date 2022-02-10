@@ -9,6 +9,8 @@ import Home from "./components/Home";
 import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
 import Chat from "./components/Chat/Chat";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   const state = useSelector((state) => {
     return {
@@ -17,6 +19,7 @@ const App = () => {
   });
   return (
     <>
+      <ToastContainer />
       {state.isLoggedIn ? <Navigation /> : <></>}
       <div className="App">
         <div className="Home">
