@@ -334,6 +334,42 @@ body {
   margin: 0;
   padding: 0;
 }
+.chat{
+
+  font-size:30px;
+  cursor: pointer;
+  color: #17a6e6;
+}
+
+
+.chat:hover {
+  color: #0982b9;;
+}
+
+.user_nav{
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+.img_user_nav{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+ cursor: pointer;
+  box-shadow: 0 0 3px rgb(145, 144, 144);
+}
+.userName_font_nav{
+font-size: 1.1rem;
+cursor: pointer;
+}
+
+.userName_font_nav:hover{
+  color: #17a6e6;
+}
 
 
 .logo_search {
