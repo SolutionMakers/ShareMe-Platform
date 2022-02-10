@@ -429,7 +429,6 @@ const ProfilePage = () => {
          
           {userPosts.length ? (
             userPosts.map((element, index) => {
-              {console.log(element)}
               return (
                 <div  className="post">
                   <div className="postWrapper">
