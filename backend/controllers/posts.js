@@ -161,6 +161,27 @@ const deletePostById = (req, res) => {
   });
 };
 
+const getAllPostByfiendId = (req, res) => {
+  const query = `SELECT posts.id, description,media,profileimage,userName,posts.user_id FROM posts INNER JOIN friends ON friends.friend=posts.user_id INNER JOIN users ON users.id=posts.user_id WHERE friends.user_id=? AND posts.is_deleted=0 ORDER BY posts.id DESC`;
+  const data = [req.token.userId];
+
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(404).json({
+        success: false,
+        massage: "The friend Not Found",
+        err: err,
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      massage: `All the posts Show to user: ${req.token.userId}`,
+      results: results,
+    });
+  });
+};
+
 module.exports = {
   createNewPost,
   getAllPosts,
@@ -168,4 +189,5 @@ module.exports = {
   getPostById,
   updatePostById,
   deletePostById,
+  getAllPostByfiendId,
 };
