@@ -38,9 +38,13 @@ const Home = () => {
   /*************************************************************************************************************** */
   const getAllPosts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/posts");
+      const res = await axios.get("http://localhost:5000/posts/friends/posts",{
+        headers: {
+          Authorization: `Bearer ${state.token}`,
+        },
+      });
       if (res.data.success) {
-        dispatch(setPosts(res.data.results));
+        dispatch(setPosts(res.data.results.reverse()));
       } else throw Error;
     } catch (error) {
       if (!error.response.data.success) {

@@ -145,7 +145,7 @@ const Chat = () => {
     <>
       <div className="All_chat">
         <div className="left_side_chat">
-          <h3>Friends: {allFriends.length}</h3>
+          <h3>followers: {allFriends.length}</h3>
 
           {allFriends ? (
             allFriends.map((element, index) => {
