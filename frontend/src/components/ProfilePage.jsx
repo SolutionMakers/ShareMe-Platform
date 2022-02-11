@@ -32,6 +32,10 @@ const ProfilePage = () => {
   const [modalImg, setTModalImg] = useState(false);
   const [coverModal, setCoverModal] = useState(false);
   const [uploadedCover, setUploadedCover] = useState("");
+  const [friendsList, setFriendsList] = useState([]);
+  const [myFriendsList, setMyFriendsList] = useState([]);
+
+  
   /************************************************************************************************************** */
   const dispatch = useDispatch();
   const state = useSelector((state) => {
@@ -296,8 +300,9 @@ const ProfilePage = () => {
         `http://localhost:5000/friends/user/${user_id}`
       );
       if (res.data.success) {
-        console.log(res.data.results);
-        console.log(res.data)
+        // console.log(res.data.results);
+        // console.log(res.data)
+        setMyFriendsList(res.data.results)
       }
     } catch (err) {
       console.log(err);
@@ -305,12 +310,27 @@ const ProfilePage = () => {
   };
   /****************************** */
 
+  const getAllFriends = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/friends/all`
+      );
+      if (res.data.success) {
+        console.log(res.data.results);
+        console.log(res.data)
+        setFriendsList(res.data.results)
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   /****************************** */
   useEffect(() => {
     getPostsByUserId();
     getUserInfo();
     getAllLikes();
     getAllFriendsByUserId();
+    getAllFriends();
   }, []);
   return (
     <>
