@@ -19,6 +19,8 @@ const Home = () => {
   const [modal, setModal] = useState(false);
   const [id, setId] = useState("");
   const [allLikes, setAllLikes] = useState([]);
+  const [isLiked, setIsLiked] = useState(false);
+
   /***************************************************************************************************************** */
   const navigation = useNavigate();
   const toggleModal = (id) => {
@@ -131,7 +133,22 @@ const Home = () => {
       return e.post_id === id;
     });
   };
+    /**************************************************************************************************** */
+const checkLikes =  (id)=>{
+ const filtered =  allLikes.filter((element) => {
+    return element.user_id==state.user_id&& element.post_id == id 
+  });
+  if(filtered.length!= 0){
+    return true;
+  }else{
+    return false;
+  }
+    }
+    if(checkLikes(5)){
+      console.log('done');
+    }
   /**********************************************************************************************************************/
+  
   return (
     <div className="contain_all_home">
       <div className="left_home"></div>
@@ -192,6 +209,7 @@ const Home = () => {
         </div>
         <div className="all_posts_home">
           {state.posts.map((element, i) => {
+            {console.log(element)}
             return (
               <div key ={i} className="post">
                 <div className="postWrapper">
@@ -281,14 +299,18 @@ const Home = () => {
                           e.target.style.transition = "all 0.5s";
                         }}
                       />
-                      <BsFillHeartFill
+                      {checkLikes(element.id)?(<BsFillHeartFill
+                        className="likeIcon_heart" style={{'transition' :"all 0.5s",'color' : "#e60023"}}
+                      />):
+                      (<BsFillHeartFill
                         className="likeIcon_heart"
                         onClick={(e) => {
                           putNewLike(element.id);
                           e.target.style.color = "#e60023";
                           e.target.style.transition = "all 0.5s";
                         }}
-                      />
+                      />)}
+
 
                       <span className="postLikeCounter">
                         {filterArray(element.id).length} People Like It
