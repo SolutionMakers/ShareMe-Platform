@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { setPosts, updatePost, deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { format, render, cancel, register } from 'timeago.js';
+import { format, render, cancel, register } from "timeago.js";
 import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
   BsPen,
-  BsChatDotsFill
+  BsChatDotsFill,
 } from "react-icons/bs";
 
 import axios from "axios";
@@ -38,7 +38,7 @@ const Home = () => {
   /*************************************************************************************************************** */
   const getAllPosts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/posts/friends/posts",{
+      const res = await axios.get("http://localhost:5000/posts/friends/posts", {
         headers: {
           Authorization: `Bearer ${state.token}`,
         },
@@ -193,7 +193,7 @@ const Home = () => {
         <div className="all_posts_home">
           {state.posts.map((element, i) => {
             return (
-              <div key ={i} className="post">
+              <div key={i} className="post">
                 <div className="postWrapper">
                   <div className="postTop">
                     <div className="postTopLeft">
@@ -209,7 +209,9 @@ const Home = () => {
                         />
                       </Link>
                       <span className="postUsername">{element.userName}</span>
-                      {/* <div className="postDate">{format(element.created_at)}</div> */}
+                      <div className="postDate">
+                        {format(element.created_at)}
+                      </div>
                     </div>
                     <div className="postTopRight">
                       {element.user_id == state.user_id ? (
@@ -294,17 +296,15 @@ const Home = () => {
                         {filterArray(element.id).length} People Like It
                       </span>
                     </div>
-                    
+
                     <div className="postBottomRight">
-                     comments
-                  <BsChatDotsFill className="postCommentText"
+                      comments
+                      <BsChatDotsFill
+                        className="postCommentText"
                         onClick={() => {
                           navigation(`/post/${element.id}`);
-                        }}/>
-                        
-                    
-                       
-                      
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
