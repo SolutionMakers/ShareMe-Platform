@@ -428,6 +428,7 @@ const ProfilePage = () => {
           <div></div>
         )}
         {/************************* This map for the posts images ***************************** */}
+
         {false ? (
           postsImages ? (
             postsImages.map((element, index) => {
@@ -439,6 +440,24 @@ const ProfilePage = () => {
         ) : (
           <></>
         )}
+        {/********************these images for the profile and cover****************/}
+        {/* <img
+          src={
+            userInfo.profilecover !== "undefined"
+              ? userInfo.profilecover
+              : cover
+          }
+        />
+        <img
+          className="avatar-image"
+          src={
+            userInfo.profileimage !== "undefined"
+              ? userInfo.profileimage
+              : noAvatar
+          }
+        /> */}
+        {/********************these images for the profile and cover****************/}
+        
         {/****************************************************************************** */}
         <div className="all_posts_profile_page">
           <div className="userBasicInfo_title_post">
