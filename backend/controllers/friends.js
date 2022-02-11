@@ -68,7 +68,7 @@ const getAllFriends = (req, res) => {
         results: results,
       });
     } else {
-      res.status(404).json({
+      res.status(200).json({
         success: false,
         massage: `No friends yet`,
       });
