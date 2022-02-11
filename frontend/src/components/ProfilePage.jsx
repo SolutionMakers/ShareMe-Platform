@@ -364,7 +364,11 @@ const ProfilePage = () => {
           </div>
 
           <div className="userName_profile">{userInfo.userName}</div>
-          <button onClick={followUser}>Add Friend</button>
+          {user_id !== state.user_id ? (
+            <button onClick={followUser}>Follow</button>
+          ) : (
+            <></>
+          )}
         </div>
 
         {/* <button className="chat_button" onClick={joinRoom}>
