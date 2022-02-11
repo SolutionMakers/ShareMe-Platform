@@ -32,6 +32,10 @@ const ProfilePage = () => {
   const [modalImg, setTModalImg] = useState(false);
   const [coverModal, setCoverModal] = useState(false);
   const [uploadedCover, setUploadedCover] = useState("");
+  const [friendsList, setFriendsList] = useState([]);
+  const [myFriendsList, setMyFriendsList] = useState([]);
+  const [show, setShow] = useState(true);
+
   /************************************************************************************************************** */
   const dispatch = useDispatch();
   const state = useSelector((state) => {
@@ -267,17 +271,61 @@ const ProfilePage = () => {
     }
   };
   /*********************************************************************************************************** */
+  const unFollowUser = async () => {
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/friends/remove/${user_id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+
+      if (res.data.success) {
+        console.log(`The follow has been removed `);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  /*********************************************************************************************************** */
+
   const getAllFriendsByUserId = async () => {
     try {
       const res = await axios.get(
         `http://localhost:5000/friends/user/${user_id}`
       );
       if (res.data.success) {
-        console.log(res.data.results);
+        // console.log(res.data.results);
+        // console.log(res.data)
+        setMyFriendsList(res.data.results);
       }
     } catch (err) {
       console.log(err);
     }
+  };
+  /****************************** */
+
+  const getAllFriends = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/friends/all`);
+      if (res.data.success) {
+        checkFriends(res.data.results);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  /****************************** */
+  const checkFriends = async (array) => {
+    const found = await array.map((element) => {
+      if (element.user_id == state.user_id && element.friend == user_id) {
+        setShow(false);
+      }
+    });
   };
   /****************************** */
   useEffect(() => {
@@ -285,6 +333,7 @@ const ProfilePage = () => {
     getUserInfo();
     getAllLikes();
     getAllFriendsByUserId();
+    getAllFriends();
   }, []);
   return (
     <>
@@ -349,9 +398,9 @@ const ProfilePage = () => {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="feather_feather-plus"
                 >
                   <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -365,7 +414,20 @@ const ProfilePage = () => {
 
           <div className="userName_profile">{userInfo.userName}</div>
           {user_id !== state.user_id ? (
-            <button onClick={followUser}>Follow</button>
+            <>
+              {" "}
+              {show ? (
+                <button onClick={()=>{
+                  followUser();
+                  setShow(false);
+                }}>Follow</button>
+              ) : (
+                <button onClick={()=>{
+                  unFollowUser();
+                  setShow(true);
+                }}>unfollow</button>
+              )}
+            </>
           ) : (
             <></>
           )}
