@@ -4,7 +4,7 @@ import { AiFillHome } from "react-icons/ai";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import noAvatar from "../images/noAvatar.png";
 import { FaFacebookMessenger } from "react-icons/fa";
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -62,24 +62,30 @@ const Navigation = () => {
           />
         </div>
       </div>
-     
-      < FaFacebookMessenger
+
+      <FaFacebookMessenger
         className="chat"
         onClick={() => {
           navigate(`/chat`);
         }}
-     />
+      />
       <div className="home_nav">
         <Link to="/home">
           <AiFillHome className="home_icon" />
         </Link>
       </div>
 
-      <div className="user_nav" onClick={()=>{
-           navigate(`/profile/${state.user_id}`);
-        }}>
-        <img className="img_user_nav" src={imgUser}  />
-        <div className="userName_font_nav" >{state.userName}</div>
+      <div
+        className="user_nav"
+        onClick={() => {
+          navigate(`/profile/${state.user_id}`);
+        }}
+      >
+        <img
+          className="img_user_nav"
+          src={imgUser !== "undefined" ? imgUser : noAvatar}
+        />
+        <div className="userName_font_nav">{state.userName}</div>
       </div>
       <div className="style_logOut">
         <button
