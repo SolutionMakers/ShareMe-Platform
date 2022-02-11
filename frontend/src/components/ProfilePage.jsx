@@ -45,7 +45,6 @@ const ProfilePage = () => {
   let postsImages = userPosts.filter((e, i) => {
     return e.media !== "";
   });
-  console.log(postsImages);
   /************************************************************************************************************** */
   const toggleModal = (id) => {
     setModal(!modal);
@@ -267,11 +266,25 @@ const ProfilePage = () => {
       console.log(err);
     }
   };
+  /*********************************************************************************************************** */
+  const getAllFriendsByUserId = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/friends/user/${user_id}`
+      );
+      if (res.data.success) {
+        console.log(res.data.results);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   /****************************** */
   useEffect(() => {
     getPostsByUserId();
     getUserInfo();
     getAllLikes();
+    getAllFriendsByUserId();
   }, []);
   return (
     <>

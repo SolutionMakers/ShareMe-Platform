@@ -10,7 +10,7 @@ const { authentication } = require("../middleware/authentication");
 const friendsRouter = express.Router();
 
 friendsRouter.post("/", authentication, AddFriend);
-friendsRouter.get("/user", authentication, getAllFriendsByUserId);
+friendsRouter.get("/user/:id", getAllFriendsByUserId);
 friendsRouter.get("/all", getAllFriends);
 friendsRouter.put("/remove/:id", authentication, removeFriend);
 
