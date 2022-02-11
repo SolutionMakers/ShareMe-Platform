@@ -413,7 +413,7 @@ const ProfilePage = () => {
           </div>
 
           <div className="userName_profile">{userInfo.userName}</div>
-          {user_id !== state.user_id ? (
+          {user_id != state.user_id ? (
             <>
               {" "}
               {show ? (
