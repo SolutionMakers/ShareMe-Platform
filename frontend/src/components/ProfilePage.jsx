@@ -267,6 +267,29 @@ const ProfilePage = () => {
     }
   };
   /*********************************************************************************************************** */
+  const unFollowUser = async () => {
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/friends/remove/${user_id}`,{},
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+      
+      if (res.data.success) {
+        console.log(`The follow has been removed `);
+      }
+    } 
+    catch (err) {
+      console.log(err);
+    }
+  };
+  
+  
+  /*********************************************************************************************************** */
+
   const getAllFriendsByUserId = async () => {
     try {
       const res = await axios.get(
@@ -274,11 +297,14 @@ const ProfilePage = () => {
       );
       if (res.data.success) {
         console.log(res.data.results);
+        console.log(res.data)
       }
     } catch (err) {
       console.log(err);
     }
   };
+  /****************************** */
+
   /****************************** */
   useEffect(() => {
     getPostsByUserId();
@@ -364,8 +390,9 @@ const ProfilePage = () => {
           </div>
 
           <div className="userName_profile">{userInfo.userName}</div>
-          {user_id !== state.user_id ? (
+          {user_id !== state.user_id ? (<>
             <button onClick={followUser}>Follow</button>
+            <button onClick={unFollowUser}>unfollow</button></>
           ) : (
             <></>
           )}
