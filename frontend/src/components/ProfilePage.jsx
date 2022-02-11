@@ -6,7 +6,7 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
-  BsChatDotsFill
+  BsChatDotsFill,
 } from "react-icons/bs";
 
 import { AiFillHourglass } from "react-icons/ai";
@@ -32,6 +32,7 @@ const ProfilePage = () => {
   const [modalImg, setTModalImg] = useState(false);
   const [coverModal, setCoverModal] = useState(false);
   const [uploadedCover, setUploadedCover] = useState("");
+  /************************************************************************************************************** */
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -39,17 +40,21 @@ const ProfilePage = () => {
       user_id: state.loginReducer.user_id,
     };
   });
+  /************************************************************************************************************** */
 
-  /************************************* */
+  let postsImages = userPosts.filter((e, i) => {
+    return e.media !== "";
+  });
+  /************************************************************************************************************** */
   const toggleModal = (id) => {
     setModal(!modal);
     setId(id);
   };
-  /********************************** */
+  /************************************************************************************************************** */
   const toggleModalImg = () => {
     setTModalImg(!modalImg);
   };
-  /*********************************** */
+  /************************************************************************************************************** */
   const toggleModalCover = () => {
     setCoverModal(!coverModal);
   };
@@ -82,7 +87,7 @@ const ProfilePage = () => {
       console.log(err);
     }
   };
-  /***************************************** */
+  /************************************************************************************************************* */
   const uploadimage = async () => {
     console.log(uploadedImage);
     const formData = new FormData();
@@ -100,7 +105,7 @@ const ProfilePage = () => {
       });
   };
 
-  /****************************************** */
+  /************************************************************************************************************* */
   const getPostsByUserId = async () => {
     try {
       const res = await axios.get(`http://localhost:5000/posts/${user_id}`);
@@ -111,7 +116,7 @@ const ProfilePage = () => {
       console.log(err);
     }
   };
-  /******************************************** */
+  /************************************************************************************************************* */
   const getAllLikes = async () => {
     try {
       const res = await axios.get(`http://localhost:5000/like`);
@@ -122,7 +127,7 @@ const ProfilePage = () => {
       console.log(err);
     }
   };
-  /**************************************** */
+  /************************************************************************************************************* */
 
   const updatProfileImage = async (profileimage) => {
     try {
@@ -137,7 +142,7 @@ const ProfilePage = () => {
       console.log(err);
     }
   };
-  /***************************************** */
+  /************************************************************************************************************* */
   const getUserInfo = async () => {
     try {
       const res = await axios.get(
@@ -150,7 +155,7 @@ const ProfilePage = () => {
       console.log(err);
     }
   };
-  /****************************************** */
+  /************************************************************************************************************* */
 
   const putNewLike = async (id) => {
     try {
@@ -174,7 +179,7 @@ const ProfilePage = () => {
     }
   };
 
-  /**************************************** */
+  /************************************************************************************************************* */
 
   const joinRoom = () => {
     axios
@@ -203,13 +208,13 @@ const ProfilePage = () => {
         console.log(err);
       });
   };
-  /***************************************** */
+  /************************************************************************************************************ */
   const filterArray = (id) => {
     return allLikes.filter((e, i) => {
       return e.post_id === id;
     });
   };
-  /****************************************** */
+  /************************************************************************************************************* */
   const handleUpdate = async (id) => {
     try {
       const newPost = {
@@ -231,7 +236,7 @@ const ProfilePage = () => {
       console.log(error);
     }
   };
-  /******************************************* */
+  /************************************************************************************************************* */
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:5000/posts/${id}`)
@@ -242,12 +247,44 @@ const ProfilePage = () => {
         throw err;
       });
   };
-  /******************************************* */
-
+  /************************************************************************************************************* */
+  const followUser = async () => {
+    try {
+      const res = await axios.post(
+        `http://localhost:5000/friends`,
+        { friend: user_id },
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        console.log(`The friend has been added to friend list`);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  /*********************************************************************************************************** */
+  const getAllFriendsByUserId = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/friends/user/${user_id}`
+      );
+      if (res.data.success) {
+        console.log(res.data.results);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  /****************************** */
   useEffect(() => {
     getPostsByUserId();
     getUserInfo();
     getAllLikes();
+    getAllFriendsByUserId();
   }, []);
   return (
     <>
@@ -327,6 +364,11 @@ const ProfilePage = () => {
           </div>
 
           <div className="userName_profile">{userInfo.userName}</div>
+          {user_id !== state.user_id ? (
+            <button onClick={followUser}>Follow</button>
+          ) : (
+            <></>
+          )}
         </div>
 
         {/* <button className="chat_button" onClick={joinRoom}>
@@ -421,12 +463,43 @@ const ProfilePage = () => {
         ) : (
           <div></div>
         )}
+        {/************************* This map for the posts images ***************************** */}
 
+        {false ? (
+          postsImages ? (
+            postsImages.map((element, index) => {
+              return <img src={element.media} />;
+            })
+          ) : (
+            <></>
+          )
+        ) : (
+          <></>
+        )}
+        {/********************these images for the profile and cover****************/}
+        {/* <img
+          src={
+            userInfo.profilecover !== "undefined"
+              ? userInfo.profilecover
+              : cover
+          }
+        />
+        <img
+          className="avatar-image"
+          src={
+            userInfo.profileimage !== "undefined"
+              ? userInfo.profileimage
+              : noAvatar
+          }
+        /> */}
+        {/********************these images for the profile and cover****************/}
+
+        {/****************************************************************************** */}
         <div className="all_posts_profile_page">
           <div className="userBasicInfo_title_post">
-          <span className="post_title">Posts</span>
+            <span className="post_title">Posts</span>
           </div>
-         
+
           {userPosts.length ? (
             userPosts.map((element, index) => {
               return (
@@ -523,16 +596,14 @@ const ProfilePage = () => {
                         </span>
                       </div>
                       <div className="postBottomRight">
-                     comments
-                  <BsChatDotsFill className="postCommentText"
-                        onClick={() => {
-                          navigation(`/post/${element.id}`);
-                        }}/>
-                        
-                    
-                       
-                      
-                    </div>
+                        comments
+                        <BsChatDotsFill
+                          className="postCommentText"
+                          onClick={() => {
+                            navigation(`/post/${element.id}`);
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

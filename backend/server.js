@@ -14,9 +14,9 @@ const postsRouter = require("./routes/post");
 const commentsRouter = require("./routes/comments");
 const rolesRouter = require("./routes/roles");
 const likesRouter = require("./routes/like");
-const roomsRouter =require('./routes/rooms')
-const messageRouter = require ('./routes/message')
-const friendsRouter = require ('./routes/friends')
+const roomsRouter = require("./routes/rooms");
+const messageRouter = require("./routes/message");
+const friendsRouter = require("./routes/friends");
 /*************************************** */
 app.use("/login", loginRouter);
 app.use("/users", usersRouter);
@@ -25,8 +25,8 @@ app.use("/", commentsRouter);
 app.use("/roles", rolesRouter);
 app.use("/like", likesRouter);
 app.use("/rooms", roomsRouter);
-app.use("/message",messageRouter)
-app.use("/follow",friendsRouter)
+app.use("/message", messageRouter);
+app.use("/friends", friendsRouter);
 
 /*************************************** */
 const server = app.listen(PORT, () => {
@@ -48,8 +48,6 @@ io.on("connection", (socket) => {
 
   socket.on("SEND_MESSAGE", (data) => {
     socket.to(data.room).emit("RECEIVE_MESSAGE", data.content);
-
-
   });
 
   socket.on("disconnect", () => {

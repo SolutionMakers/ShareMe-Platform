@@ -24,11 +24,31 @@ const App = () => {
       <div className="App">
         <div className="Home">
           <Routes>
-            <Route path="/NewPost" element={<NewPost />} />
-            <Route path="/Home" element={<Home />} />
-            <Route path="/post/:id" element={<SinglePostPage />} />
-            <Route path="/profile/:user_id" element={<ProfilePage />} />
-            <Route path="/chat/" element={<Chat />} />
+            {state.isLoggedIn ? (
+              <Route path="/chat/" element={<Chat />} />
+            ) : (
+              <></>
+            )}
+            {state.isLoggedIn ? (
+              <Route path="/Home" element={<Home />} />
+            ) : (
+              <></>
+            )}
+            {state.isLoggedIn ? (
+              <Route path="/post/:id" element={<SinglePostPage />} />
+            ) : (
+              <></>
+            )}
+            {state.isLoggedIn ? (
+              <Route path="/NewPost" element={<NewPost />} />
+            ) : (
+              <></>
+            )}
+            {state.isLoggedIn ? (
+              <Route path="/profile/:user_id" element={<ProfilePage />} />
+            ) : (
+              <></>
+            )}
           </Routes>
         </div>
         {state.isLoggedIn ? <></> : <Login />}
