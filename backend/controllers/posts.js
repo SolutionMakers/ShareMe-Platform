@@ -162,8 +162,9 @@ const deletePostById = (req, res) => {
 };
 
 const getAllPostByfiendId = (req, res) => {
-  const query = `SELECT posts.id, description,media,profileimage,userName,posts.user_id FROM posts INNER JOIN friends ON friends.friend=posts.user_id INNER JOIN users ON users.id=posts.user_id WHERE friends.user_id=? AND posts.is_deleted=0  UNION
+  const query = `SELECT posts.id, description,media,profileimage,userName,posts.user_id FROM posts INNER JOIN friends ON friends.friend=posts.user_id INNER JOIN users ON users.id=posts.user_id WHERE friends.user_id=? AND posts.is_deleted=0 AND friends.is_deleted=0 UNION
   SELECT posts.id, description,media,profileimage,userName,posts.user_id FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=? AND posts.is_deleted=0 `;
+
   const data = [req.token.userId, req.token.userId];
 
   connection.query(query, data, (err, results) => {
