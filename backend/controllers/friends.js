@@ -23,8 +23,8 @@ const AddFriend = (req, res) => {
 };
 /*************************************************** */
 const getAllFriendsByUserId = (req, res) => {
-  //const user_id = req.params.user_id
-  const user_id = req.token.userId;
+  const user_id = req.params.id;
+  //const user_id = req.token.userId;
   const query = `SELECT * FROM friends INNER JOIN users ON users.id = friends.friend where user_id = ? AND friends.is_deleted= 0`;
   const data = [user_id];
   connection.query(query, data, (err, results) => {
