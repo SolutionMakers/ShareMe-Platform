@@ -6,7 +6,7 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
-  BsChatDotsFill
+  BsChatDotsFill,
 } from "react-icons/bs";
 
 import { AiFillHourglass } from "react-icons/ai";
@@ -32,6 +32,7 @@ const ProfilePage = () => {
   const [modalImg, setTModalImg] = useState(false);
   const [coverModal, setCoverModal] = useState(false);
   const [uploadedCover, setUploadedCover] = useState("");
+  /************************************************************************************************************** */
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -39,17 +40,22 @@ const ProfilePage = () => {
       user_id: state.loginReducer.user_id,
     };
   });
+  /************************************************************************************************************** */
 
-  /************************************* */
+  let postsImages = userPosts.filter((e, i) => {
+    return e.media !== "";
+  });
+  console.log(postsImages);
+  /************************************************************************************************************** */
   const toggleModal = (id) => {
     setModal(!modal);
     setId(id);
   };
-  /********************************** */
+  /************************************************************************************************************** */
   const toggleModalImg = () => {
     setTModalImg(!modalImg);
   };
-  /*********************************** */
+  /************************************************************************************************************** */
   const toggleModalCover = () => {
     setCoverModal(!coverModal);
   };
@@ -421,12 +427,24 @@ const ProfilePage = () => {
         ) : (
           <div></div>
         )}
-
+        {/************************* This map for the posts images ***************************** */}
+        {false ? (
+          postsImages ? (
+            postsImages.map((element, index) => {
+              return <img src={element.media} />;
+            })
+          ) : (
+            <></>
+          )
+        ) : (
+          <></>
+        )}
+        {/****************************************************************************** */}
         <div className="all_posts_profile_page">
           <div className="userBasicInfo_title_post">
-          <span className="post_title">Posts</span>
+            <span className="post_title">Posts</span>
           </div>
-         
+
           {userPosts.length ? (
             userPosts.map((element, index) => {
               return (
@@ -523,16 +541,14 @@ const ProfilePage = () => {
                         </span>
                       </div>
                       <div className="postBottomRight">
-                     comments
-                  <BsChatDotsFill className="postCommentText"
-                        onClick={() => {
-                          navigation(`/post/${element.id}`);
-                        }}/>
-                        
-                    
-                       
-                      
-                    </div>
+                        comments
+                        <BsChatDotsFill
+                          className="postCommentText"
+                          onClick={() => {
+                            navigation(`/post/${element.id}`);
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
