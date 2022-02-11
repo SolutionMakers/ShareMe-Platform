@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { setPosts, updatePost, deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { format, render, cancel, register } from 'timeago.js';
+import { format, render, cancel, register } from "timeago.js";
 import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
   BsPen,
-  BsChatDotsFill
+  BsChatDotsFill,
 } from "react-icons/bs";
 
 import axios from "axios";
@@ -19,6 +19,8 @@ const Home = () => {
   const [modal, setModal] = useState(false);
   const [id, setId] = useState("");
   const [allLikes, setAllLikes] = useState([]);
+  const [isLiked, setIsLiked] = useState(false);
+
   /***************************************************************************************************************** */
   const navigation = useNavigate();
   const toggleModal = (id) => {
@@ -38,7 +40,7 @@ const Home = () => {
   /*************************************************************************************************************** */
   const getAllPosts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/posts/friends/posts",{
+      const res = await axios.get("http://localhost:5000/posts/friends/posts", {
         headers: {
           Authorization: `Bearer ${state.token}`,
         },
@@ -131,7 +133,19 @@ const Home = () => {
       return e.post_id === id;
     });
   };
+  /**************************************************************************************************** */
+  const checkLikes = (id) => {
+    const filtered = allLikes.filter((element) => {
+      return element.user_id == state.user_id && element.post_id == id;
+    });
+    if (filtered.length != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   /**********************************************************************************************************************/
+
   return (
     <div className="contain_all_home">
       <div className="left_home"></div>
@@ -193,7 +207,7 @@ const Home = () => {
         <div className="all_posts_home">
           {state.posts.map((element, i) => {
             return (
-              <div key ={i} className="post">
+              <div key={i} className="post">
                 <div className="postWrapper">
                   <div className="postTop">
                     <div className="postTopLeft">
@@ -281,30 +295,35 @@ const Home = () => {
                           e.target.style.transition = "all 0.5s";
                         }}
                       />
-                      <BsFillHeartFill
-                        className="likeIcon_heart"
-                        onClick={(e) => {
-                          putNewLike(element.id);
-                          e.target.style.color = "#e60023";
-                          e.target.style.transition = "all 0.5s";
-                        }}
-                      />
+                      {checkLikes(element.id) ? (
+                        <BsFillHeartFill
+                          className="likeIcon_heart"
+                          style={{ transition: "all 0.5s", color: "#e60023" }}
+                        />
+                      ) : (
+                        <BsFillHeartFill
+                          className="likeIcon_heart"
+                          onClick={(e) => {
+                            putNewLike(element.id);
+                            e.target.style.color = "#e60023";
+                            e.target.style.transition = "all 0.5s";
+                          }}
+                        />
+                      )}
 
                       <span className="postLikeCounter">
                         {filterArray(element.id).length} People Like It
                       </span>
                     </div>
-                    
+
                     <div className="postBottomRight">
-                     comments
-                  <BsChatDotsFill className="postCommentText"
+                      comments
+                      <BsChatDotsFill
+                        className="postCommentText"
                         onClick={() => {
                           navigation(`/post/${element.id}`);
-                        }}/>
-                        
-                    
-                       
-                      
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
