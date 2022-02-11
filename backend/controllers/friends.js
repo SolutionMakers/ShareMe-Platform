@@ -25,7 +25,7 @@ const AddFriend = (req, res) => {
 const getAllFriendsByUserId = (req, res) => {
   //const user_id = req.params.user_id
   const user_id = req.token.userId;
-  const query = `SELECT * FROM friends INNER JOIN users ON users.id = friends.friend where user_id = ?`;
+  const query = `SELECT * FROM friends INNER JOIN users ON users.id = friends.friend where user_id = ? AND friends.is_deleted= 0`;
   const data = [user_id];
   connection.query(query, data, (err, results) => {
     if (err) {
@@ -75,4 +75,31 @@ const getAllFriends = (req, res) => {
     }
   });
 };
-module.exports = { AddFriend, getAllFriendsByUserId, getAllFriends };
+/******************************************************* */
+const removeFriend = (req, res) => {
+  // we will get this friend_id from the profile page from the link (params)
+  const user_id = req.token.userId;
+  const friend_id = req.params.id;
+  const query = `UPDATE friends SET is_deleted=1 WHERE user_id=? AND friend=?;`;
+  const data = [user_id, friend_id];
+  connection.query(query, data, (err, results) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        massage: "Server Error",
+        err: err,
+      });
+    }
+    res.status(200).json({
+      success: true,
+      massage: `Succeeded to remove the friend with id: ${friend_id}`,
+      results: results,
+    });
+  });
+};
+module.exports = {
+  AddFriend,
+  getAllFriendsByUserId,
+  getAllFriends,
+  removeFriend,
+};
