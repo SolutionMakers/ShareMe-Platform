@@ -203,7 +203,11 @@ const Chat = () => {
                             <div className="words_chat">
                               <img
                                 className="img_user_chat"
-                                src={element.profileimage}
+                                src={
+                                  element.profileimage !== "undefined"
+                                    ? element.profileimage
+                                    : noAvatar
+                                }
                               />{" "}
                               <div className="message">{element.message}</div>
                             </div>
