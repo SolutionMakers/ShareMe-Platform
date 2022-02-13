@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { BsFillXCircleFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../reducers/login";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -42,14 +42,37 @@ const Login = () => {
         localStorage.setItem("user_id", res.data.userId);
         localStorage.setItem("img", res.data.imge);
         localStorage.setItem("userName", res.data.userName);
-        dispatch(login({ token: res.data.token, user_id: res.data.userId ,userName:res.data.userName}));
+        dispatch(
+          login({
+            token: res.data.token,
+            user_id: res.data.userId,
+            userName: res.data.userName,
+          })
+        );
         navigate("/home");
       } else throw Error;
     } catch (error) {
       if (error.response && error.response.data) {
-        return setSignupMessage(error.response.data.message);
+        toast.error(error.response.data.message, {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
-      setSignupMessage("Error happened while Login, please try again");
+
+      toast.error("Error happened while Login, please try again", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   /* *************************** */
@@ -199,35 +222,39 @@ const Login = () => {
                       })
                       .then((result) => {
                         console.log(result.data);
-                        toast.success(' The user has been created successfully', {
-                          position: "top-right",
-                          autoClose: 4000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          });
+                        toast.success(
+                          " The user has been created successfully",
+                          {
+                            position: "top-right",
+                            autoClose: 4000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          }
+                        );
                         e.target.style.background =
                           "linear-gradient(-45deg,#CAC531,#F3F9A7)";
                         e.target.style.color = "black";
-                        toggleModal()
-                     
+                        toggleModal();
                       })
                       .catch((err) => {
-                        toast.error(' Error happened while register, please try again', {
-                          position: "top-right",
-                          autoClose: 4000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          });
+                        toast.error(
+                          " Error happened while register, please try again",
+                          {
+                            position: "top-right",
+                            autoClose: 4000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                          }
+                        );
                         e.target.style.background =
                           "linear-gradient(-45deg,#f7797d,#f7797d)";
                         e.target.style.color = "black";
-                       
                       });
                   }}
                 >
