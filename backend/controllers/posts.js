@@ -26,7 +26,7 @@ const createNewPost = (req, res) => {
 const getPostsbyUserId = (req, res) => {
   const user_id = req.params.user_id;
 
-  const query = `SELECT posts.id, description, userName,media,profileimage,user_id FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=? AND posts.is_deleted=0 ORDER BY posts.id DESC;;`;
+  const query = `SELECT posts.id, description,created_at, userName,media,profileimage,user_id FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=? AND posts.is_deleted=0 ORDER BY posts.id DESC;;`;
   const data = [user_id];
 
   connection.query(query, data, (err, results) => {
@@ -162,8 +162,8 @@ const deletePostById = (req, res) => {
 };
 
 const getAllPostByfiendId = (req, res) => {
-  const query = `SELECT posts.id, description,media,profileimage,userName,posts.user_id FROM posts INNER JOIN friends ON friends.friend=posts.user_id INNER JOIN users ON users.id=posts.user_id WHERE friends.user_id=? AND posts.is_deleted=0 AND friends.is_deleted=0 UNION
-  SELECT posts.id, description,media,profileimage,userName,posts.user_id FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=? AND posts.is_deleted=0 `;
+  const query = `SELECT posts.id, description,media,profileimage,userName,posts.user_id, created_at FROM posts INNER JOIN friends ON friends.friend=posts.user_id INNER JOIN users ON users.id=posts.user_id WHERE friends.user_id=? AND posts.is_deleted=0 AND friends.is_deleted=0 UNION
+  SELECT posts.id, description,media,profileimage,userName,posts.user_id, created_at FROM posts INNER JOIN users ON users.id=posts.user_id WHERE posts.user_id=? AND posts.is_deleted=0 `;
 
   const data = [req.token.userId, req.token.userId];
 

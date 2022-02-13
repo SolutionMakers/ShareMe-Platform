@@ -12,7 +12,7 @@ import {
 import { AiFillHourglass } from "react-icons/ai";
 import { ImHome3 } from "react-icons/im";
 import { FaUserGraduate, FaVenusMars, FaUserCircle } from "react-icons/fa";
-
+import { format, render, cancel, register } from "timeago.js";
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
 import cover from "../images/cover.png";
@@ -483,6 +483,7 @@ const ProfilePage = () => {
                 <div className="flex_col_info">
                   <div className="title_info_info">Name</div>
                   <div className="_info">{userInfo.userName}</div>
+
                   <div className="border_info"></div>
                 </div>
                 <FaUserCircle className="info_icon" />
@@ -592,7 +593,9 @@ const ProfilePage = () => {
                           />
                         </Link>
                         <span className="postUsername">{element.userName}</span>
-                        {/* <span className="postDate">{format(post.createdAt)}</span> */}
+                        <div className="postDate">
+                          {format(element.created_at)}
+                        </div>
                       </div>
                       <div className="postTopRight">
                         <BsThreeDotsVertical
