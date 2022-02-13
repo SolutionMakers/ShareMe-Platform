@@ -474,7 +474,10 @@ const ProfilePage = () => {
       </div>
 
       <div className="mid_profile_page">
+
+        <div className="left_side_profile">
         {userInfo ? (
+      
           <div className="userBasicInfo_title">
             <div className="title_font">Basic Infos</div>
 
@@ -534,9 +537,19 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
+
+
+
+
+          
+          
+          
+       
         ) : (
           <div></div>
         )}
+
+
         {/************************* This map for the posts images ***************************** */}
 
         {false ? (
@@ -550,25 +563,49 @@ const ProfilePage = () => {
         ) : (
           <></>
         )}
-        {/********************these images for the profile and cover****************/}
-        {/* <img
+        
+
+
+
+
+
+
+          <div className="box_photo_all">
+
+          <span className="phots_title">Photos</span>
+        
+      
+  
+        <div className="All_img">
+  
+  <div className="imgees">
+        {<img className="imges_box"
           src={
             userInfo.profilecover !== "undefined"
               ? userInfo.profilecover
               : cover
           }
-        />
-        <img
-          className="avatar-image"
+        /> }
+  
+        { <img
+          className="imges_box"
           src={
             userInfo.profileimage !== "undefined"
               ? userInfo.profileimage
               : noAvatar
           }
-        /> */}
-        {/********************these images for the profile and cover****************/}
+        />  }
 
-        {/****************************************************************************** */}
+</div>
+          </div>  
+  
+          </div>
+          
+
+
+
+</div>
+        
         <div className="all_posts_profile_page">
           <div className="userBasicInfo_title_post">
             <span className="post_title">Posts</span>
@@ -615,7 +652,7 @@ const ProfilePage = () => {
                                 <button
                                   className="button_delete"
                                   onClick={() => {
-                                    navigation("/home");
+                                    navigation(`/profile/${user_id}`);
                                     handleDelete(id);
                                   }}
                                 >
