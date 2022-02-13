@@ -152,7 +152,7 @@ const Chat = () => {
           <h3 className="followr_chat">Followers: {allFriends.length}</h3>
           <div className="border_line"></div>
 
-          {allFriends ? (
+          {allFriends.length ? (
             allFriends.map((element, index) => {
               return (
                 <div key={index} className="users_chat">
@@ -166,13 +166,13 @@ const Chat = () => {
                       className="img_user_chat"
                       onClick={() => {
                         joinRoomData(element.id);
-                        setLetsStart(true)
+                        setLetsStart(true);
                       }}
                     />
                     <div
                       onClick={() => {
                         joinRoomData(element.id);
-                        setLetsStart(true)
+                        setLetsStart(true);
                       }}
                     >
                       {element.userName}
@@ -212,7 +212,7 @@ const Chat = () => {
                   </ScrollToBottom>
                 </div>
               ) : (
-                <div className="start_chat">Let's Start converseion</div>
+                <div className="start_chat">Let's Start conversation</div>
               )}
             </>
           ) : (
@@ -227,6 +227,9 @@ const Chat = () => {
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
+              }}
+              onKeyPress={(event) => {
+                event.key === "Enter" && createMessage();
               }}
             ></textarea>
 
