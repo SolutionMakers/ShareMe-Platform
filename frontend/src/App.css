@@ -769,24 +769,35 @@ body {
 }
 
 /*--------------------------Profile Page Css ------------------------------------------*/
-.mid_profile_page {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin-bottom: 30rem;
-}
-@media all and (max-width: 1286.40px) {
-  .mid_profile_page {
-    /* grid-template-columns: repeat(3, 1fr); */
-    grid-gap: 150px;
 
+
+.mid_profile_page {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  color: #344258;
+  box-sizing: inherit;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  margin-top: -0.75rem;
+  margin-bottom: -0.75rem;
+  display: flex;
+  gap: 160px;
+  /* margin-bottom: 30rem; */
+}
+@media all and (max-width: 1286.4px) {
+  .mid_profile_page {
+    grid-gap: 150px;
   }
 }
 
-@media all and (max-width: 1128.40px) {
+@media all and (max-width: 1128.4px) {
   .post {
-    /* grid-template-columns: repeat(3, 1fr); */
     width: 35rem;
-
   }
 }
 
@@ -799,7 +810,6 @@ body {
 
 .top_profile_page {
   padding-top: 2.5rem;
-
 }
 .btn-modal_profile {
   display: block;
@@ -886,10 +896,35 @@ body {
 }
 
 .avatar-button:hover {
-  background: #265694;
+  background-color: #41d6c3;
   transition: all 0.3s;
 }
 
+.icone_edit_cover {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+
+  margin: 10px;
+
+  border-radius: 8px;
+  font-size: 2.2rem;
+  color: #f4f4f5;
+  transition: all 0.3s;
+  border: none;
+  width: 3.5rem;
+
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  position: absolute;
+  z-index: 2;
+}
+
+.icone_edit_cover:hover {
+  background: #3bb1e7;
+}
 .feather_feather-plus {
   color: #344258;
 
@@ -991,7 +1026,6 @@ body {
 }
 
 .userBasicInfo_title_post {
- 
   width: 40rem;
   height: 3rem;
   border-radius: 0.6rem;
@@ -999,7 +1033,6 @@ body {
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   background-color: #527cc5;
   margin: 26px 0;
-
 }
 
 .userBasicInfo_title {
@@ -1015,7 +1048,7 @@ body {
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
 
-  margin: 26px 0;
+  margin: 20px 0;
 
   margin-left: 12.2rem;
 }
@@ -1116,8 +1149,7 @@ body {
   border-bottom: 0.5px solid #dbdbdb;
 }
 
-
-/***********************************************/
+/******************** profile box photo***************************/
 .box_photo_all {
   display: flex;
 
@@ -1136,24 +1168,15 @@ body {
   margin-left: 12.2rem;
 }
 
-.All_img{
- 
- 
-}
-
-.imgees{
-
+.imgees {
   height: 100%;
-   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
-
-
-
-justify-content: space-evenly;
-justify-items: center;
-/* align-content: space-evenly;*/
-align-items: center; 
+  justify-content: space-evenly;
+  justify-items: center;
+  /* align-content: space-evenly;*/
+  align-items: center;
 
   background-color: #ffffff;
   border-radius: 0.6rem;
@@ -1164,7 +1187,7 @@ align-items: center;
 
 .imges_box {
   width: 75px;
-  height:75px;
+  height: 75px;
   border-radius: 20%;
   object-fit: cover;
   cursor: pointer;
@@ -1172,8 +1195,6 @@ align-items: center;
   border: 1px solid #fff;
 
   display: flex;
-
-  
 }
 
 .phots_title {
@@ -1194,12 +1215,102 @@ align-items: center;
 
   font-weight: 500;
   padding: 9px 0px 0px 10px;
-
 }
 
 .left_side_profile {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  flex-wrap: wrap;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  color: #344258;
+  box-sizing: inherit;
+
+ 
+  width: 33.33333337%;
+  padding: .5rem;
+ 
+}
+
+/**************************profile box friends************************************/
+
+.box_friends_all {
+  display: flex;
+
+  flex-direction: column;
+  width: 20rem;
+
+  height: 3rem;
+
+  background-color: #527cc5;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: -235px ;
+
+  margin-left: 12.2rem;
+}
+
+.flex_friend_name {
+  display: flex;
+  padding-left: 5px;
+  gap: 7px;
+  align-items: center;
+}
+
+.font_name_friend {
+  font-size: 20px;
+  color: #383a46;
+}
+.imgees_cintainer_f {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 7px;
+  padding-bottom: 5px;
+  justify-content: center;
+  padding-left: 10px;
+
+  background-color: #ffffff;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: 26px 0px -200px 0px;
+}
+
+.imges_friend_pic {
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgb(145, 144, 144);
+  border: 1px solid #fff;
+
+  display: flex;
+}
+
+.Friends_title {
+  font-size: 1.1rem;
+  display: flex;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+
+  color: #ffffff;
+  box-sizing: inherit;
+  margin: 0;
+
+  font-weight: 500;
+  padding: 9px 0px 0px 10px;
 }
