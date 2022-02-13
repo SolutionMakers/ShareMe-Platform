@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import "../Chat/Chat.css";
 import { io } from "socket.io-client";
 import axios from "axios";
+import ScrollToBottom from "react-scroll-to-bottom";
 import noAvatar from "../../images/noAvatar.png";
 const ENDPOINT = "http://localhost:5000";
 const socket = io.connect(ENDPOINT);
@@ -21,6 +22,7 @@ const Chat = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [message, setMessage] = useState("");
   const [roomId, setRoomId] = useState("");
+  const [letsStart, setLetsStart] = useState(false);
   const [userName, setUserName] = useState(state.userName);
   const [messageList, setMessageList] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
@@ -100,6 +102,8 @@ const Chat = () => {
     );
     if (res.data.success) {
       sendMessage();
+      setMessage("");
+      setLetsStart(true);
     }
   };
   /************************************************************ */
@@ -145,12 +149,13 @@ const Chat = () => {
     <>
       <div className="All_chat">
         <div className="left_side_chat">
-          <h3>followers: {allFriends.length}</h3>
+          <h3 className="followr_chat">Followers: {allFriends.length}</h3>
+          <div className="border_line"></div>
 
           {allFriends ? (
             allFriends.map((element, index) => {
               return (
-                <div key={index}>
+                <div key={index} className="users_chat">
                   <div className="name_img">
                     <img
                       src={
@@ -159,16 +164,19 @@ const Chat = () => {
                           : noAvatar
                       }
                       className="img_user_chat"
-                    />
-                    <div>{element.userName}</div>
-                    <button
                       onClick={() => {
                         joinRoomData(element.id);
+                        setLetsStart(true)
                       }}
-                      className="joinRoom"
+                    />
+                    <div
+                      onClick={() => {
+                        joinRoomData(element.id);
+                        setLetsStart(true)
+                      }}
                     >
-                      Chat
-                    </button>
+                      {element.userName}
+                    </div>
                   </div>
                 </div>
               );
@@ -180,48 +188,76 @@ const Chat = () => {
 
         <div className="mid_side_chat">
           {loggedIn ? (
-            <div className="chat_page">
-              {messageList.length ? (
-                messageList.map((element, index) => {
-                  return (
-                    <div key={index} className="chat_rod">
-                      <div className="words_chat">
-                        <img
-                          className="img_user_chat"
-                          src={element.profileimage}
-                        />{" "}
-                        <div className="message">{element.message}</div>
-                      </div>
-                    </div>
-                  );
-                })
+            <>
+              {letsStart ? (
+                <div className="chat_page">
+                  <ScrollToBottom className="message-container">
+                    {messageList.length ? (
+                      messageList.map((element, index) => {
+                        return (
+                          <div key={index} className="chat_rod">
+                            <div className="words_chat">
+                              <img
+                                className="img_user_chat"
+                                src={element.profileimage}
+                              />{" "}
+                              <div className="message">{element.message}</div>
+                            </div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <></>
+                    )}
+                  </ScrollToBottom>
+                </div>
               ) : (
-                <></>
+                <div className="start_chat">Let's Start converseion</div>
               )}
-
-              <input
-                className="input_send_chat"
-                type={"text"}
-                placeholder="Message ..."
-                onChange={(e) => {
-                  setMessage(e.target.value);
-                }}
-              />
-              <button
-                onClick={createMessage}
-                style={{ backgroundColor: "#4ba9d4" }}
-              >
-                send
-              </button>
-            </div>
+            </>
           ) : (
-            <div>
-              <button onClick={joinRoom}>Enter Room</button>
-            </div>
+            <></>
           )}
+          <div className="input_and_send">
+            <textarea
+              className="textarea_chat"
+              rows="1"
+              placeholder="Send Chat"
+              spellcheck="false"
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+            ></textarea>
+
+            <div
+              class="add-button"
+              onClick={() => {
+                createMessage();
+              }}
+            >
+              <div className="button-inner">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="feather feather-plus"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="right_side_chat">Details</div>
+        {/* <div className="right_side_chat">Details</div> */}
       </div>
     </>
   );
