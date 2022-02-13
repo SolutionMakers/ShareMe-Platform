@@ -43,16 +43,18 @@ const Chat = () => {
   };
   /************************************************************** */
   const sendMessage = () => {
-    const messageContent = {
-      room,
-      content: {
-        sender: state.userName,
-        message: message,
-      },
-    };
-    socket.emit("SEND_MESSAGE", messageContent);
-    setMessage("");
-    getAllMessages(room);
+    if (message !== "") {
+      const messageContent = {
+        room,
+        content: {
+          sender: state.userName,
+          message: message,
+        },
+      };
+      socket.emit("SEND_MESSAGE", messageContent);
+      setMessage("");
+      getAllMessages(room);
+    }
   };
   /************************************************************** */
   const getAllUsers = async () => {
@@ -91,19 +93,21 @@ const Chat = () => {
   };
   /************************************************************ */
   const createMessage = async () => {
-    const res = await axios.post(
-      `http://localhost:5000/message/${room}`,
-      { message },
-      {
-        headers: {
-          Authorization: `Bearer ${state.token}`,
-        },
+    if (message !== "") {
+      const res = await axios.post(
+        `http://localhost:5000/message/${room}`,
+        { message },
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        sendMessage();
+        setMessage("");
+        setLetsStart(true);
       }
-    );
-    if (res.data.success) {
-      sendMessage();
-      setMessage("");
-      setLetsStart(true);
     }
   };
   /************************************************************ */
