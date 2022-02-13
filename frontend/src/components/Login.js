@@ -109,6 +109,10 @@ const Login = () => {
                   setPassword(e.target.value);
                 }}
               />
+              onKeyPress=
+              {(event) => {
+                event.key === "Enter" && logInUser();
+              }}
             </div>
 
             <button className="button_login" onClick={logInUser}>
