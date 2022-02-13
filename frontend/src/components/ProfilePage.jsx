@@ -595,27 +595,23 @@ const ProfilePage = () => {
 
               <div className="All_img">
                 <div className="imgees">
-                  {
-                    <img
-                      className="imges_box"
-                      src={
-                        userInfo.profilecover !== "undefined"
-                          ? userInfo.profilecover
-                          : cover
-                      }
-                    />
-                  }
+                  <img
+                    className="imges_box"
+                    src={
+                      userInfo.profilecover !== "undefined"
+                        ? userInfo.profilecover
+                        : cover
+                    }
+                  />
 
-                  {
-                    <img
-                      className="imges_box"
-                      src={
-                        userInfo.profileimage !== "undefined"
-                          ? userInfo.profileimage
-                          : noAvatar
-                      }
-                    />
-                  }
+                  <img
+                    className="imges_box"
+                    src={
+                      userInfo.profileimage !== "undefined"
+                        ? userInfo.profileimage
+                        : noAvatar
+                    }
+                  />
                 </div>
               </div>
             </div>
@@ -745,13 +741,6 @@ const ProfilePage = () => {
 
                     <div className="postBottom">
                       <div className="postBottomLeft">
-                        <BsFillHandThumbsUpFill
-                          className="likeIcon"
-                          onClick={(e) => {
-                            e.target.style.color = "#1877f2";
-                            e.target.style.transition = "all 0.5s";
-                          }}
-                        />
                         <BsFillHeartFill
                           className="likeIcon_heart"
                           onClick={(e) => {
