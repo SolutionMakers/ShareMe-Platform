@@ -33,7 +33,7 @@ CREATE TABLE posts (
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id),
     media VARCHAR(255),    
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     is_deleted TINYINT DEFAULT 0,
     PRIMARY KEY (id)
 );
