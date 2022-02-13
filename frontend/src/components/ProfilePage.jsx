@@ -9,10 +9,11 @@ import {
   BsChatDotsFill,
 } from "react-icons/bs";
 
+import { FiCamera } from "react-icons/fi";
 import { AiFillHourglass } from "react-icons/ai";
 import { ImHome3 } from "react-icons/im";
 import { FaUserGraduate, FaVenusMars, FaUserCircle } from "react-icons/fa";
-import { format, render, cancel, register } from "timeago.js";
+import { format } from "timeago.js";
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
 import cover from "../images/cover.png";
@@ -35,6 +36,7 @@ const ProfilePage = () => {
   const [friendsList, setFriendsList] = useState([]);
   const [myFriendsList, setMyFriendsList] = useState([]);
   const [show, setShow] = useState(true);
+
   const imgUser = localStorage.getItem("img");
 
   /************************************************************************************************************** */
@@ -343,9 +345,7 @@ const ProfilePage = () => {
       <div className="top_profile_page">
         <div className="cover_and_button">
           {userInfo.id == state.user_id ? (
-            <button onClick={toggleModalCover} className="edit_cover_button">
-              Edit Cover
-            </button>
+            <FiCamera className="icone_edit_cover" onClick={toggleModalCover} />
           ) : (
             <></>
           )}
@@ -444,10 +444,6 @@ const ProfilePage = () => {
           )}
         </div>
 
-        {/* <button className="chat_button" onClick={joinRoom}>
-          Chat Rooms
-        </button> */}
-
         {modalImg && (
           <div className="modal_profile">
             <div onClick={toggleModalImg} className="overlay_profile"></div>
@@ -475,137 +471,165 @@ const ProfilePage = () => {
 
       <div className="mid_profile_page">
 
+
         <div className="left_side_profile">
-        {userInfo ? (
-      
-          <div className="userBasicInfo_title">
-            <div className="title_font">Basic Infos</div>
 
-            <div className="userBasicInfo">
-              <div className="flex_row">
-                <div className="flex_col_info">
-                  <div className="title_info_info">Name</div>
-                  <div className="_info">{userInfo.userName}</div>
+          <div className="one">
+          {userInfo ? (
+            <div className="userBasicInfo_title">
+              <div className="title_font">Basic Infos</div>
 
-                  <div className="border_info"></div>
+              <div className="userBasicInfo">
+                <div className="flex_row">
+                  <div className="flex_col_info">
+                    <div className="title_info_info">Name</div>
+                    <div className="_info">{userInfo.userName}</div>
+
+                    <div className="border_info"></div>
+                  </div>
+                  <FaUserCircle className="info_icon" />
                 </div>
-                <FaUserCircle className="info_icon" />
+
+                <div className="flex_row">
+                  <div className="flex_col_info">
+                    <div className="title_info_info">Gender</div>
+                    <div className="_info">{userInfo.gender}</div>
+                    <div className="border_info"></div>
+                  </div>
+                  <FaVenusMars className="info_icon" />
+                </div>
+
+                <div className="flex_row">
+                  <div className="flex_col_info">
+                    <div className="title_info_info">Date of Birth</div>
+                    <div className="_info">{userInfo.dob?.slice(0, 10)}</div>
+                    <div className="border_info"></div>
+                  </div>
+                  <AiFillHourglass className="info_icon" />
+                </div>
+
+                <div className="flex_row">
+                  <div className="flex_col_info">
+                    <div className="title_info_info">Lives in</div>
+                    <div className="_info">{userInfo.country}</div>
+                    <div className="border_info"></div>
+                  </div>
+                  <ImHome3 className="info_icon" />
+                </div>
+
+                <div className="flex_row">
+                  <div className="flex_col_info">
+                    <div className="title_info_info">Studied at</div>
+                    <div className="_info">Meraki Academy</div>
+                    <div className="border_info"></div>
+                  </div>
+                  <FaUserGraduate className="info_icon" />
+                </div>
+
+                <div className="flex_row">
+                  <div className="flex_col_info">
+                    <div className="title_info_info">Relationship</div>
+                    <div className="_info_re">Single</div>
+                  </div>
+                  <BsFillHeartFill className="info_icon" />
+                </div>
               </div>
+            </div>
+          ) : (
+            <div></div>
+          )}
 
-              <div className="flex_row">
-                <div className="flex_col_info">
-                  <div className="title_info_info">Gender</div>
-                  <div className="_info">{userInfo.gender}</div>
-                  <div className="border_info"></div>
-                </div>
-                <FaVenusMars className="info_icon" />
-              </div>
+</div>
 
-              <div className="flex_row">
-                <div className="flex_col_info">
-                  <div className="title_info_info">Date of Birth</div>
-                  <div className="_info">{userInfo.dob?.slice(0, 10)}</div>
-                  <div className="border_info"></div>
-                </div>
-                <AiFillHourglass className="info_icon" />
-              </div>
+          {/************************* This map for the posts images ***************************** */}
 
-              <div className="flex_row">
-                <div className="flex_col_info">
-                  <div className="title_info_info">Lives in</div>
-                  <div className="_info">{userInfo.country}</div>
-                  <div className="border_info"></div>
-                </div>
-                <ImHome3 className="info_icon" />
-              </div>
 
-              <div className="flex_row">
-                <div className="flex_col_info">
-                  <div className="title_info_info">Studied at</div>
-                  <div className="_info">Meraki Academy</div>
-                  <div className="border_info"></div>
-                </div>
-                <FaUserGraduate className="info_icon" />
-              </div>
+          {/* {false ? (
+            postsImages ? (
+              postsImages.map((element, index) => {
+                return <img src={element.media} />;
+              })
+            ) : (
+              <></>
+            )
+          ) : (
+            <></>
+          )} */}
 
-              <div className="flex_row">
-                <div className="flex_col_info">
-                  <div className="title_info_info">Relationship</div>
-                  <div className="_info_re">Single</div>
-                </div>
-                <BsFillHeartFill className="info_icon" />
+          {/*****************************photo box************ */}
+
+          <div className="tow">
+          <div className="box_photo_all">
+            <span className="phots_title">Photos</span>
+
+            <div className="All_img">
+              <div className="imgees">
+                {
+                  <img
+                    className="imges_box"
+                    src={
+                      userInfo.profilecover !== "undefined"
+                        ? userInfo.profilecover
+                        : cover
+                    }
+                  />
+                }
+
+                {
+                  <img
+                    className="imges_box"
+                    src={
+                      userInfo.profileimage !== "undefined"
+                        ? userInfo.profileimage
+                        : noAvatar
+                    }
+                  />
+                }
               </div>
             </div>
           </div>
-
-
-
-
-          
-          
-          
-       
-        ) : (
-          <div></div>
-        )}
-
-
-        {/************************* This map for the posts images ***************************** */}
-
-        {false ? (
-          postsImages ? (
-            postsImages.map((element, index) => {
-              return <img src={element.media} />;
-            })
-          ) : (
-            <></>
-          )
-        ) : (
-          <></>
-        )}
-        
-
-
-
-
-
-
-          <div className="box_photo_all">
-
-          <span className="phots_title">Photos</span>
-        
-      
-  
-        <div className="All_img">
-  
-  <div className="imgees">
-        {<img className="imges_box"
-          src={
-            userInfo.profilecover !== "undefined"
-              ? userInfo.profilecover
-              : cover
-          }
-        /> }
-  
-        { <img
-          className="imges_box"
-          src={
-            userInfo.profileimage !== "undefined"
-              ? userInfo.profileimage
-              : noAvatar
-          }
-        />  }
-
-</div>
-          </div>  
-  
           </div>
-          
+          {/*************************** box friend********************************* */}
 
+<div className="four">
+          <div className="box_friends_all">
+            <span className="Friends_title">Friends</span>
+            <div className="imgees_cintainer_f">
+              {myFriendsList.length ? (
+                myFriendsList.map((e, i) => {
+                  return (
+                    <>
+                   
+                   <div className="flex_friend_name">
 
+                   <img
+                          src={e.profileimage}
+                          alt=""
+                          className="imges_friend_pic" onClick={()=>{
+                            navigation(`/profile/${e.id}`);
+                          }}
+                        />
 
-</div>
-        
+<div className="font_name_friend">{e.userName}</div>
+
+                   </div>
+                       
+
+<div className="border_info"></div>
+                     
+                    </>
+                  );
+                })
+              ) : (
+                <div></div>
+              )}
+              </div>
+          </div>
+          </div>
+        </div>
+
+        {/**************************************************************** */}
+
         <div className="all_posts_profile_page">
           <div className="userBasicInfo_title_post">
             <span className="post_title">Posts</span>
