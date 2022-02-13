@@ -12,7 +12,6 @@ import {
 import axios from "axios";
 import noAvatar from "../../images/noAvatar.png";
 import { format, render, cancel, register } from "timeago.js";
-
 import "../SinglePostPage/SinglePostPage.css";
 
 const SinglePostPage = () => {
@@ -252,13 +251,6 @@ const SinglePostPage = () => {
 
               <div className="postBottom">
                 <div className="postBottomLeft">
-                  <BsFillHandThumbsUpFill
-                    className="likeIcon"
-                    onClick={(e) => {
-                      e.target.style.color = "#1877f2";
-                      e.target.style.transition = "all 0.5s";
-                    }}
-                  />
                   <BsFillHeartFill
                     className="likeIcon_heart"
                     onClick={(e) => {
@@ -275,8 +267,8 @@ const SinglePostPage = () => {
                 <div className="postBottomRight"></div>
               </div>
             </div>
-
             <div className="all_comments">
+              <span>Comments: {comments.length}</span>
               {comments.length ? (
                 comments.map((element, index) => {
                   return (
@@ -284,7 +276,11 @@ const SinglePostPage = () => {
                       <div className="comment_flex_row">
                         <img
                           className="img_profile_single"
-                          src={element.profileimage}
+                          src={
+                            element.profileimage !== "undefined"
+                              ? element.profileimage
+                              : noAvatar
+                          }
                         />
 
                         <div className="one_comment">
