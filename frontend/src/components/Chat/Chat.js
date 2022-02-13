@@ -227,7 +227,7 @@ const Chat = () => {
               className="textarea_chat"
               rows="1"
               placeholder="Send Chat"
-              spellcheck="false"
+              spellCheck="false"
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
@@ -238,7 +238,7 @@ const Chat = () => {
             ></textarea>
 
             <div
-              class="add-button"
+              className="add-button"
               onClick={() => {
                 createMessage();
               }}
