@@ -291,13 +291,6 @@ const Home = () => {
 
                   <div className="postBottom">
                     <div className="postBottomLeft">
-                      <BsFillHandThumbsUpFill
-                        className="likeIcon"
-                        onClick={(e) => {
-                          e.target.style.color = "#1877f2";
-                          e.target.style.transition = "all 0.5s";
-                        }}
-                      />
                       {checkLikes(element.id) ? (
                         <BsFillHeartFill
                           className="likeIcon_heart"
