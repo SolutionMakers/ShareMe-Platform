@@ -11,6 +11,7 @@ import {
 
 import axios from "axios";
 import noAvatar from "../../images/noAvatar.png";
+import { format, render, cancel, register } from "timeago.js";
 
 import "../SinglePostPage/SinglePostPage.css";
 
@@ -195,7 +196,7 @@ const SinglePostPage = () => {
                     />
                   </Link>
                   <span className="postUsername">{post.userName}</span>
-                  {/* <span className="postDate">{format(post.createdAt)}</span> */}
+                  <span className="postDate">{format(post.created_at)}</span>
                 </div>
                 <div className="postTopRight">
                   <BsThreeDotsVertical
