@@ -10,7 +10,6 @@ const login = (req, res) => {
   const data = [userName];
   connection.query(query, data, (err, results) => {
     if (err) throw err;
-    // result are the data returned by mysql server
     if (results.length) {
       bcrypt.compare(password, results[0].password, (err, response) => {
         if (err) res.json(err);
@@ -46,7 +45,7 @@ const login = (req, res) => {
     } else {
       res
         .status(404)
-        .json({ success: false, massege: "The email doesn't exist", err });
+        .json({ success: false, massege: "The username doesn't exist", err });
     }
   });
 };

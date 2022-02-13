@@ -35,6 +35,7 @@ const ProfilePage = () => {
   const [friendsList, setFriendsList] = useState([]);
   const [myFriendsList, setMyFriendsList] = useState([]);
   const [show, setShow] = useState(true);
+  const imgUser = localStorage.getItem("img");
 
   /************************************************************************************************************** */
   const dispatch = useDispatch();
@@ -86,6 +87,7 @@ const ProfilePage = () => {
       );
       if (res.data.success) {
         console.log(res.data);
+        getUserInfo();
       }
     } catch (err) {
       console.log(err);
@@ -141,6 +143,8 @@ const ProfilePage = () => {
       );
       if (res.data.success) {
         console.log(res.data);
+        getUserInfo();
+        localStorage.getItem("img");
       }
     } catch (err) {
       console.log(err);
@@ -299,8 +303,6 @@ const ProfilePage = () => {
         `http://localhost:5000/friends/user/${user_id}`
       );
       if (res.data.success) {
-        // console.log(res.data.results);
-        // console.log(res.data)
         setMyFriendsList(res.data.results);
       }
     } catch (err) {
@@ -334,7 +336,8 @@ const ProfilePage = () => {
     getAllLikes();
     getAllFriendsByUserId();
     getAllFriends();
-  }, []);
+  }, [user_id]);
+
   return (
     <>
       <div className="top_profile_page">
@@ -417,15 +420,23 @@ const ProfilePage = () => {
             <>
               {" "}
               {show ? (
-                <button onClick={()=>{
-                  followUser();
-                  setShow(false);
-                }}>Follow</button>
+                <button
+                  onClick={() => {
+                    followUser();
+                    setShow(false);
+                  }}
+                >
+                  Follow
+                </button>
               ) : (
-                <button onClick={()=>{
-                  unFollowUser();
-                  setShow(true);
-                }}>unfollow</button>
+                <button
+                  onClick={() => {
+                    unFollowUser();
+                    setShow(true);
+                  }}
+                >
+                  unfollow
+                </button>
               )}
             </>
           ) : (

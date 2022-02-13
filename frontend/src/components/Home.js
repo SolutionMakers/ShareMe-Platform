@@ -250,6 +250,7 @@ const Home = () => {
                                 </button>
                                 <input
                                   type="text"
+                                  defaultValue={element.description}
                                   placeholder="updated description"
                                   onChange={(e) => {
                                     setDescription(e.target.value);
