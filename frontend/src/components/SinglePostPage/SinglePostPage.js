@@ -232,7 +232,6 @@ const SinglePostPage = () => {
                               <BsPen className="icon_pen_pagePost" />
                               <div className="publish_pagePost">Edit Post</div>
                             </div>
-
                             <div className="border_bottom_create_pagePost"></div>
                             <div className="content_create_post_pagePost">
                               <img
@@ -241,7 +240,6 @@ const SinglePostPage = () => {
                                   imgUser !== "undefined" ? imgUser : noAvatar
                                 }
                               />
-
                               <textarea
                                 id="publish_pagePost"
                                 className="textarea_pagePost"
@@ -258,14 +256,12 @@ const SinglePostPage = () => {
                                 className="Delete_button"
                                 onClick={(e) => {
                                   handleDelete(id);
-
                                   toggleModal();
                                 }}
                               >
                                 <MdDeleteForever className="rubbish" />
                                 Delete
                               </button>
-
                               <button
                                 className="button_Save"
                                 onClick={(e) => {
@@ -317,12 +313,10 @@ const SinglePostPage = () => {
                   </div>
                 </div>
               </div>
-
               <div className="postCenter">
                 <p className="postText">{post.description}</p>
                 <img className="postImg" src={post.media} alt="" />
               </div>
-
               <div className="postBottom">
                 <div className="postBottomLeft">
                   {checkLikes() ? (
@@ -340,12 +334,10 @@ const SinglePostPage = () => {
                       }}
                     />
                   )}
-
                   <span className="postLikeCounter">
                     {likes.length} People Like It
                   </span>
                 </div>
-
                 <div className="postBottomRight">
                   <BsChatDotsFill className="postCommentText" />
                   comments: {comments.length}
@@ -367,13 +359,11 @@ const SinglePostPage = () => {
                               : noAvatar
                           }
                         />
-
                         <div className="one_comment">
                           <div className="comment_flex_column">
                             <div className="uesr_commenter_name">
                               {element.userName}
                             </div>
-
                             <div className="comment_font">
                               {element.comment}
                             </div>
