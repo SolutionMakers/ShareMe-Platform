@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
 import { FaFacebookMessenger } from "react-icons/fa";
+import { BsSearch } from "react-icons/bs";
 const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,7 +22,8 @@ const Navigation = () => {
 
   const [allUsers, setAllUsers] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
-  const [startType, setStartType] = useState(false);
+  const [typing, setTyping] = useState("");
+  const [modal, setModal] = useState(false);
   /***************************************************************************************** */
 
   const getAllUsers = async () => {
@@ -41,6 +43,12 @@ const Navigation = () => {
     setSearchResult(result);
   };
   console.log(searchResult);
+
+  /***************************************************************** */
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
   /***************************************************************************************** */
   useEffect(() => {
     getAllUsers();
@@ -48,83 +56,106 @@ const Navigation = () => {
   /***************************************************************************************** */
 
   return (
-    <div className="nav">
-      <div className="logo_search">
-        <div className="logo"></div>
-        <div className="search">
-          <input
-            //className="input_search"
-            type="text"
-            id="myInput"
-            placeholder="Find a friend"
-            onChange={(e) => {
-              filteredSearch(e.target.value);
-              if (e.target.value !== "") {
-                setStartType(true);
-              } else {
-                setStartType(false);
-              }
-            }}
-          />
+    <>
+      <div className="nav">
+        <div className="logo_search">
+          <div className="logo">logo</div>
 
-          {startType ? (
-            searchResult.length ? (
-              searchResult.map((user) => {
-                return (
-                  <ul id="myUL">
-                    <li>
-                      {/* <img src={user.profileimage} /> */}
-                      <a>{user.userName}</a>
-                    </li>
-                  </ul>
-                );
-              })
-            ) : (
-              <></>
-            )
-          ) : (
-            <></>
+          <div className="input_and_icon">
+            <div className="search">
+              <input
+                className="input_search"
+                type="text"
+                value={typing}
+                placeholder="Find a friend"
+                onChange={(e) => {
+                  setTyping(e.target.value);
+                  filteredSearch(typing);
+                  if (e.target.value !== "") {
+                    setModal(true);
+                  } else {
+                    setModal(false);
+                  }
+                }}
+              />
+            </div>
+
+            <BsSearch className="icon_search" />
+          </div>
+
+          {modal && (
+            <div className="modal_search">
+              <div onClick={toggleModal} className="overlay_search"></div>
+              <div className="modal-content_search">
+                <div className="rod">
+                  {searchResult.length ? (
+                    searchResult.map((user) => {
+                      return (
+                        <>
+                          <div
+                            className="user_info_rod"
+                            onClick={() => {
+                              navigate(`/profile/${user.id}`);
+                              toggleModal();
+                              setTyping("");
+                            }}
+                          >
+                            <img
+                              src={user.profileimage}
+                              className="img_search"
+                            />
+                            <span>{user.userName}</span>
+                          </div>
+                        </>
+                      );
+                    })
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
+            </div>
           )}
         </div>
-      </div>
 
-      <FaFacebookMessenger
-        className="chat"
-        onClick={() => {
-          navigate(`/chat`);
-        }}
-      />
-      <div className="home_nav">
-        <Link to="/home">
-          <AiFillHome className="home_icon" />
-        </Link>
-      </div>
-
-      <div
-        className="user_nav"
-        onClick={() => {
-          navigate(`/profile/${state.user_id}`);
-        }}
-      >
-        <img
-          className="img_user_nav"
-          src={imgUser !== "undefined" ? imgUser : noAvatar}
-        />
-        <div className="userName_font_nav">{state.userName}</div>
-      </div>
-      <div className="style_logOut">
-        <button
-          className="LogOut"
+        <FaFacebookMessenger
+          className="chat"
           onClick={() => {
-            dispatch(logout());
-            localStorage.clear();
-            navigate("/");
+            navigate(`/chat`);
+          }}
+        />
+        <div className="home_nav">
+          <Link to="/home">
+            <AiFillHome className="home_icon" />
+          </Link>
+        </div>
+
+        <div
+          className="user_nav"
+          onClick={() => {
+            navigate(`/profile/${state.user_id}`);
           }}
         >
-          LogOut
-        </button>
+          <img
+            className="img_user_nav"
+            src={imgUser !== "undefined" ? imgUser : noAvatar}
+          />
+          <div className="userName_font_nav">{state.userName}</div>
+        </div>
+        <div className="style_logOut">
+          <button
+            className="LogOut"
+            onClick={() => {
+              dispatch(logout());
+              localStorage.clear();
+              navigate("/");
+            }}
+          >
+            LogOut
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
