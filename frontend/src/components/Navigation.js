@@ -21,7 +21,7 @@ const Navigation = () => {
 
   const [allUsers, setAllUsers] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
-
+  const [startType, setStartType] = useState(false);
   /***************************************************************************************** */
 
   const getAllUsers = async () => {
@@ -39,8 +39,8 @@ const Navigation = () => {
       return element.userName.includes(str);
     });
     setSearchResult(result);
-    console.log(result);
   };
+  console.log(searchResult);
   /***************************************************************************************** */
   useEffect(() => {
     getAllUsers();
@@ -53,13 +53,38 @@ const Navigation = () => {
         <div className="logo"></div>
         <div className="search">
           <input
-            className="input_search"
+            //className="input_search"
             type="text"
-            placeholder="Search AAB"
+            id="myInput"
+            placeholder="Find a friend"
             onChange={(e) => {
               filteredSearch(e.target.value);
+              if (e.target.value !== "") {
+                setStartType(true);
+              } else {
+                setStartType(false);
+              }
             }}
           />
+
+          {startType ? (
+            searchResult.length ? (
+              searchResult.map((user) => {
+                return (
+                  <ul id="myUL">
+                    <li>
+                      {/* <img src={user.profileimage} /> */}
+                      <a>{user.userName}</a>
+                    </li>
+                  </ul>
+                );
+              })
+            ) : (
+              <></>
+            )
+          ) : (
+            <></>
+          )}
         </div>
       </div>
 
