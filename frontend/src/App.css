@@ -72,53 +72,9 @@
   right: 10px;
   padding: 5px 7px;
 }
-/*------------------------------------------------modal post-------------------------------------------------------*/
-.btn-modal_post {
-  padding: 10px 20px;
-  display: block;
 
-  font-size: 18px;
-}
 
-.modal_post,
-.overlay_post {
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: fixed;
-  z-index: 1;
-}
-
-.overlay_post {
-  background: rgba(252, 252, 253, 0.7);
-}
-.modal-content_post {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  line-height: 1.4;
-  background: #ece5e6;
-  padding: 14px 28px;
-  color: #ffffff;
-  border-radius: 3px;
-  max-width: 600px;
-  min-width: 300px;
-  z-index: 2;
-}
-
-.close-modal_post {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 7px;
-}
-/*--------------------------------------------------------modal post------------------------------------------*/
-
-/*----------------------------Login & signUp -------------------*/
+/*----------------------------------------------------------Login & signUp -------------------------------------------------------------------*/
 
 .container_for_all {
   display: flex;
@@ -1418,6 +1374,46 @@ body {
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   background-color: #ffffff;
 }
+
+
+.textarea_pagePost {
+  padding: 0;
+  border-color: transparent;
+  outline: none;
+  border: none;
+  resize: none;
+}
+
+.textarea_pagePost[rows] {
+  height: initial;
+  resize: none;
+}
+
+.textarea_pagePost {
+  display: block;
+
+  padding: calc(0.75em - 1px);
+  resize: vertical;
+}
+
+.textarea_pagePost,
+.input {
+  max-width: 100%;
+  width: 100%;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Helvetica", "Arial", sans-serif;
+  font-size: 0.9rem;
+}
+
+.upload_media_post_pagePost {
+  border-top: 0.5px solid #dbdbdb;
+  display: flex;
+  align-items: center;
+  padding: 7px 0px 5px 10px;
+  gap: 0.5rem;
+}
+
 
 .button_Save {
   cursor: pointer;
