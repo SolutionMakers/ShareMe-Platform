@@ -6,7 +6,8 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
-  BsChatDotsFill,BsPen
+  BsChatDotsFill,
+  BsPen,
 } from "react-icons/bs";
 
 import { MdDeleteForever } from "react-icons/md";
@@ -370,27 +371,65 @@ const ProfilePage = () => {
             <></>
           )}
           {coverModal && (
-            <div className="modal_profile">
-              <div onClick={toggleModalCover} className="overlay_profile"></div>
-              <div className="modal-content_profile">
-                <div>
-                  <input
-                    type="file"
-                    onChange={(e) => {
-                      setUploadedCover(e.target.files[0]);
-                    }}
-                  />
+          
+
+            <div className="modal_cover">
+            <div onClick={toggleModalCover} className="overlay_cover"></div>
+            <div className="modal-content_cover">
+              <div className="modal_edit_pic_cover">
+                <span className="font_span_pic">Edit your Cover</span>
+                <img
+                  className="rectangular_img"
+                  src={
+                    userInfo.profilecover !== "undefined"
+                      ? userInfo.profilecover
+                      : cover
+                  }
+                />
+
+                <div className="buttons_upload_flex">
+                  <div className="compose">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-camera_pagePost"
+                      id="icon_cam_svg"
+                    >
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                      <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                    <span className="media_">Media</span>
+                    <input
+                      id="feed-upload-input-2_pagePost"
+                      type="file"
+                      accept=".png, .jpg, .jpeg"
+                      onChange={(e) => {
+                        setUploadedCover(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+
                   <button
+                    className="upload_edit_cover"
                     onClick={() => {
                       uploadCoverPhoto();
                       toggleModalCover();
                     }}
                   >
-                    upload
+                    Upload
                   </button>
                 </div>
               </div>
             </div>
+          </div>
+
           )}
 
           {coverShow && (
@@ -423,6 +462,9 @@ const ProfilePage = () => {
             }
           />
         </div>
+
+
+
 
         <div className="all_avatar">
           <div className="avatar">
@@ -497,21 +539,56 @@ const ProfilePage = () => {
           <div className="modal_profile">
             <div onClick={toggleModalImg} className="overlay_profile"></div>
             <div className="modal-content_profile">
-              <div>
-                <input
-                  type="file"
-                  onChange={(e) => {
-                    setUploadedImage(e.target.files[0]);
-                  }}
+              <div className="modal_edit_pic_profile">
+                <span className="font_span_pic">Edit your picture</span>
+                <img
+                  className="square_img"
+                  src={
+                    userInfo.profileimage !== "undefined"
+                      ? userInfo.profileimage
+                      : noAvatar
+                  }
                 />
-                <button
-                  onClick={() => {
-                    uploadimage();
-                    toggleModalImg();
-                  }}
-                >
-                  upload
-                </button>
+
+                <div className="buttons_upload_flex">
+                  <div className="compose">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-camera_pagePost"
+                      id="icon_cam_svg"
+                    >
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                      <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                    <span className="media_">Media</span>
+                    <input
+                      id="feed-upload-input-2_pagePost"
+                      type="file"
+                      accept=".png, .jpg, .jpeg"
+                      onChange={(e) => {
+                        setUploadedImage(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+
+                  <button
+                    className="upload_edit_pic"
+                    onClick={() => {
+                      uploadimage();
+                      toggleModalImg();
+                    }}
+                  >
+                    Upload
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -671,7 +748,7 @@ const ProfilePage = () => {
             <span className="post_title">Posts</span>
           </div>
 
-          {userPosts.length && user_id==state.user_id || !show ? (
+          {(userPosts.length && user_id == state.user_id) || !show ? (
             userPosts.map((element, index) => {
               return (
                 <div key={index} className="post">
@@ -702,84 +779,67 @@ const ProfilePage = () => {
                         <div>
                           {" "}
                           {modal && id == element.id && (
-                               <div className="modal_Edit">
-                               <div
-                                 onClick={toggleModal}
-                                 className="overlay_Edit"
-                               ></div>
-                               <div className="modal-content_Edit">
- 
- 
- 
- 
- 
- 
- 
- 
- 
-                                 <div className="Edit_post_pagePost">
-                 <div className="pen_publish_pagePost">
-                   <BsPen className="icon_pen_pagePost" />
-                   <div className="publish_pagePost">Edit Post</div>
-                 </div>
- 
-                 <div className="border_bottom_create_pagePost"></div>
-                 <div className="content_create_post_pagePost">
-                   <img
-                     className="img_user_creat_post_pagePost"
-                     src={imgUser !== "undefined" ? imgUser : noAvatar}
-                   />
- 
-                   <textarea
-                     id="publish_pagePost"
-                     className="textarea_pagePost"
-                     defaultValue={element.description}
-                     rows="3"
-                   
-                     spellCheck="false"
-                     onChange={(e) => {
-                       setDescription(e.target.value);
-                     }}
-                   ></textarea>
- 
- 
-                 </div>
-                 <div className="upload_media_post_pagePost">
-                  
-                   <button
-                     className="Delete_button"
-                     onClick={(e) => {
-                       handleDelete(id)
-                       toggleModal();
-                      
-                     }}
-                   >
-                     <MdDeleteForever className="rubbish"/>
-                     Delete
-                   </button>
- 
-                   <button
-                     className="button_Save"
-                     onClick={(e) => {
-                        handleUpdate(id)
-                        toggleModal();
-                     }}
-                   >
-                     Save
-                   </button>
-                 </div>
-               </div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
-                               </div>
-                             </div>
+                            <div className="modal_Edit">
+                              <div
+                                onClick={toggleModal}
+                                className="overlay_Edit"
+                              ></div>
+                              <div className="modal-content_Edit">
+                                <div className="Edit_post_pagePost">
+                                  <div className="pen_publish_pagePost">
+                                    <BsPen className="icon_pen_pagePost" />
+                                    <div className="publish_pagePost">
+                                      Edit Post
+                                    </div>
+                                  </div>
+
+                                  <div className="border_bottom_create_pagePost"></div>
+                                  <div className="content_create_post_pagePost">
+                                    <img
+                                      className="img_user_creat_post_pagePost"
+                                      src={
+                                        imgUser !== "undefined"
+                                          ? imgUser
+                                          : noAvatar
+                                      }
+                                    />
+
+                                    <textarea
+                                      id="publish_pagePost"
+                                      className="textarea_pagePost"
+                                      defaultValue={element.description}
+                                      rows="3"
+                                      spellCheck="false"
+                                      onChange={(e) => {
+                                        setDescription(e.target.value);
+                                      }}
+                                    ></textarea>
+                                  </div>
+                                  <div className="upload_media_post_pagePost">
+                                    <button
+                                      className="Delete_button"
+                                      onClick={(e) => {
+                                        handleDelete(id);
+                                        toggleModal();
+                                      }}
+                                    >
+                                      <MdDeleteForever className="rubbish" />
+                                      Delete
+                                    </button>
+
+                                    <button
+                                      className="button_Save"
+                                      onClick={(e) => {
+                                        handleUpdate(id);
+                                        toggleModal();
+                                      }}
+                                    >
+                                      Save
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           )}
                         </div>
                       </div>
@@ -792,21 +852,21 @@ const ProfilePage = () => {
 
                     <div className="postBottom">
                       <div className="postBottomLeft">
-                      {checkLikes(element.id) ? (
-                        <BsFillHeartFill
-                          className="likeIcon_heart"
-                          style={{ transition: "all 0.5s", color: "#e60023" }}
-                        />
-                      ) : (
-                        <BsFillHeartFill
-                          className="likeIcon_heart"
-                          onClick={(e) => {
-                            putNewLike(element.id);
-                            e.target.style.color = "#e60023";
-                            e.target.style.transition = "all 0.5s";
-                          }}
-                        />
-                      )}
+                        {checkLikes(element.id) ? (
+                          <BsFillHeartFill
+                            className="likeIcon_heart"
+                            style={{ transition: "all 0.5s", color: "#e60023" }}
+                          />
+                        ) : (
+                          <BsFillHeartFill
+                            className="likeIcon_heart"
+                            onClick={(e) => {
+                              putNewLike(element.id);
+                              e.target.style.color = "#e60023";
+                              e.target.style.transition = "all 0.5s";
+                            }}
+                          />
+                        )}
 
                         <span className="postLikeCounter">
                           {filterArray(element.id).length} People Like It
