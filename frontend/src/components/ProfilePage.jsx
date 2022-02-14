@@ -6,9 +6,10 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsFillHandThumbsUpFill,
-  BsChatDotsFill,
+  BsChatDotsFill,BsPen
 } from "react-icons/bs";
 
+import { MdDeleteForever } from "react-icons/md";
 import { FiCamera } from "react-icons/fi";
 import { AiFillHourglass } from "react-icons/ai";
 import { ImHome3 } from "react-icons/im";
@@ -258,6 +259,7 @@ const ProfilePage = () => {
       );
       if (res.data.success) {
         dispatch(updatePost(newPost));
+        getPostsByUserId();
       }
     } catch (error) {
       console.log(error);
@@ -269,6 +271,7 @@ const ProfilePage = () => {
       .delete(`http://localhost:5000/posts/${id}`)
       .then((result) => {
         dispatch(deletePost(id));
+        getPostsByUserId();
       })
       .catch((err) => {
         throw err;
@@ -699,40 +702,84 @@ const ProfilePage = () => {
                         <div>
                           {" "}
                           {modal && id == element.id && (
-                            <div className="modal_post">
-                              <div
-                                onClick={toggleModal}
-                                className="overlay_post"
-                              ></div>
-                              <div className="modal-content_post">
-                                <h2>Edit Post</h2>
-                                <button
-                                  className="button_delete"
-                                  onClick={() => {
-                                    navigation(`/profile/${user_id}`);
-                                    handleDelete(id);
-                                  }}
-                                >
-                                  delete
-                                </button>
-                                <input
-                                  type="text"
-                                  placeholder="updated description"
-                                  onChange={(e) => {
-                                    setDescription(e.target.value);
-                                  }}
-                                />
-                                <button onClick={() => handleUpdate(id)}>
-                                  Update
-                                </button>
-                                <button
-                                  className="close-modal_post"
-                                  onClick={() => toggleModal("")}
-                                >
-                                  CLOSE
-                                </button>
-                              </div>
-                            </div>
+                               <div className="modal_Edit">
+                               <div
+                                 onClick={toggleModal}
+                                 className="overlay_Edit"
+                               ></div>
+                               <div className="modal-content_Edit">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                 <div className="Edit_post_pagePost">
+                 <div className="pen_publish_pagePost">
+                   <BsPen className="icon_pen_pagePost" />
+                   <div className="publish_pagePost">Edit Post</div>
+                 </div>
+ 
+                 <div className="border_bottom_create_pagePost"></div>
+                 <div className="content_create_post_pagePost">
+                   <img
+                     className="img_user_creat_post_pagePost"
+                     src={imgUser !== "undefined" ? imgUser : noAvatar}
+                   />
+ 
+                   <textarea
+                     id="publish_pagePost"
+                     className="textarea_pagePost"
+                     defaultValue={element.description}
+                     rows="3"
+                   
+                     spellCheck="false"
+                     onChange={(e) => {
+                       setDescription(e.target.value);
+                     }}
+                   ></textarea>
+ 
+ 
+                 </div>
+                 <div className="upload_media_post_pagePost">
+                  
+                   <button
+                     className="Delete_button"
+                     onClick={(e) => {
+                       handleDelete(id)
+                       toggleModal();
+                      
+                     }}
+                   >
+                     <MdDeleteForever className="rubbish"/>
+                     Delete
+                   </button>
+ 
+                   <button
+                     className="button_Save"
+                     onClick={(e) => {
+                        handleUpdate(id)
+                        toggleModal();
+                     }}
+                   >
+                     Save
+                   </button>
+                 </div>
+               </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                               </div>
+                             </div>
                           )}
                         </div>
                       </div>
