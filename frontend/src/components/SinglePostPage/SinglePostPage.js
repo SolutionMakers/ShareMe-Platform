@@ -24,6 +24,8 @@ const SinglePostPage = () => {
     return {
       token: state.loginReducer.token,
       posts: state.postsReducer.posts,
+      user_id: state.loginReducer.user_id,
+
     };
   });
   const [post, setPost] = useState([]);
@@ -110,6 +112,7 @@ const SinglePostPage = () => {
       }
     }
   };
+ 
   /* ****************************************************** */
   const getPostByID = async () => {
     try {
@@ -335,14 +338,21 @@ const SinglePostPage = () => {
 
               <div className="postBottom">
                 <div className="postBottomLeft">
-                  <BsFillHeartFill
-                    className="likeIcon_heart"
-                    onClick={(e) => {
-                      putNewLike(post.id);
-                      e.target.style.color = "#e60023";
-                      e.target.style.transition = "all 0.5s";
-                    }}
-                  />
+                {checkLikes() ? (
+                        <BsFillHeartFill
+                          className="likeIcon_heart"
+                          style={{ transition: "all 0.5s", color: "#e60023" }}
+                        />
+                      ) : (
+                        <BsFillHeartFill
+                          className="likeIcon_heart"
+                          onClick={(e) => {
+                            putNewLike(id);
+                            e.target.style.color = "#e60023";
+                            e.target.style.transition = "all 0.5s";
+                          }}
+                        />
+                      )}
 
                   <span className="postLikeCounter">
                     {likes.length} People Like It
