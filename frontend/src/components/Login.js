@@ -108,6 +108,9 @@ const Login = () => {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
+                onKeyPress={(event) => {
+                  event.key === "Enter" && logInUser();
+                }}
               />
             </div>
 

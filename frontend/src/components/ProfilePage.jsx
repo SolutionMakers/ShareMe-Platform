@@ -36,7 +36,7 @@ const ProfilePage = () => {
   const [friendsList, setFriendsList] = useState([]);
   const [myFriendsList, setMyFriendsList] = useState([]);
   const [show, setShow] = useState(true);
-  const [coverShow, setCoverShow] = useState(false)
+  const [coverShow, setCoverShow] = useState(false);
 
   const imgUser = localStorage.getItem("img");
 
@@ -67,13 +67,11 @@ const ProfilePage = () => {
     setCoverModal(!coverModal);
   };
 
-
   /************************************************************************ */
 
-  const toggleCoverImg =()=>{
-setCoverShow(!coverShow)
-    
-  }
+  const toggleCoverImg = () => {
+    setCoverShow(!coverShow);
+  };
   /********************************************************************************************************* */
   const uploadCoverPhoto = async () => {
     const formData = new FormData();
@@ -382,39 +380,35 @@ setCoverShow(!coverShow)
             </div>
           )}
 
+          {coverShow && (
+            <div className="modal_cover_show">
+              <div onClick={toggleCoverImg} className="overlay_cover"></div>
+              <div className="modal-content">
+                <img
+                  onClick={toggleCoverImg}
+                  className="cover_photo_for_modal"
+                  src={
+                    userInfo.profilecover !== "undefined"
+                      ? userInfo.profilecover
+                      : cover
+                  }
+                />
+                <button className="close-modal_cover" onClick={toggleCoverImg}>
+                  CLOSE
+                </button>
+              </div>
+            </div>
+          )}
 
-{coverShow && (
-  <div className="modal_cover_show">
-    <div onClick={toggleCoverImg} className="overlay_cover"></div>
-    <div className="modal-content">
-     
-
-    <img onClick={toggleCoverImg}
-            className="cover_photo_for_modal" 
+          <img
+            onClick={toggleCoverImg}
+            className="cover_photo"
             src={
               userInfo.profilecover !== "undefined"
                 ? userInfo.profilecover
                 : cover
             }
           />
-      <button className="close-modal_cover" onClick={toggleCoverImg}>
-        CLOSE
-      </button>
-    </div>
-
-    
-  </div>
-)}
-
- <img onClick={toggleCoverImg}
-            className="cover_photo" 
-            src={
-              userInfo.profilecover !== "undefined"
-                ? userInfo.profilecover
-                : cover
-            }
-          />
-
         </div>
 
         <div className="all_avatar">
@@ -450,43 +444,40 @@ setCoverShow(!coverShow)
             )}
           </div>
 
-     
           <div className="userName_profile">
-         
-            {userInfo.userName} 
-            
-               
-          <div className="button_follow_flex">
-               {user_id != state.user_id ? (
-            <>
-              {" "}
-              {show ? (
-                <button className="follow_button"
-                  onClick={() => {
-                    followUser();
-                    setShow(false);
-                  }}
-                >
-                  Follow
-                </button >
+            {userInfo.userName}
+
+            <div className="button_follow_flex">
+              {user_id != state.user_id ? (
+                <>
+                  {" "}
+                  {show ? (
+                    <button
+                      className="follow_button"
+                      onClick={() => {
+                        followUser();
+                        setShow(false);
+                      }}
+                    >
+                      Follow
+                    </button>
+                  ) : (
+                    <button
+                      className="unfollow_button"
+                      onClick={() => {
+                        unFollowUser();
+                        setShow(true);
+                      }}
+                    >
+                      Unfollow
+                    </button>
+                  )}
+                </>
               ) : (
-                <button className="unfollow_button"
-                  onClick={() => {
-                    unFollowUser();
-                    setShow(true);
-                  }}
-                >
-                  Unfollow
-                </button>
+                <></>
               )}
-            </>
-          ) : (
-            <></>
-          )}
-
-</div></div>
-
-        
+            </div>
+          </div>
         </div>
 
         {modalImg && (
@@ -604,27 +595,23 @@ setCoverShow(!coverShow)
 
               <div className="All_img">
                 <div className="imgees">
-                  {
-                    <img
-                      className="imges_box"
-                      src={
-                        userInfo.profilecover !== "undefined"
-                          ? userInfo.profilecover
-                          : cover
-                      }
-                    />
-                  }
+                  <img
+                    className="imges_box"
+                    src={
+                      userInfo.profilecover !== "undefined"
+                        ? userInfo.profilecover
+                        : cover
+                    }
+                  />
 
-                  {
-                    <img
-                      className="imges_box"
-                      src={
-                        userInfo.profileimage !== "undefined"
-                          ? userInfo.profileimage
-                          : noAvatar
-                      }
-                    />
-                  }
+                  <img
+                    className="imges_box"
+                    src={
+                      userInfo.profileimage !== "undefined"
+                        ? userInfo.profileimage
+                        : noAvatar
+                    }
+                  />
                 </div>
               </div>
             </div>
@@ -633,7 +620,9 @@ setCoverShow(!coverShow)
 
           <div className="four">
             <div className="box_friends_all">
-              <span className="Friends_title">Friends {myFriendsList.length}</span>
+              <span className="Friends_title">
+                Friends {myFriendsList.length}
+              </span>
               <div className="imgees_cintainer_f">
                 {myFriendsList.length ? (
                   myFriendsList.map((e, i) => {
@@ -641,7 +630,11 @@ setCoverShow(!coverShow)
                       <>
                         <div className="flex_friend_name">
                           <img
-                            src={e.profileimage}
+                            src={
+                              e.profileimage !== "undefined"
+                                ? e.profileimage
+                                : noAvatar
+                            }
                             alt=""
                             className="imges_friend_pic"
                             onClick={() => {
@@ -748,13 +741,6 @@ setCoverShow(!coverShow)
 
                     <div className="postBottom">
                       <div className="postBottomLeft">
-                        <BsFillHandThumbsUpFill
-                          className="likeIcon"
-                          onClick={(e) => {
-                            e.target.style.color = "#1877f2";
-                            e.target.style.transition = "all 0.5s";
-                          }}
-                        />
                         <BsFillHeartFill
                           className="likeIcon_heart"
                           onClick={(e) => {

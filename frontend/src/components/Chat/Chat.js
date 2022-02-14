@@ -43,16 +43,18 @@ const Chat = () => {
   };
   /************************************************************** */
   const sendMessage = () => {
-    const messageContent = {
-      room,
-      content: {
-        sender: state.userName,
-        message: message,
-      },
-    };
-    socket.emit("SEND_MESSAGE", messageContent);
-    setMessage("");
-    getAllMessages(room);
+    if (message !== "") {
+      const messageContent = {
+        room,
+        content: {
+          sender: state.userName,
+          message: message,
+        },
+      };
+      socket.emit("SEND_MESSAGE", messageContent);
+      setMessage("");
+      getAllMessages(room);
+    }
   };
   /************************************************************** */
   const getAllUsers = async () => {
@@ -91,19 +93,21 @@ const Chat = () => {
   };
   /************************************************************ */
   const createMessage = async () => {
-    const res = await axios.post(
-      `http://localhost:5000/message/${room}`,
-      { message },
-      {
-        headers: {
-          Authorization: `Bearer ${state.token}`,
-        },
+    if (message !== "") {
+      const res = await axios.post(
+        `http://localhost:5000/message/${room}`,
+        { message },
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        sendMessage();
+        setMessage("");
+        setLetsStart(true);
       }
-    );
-    if (res.data.success) {
-      sendMessage();
-      setMessage("");
-      setLetsStart(true);
     }
   };
   /************************************************************ */
@@ -152,7 +156,7 @@ const Chat = () => {
           <h3 className="followr_chat">Followers: {allFriends.length}</h3>
           <div className="border_line"></div>
 
-          {allFriends ? (
+          {allFriends.length ? (
             allFriends.map((element, index) => {
               return (
                 <div key={index} className="users_chat">
@@ -166,13 +170,13 @@ const Chat = () => {
                       className="img_user_chat"
                       onClick={() => {
                         joinRoomData(element.id);
-                        setLetsStart(true)
+                        setLetsStart(true);
                       }}
                     />
                     <div
                       onClick={() => {
                         joinRoomData(element.id);
-                        setLetsStart(true)
+                        setLetsStart(true);
                       }}
                     >
                       {element.userName}
@@ -199,7 +203,11 @@ const Chat = () => {
                             <div className="words_chat">
                               <img
                                 className="img_user_chat"
-                                src={element.profileimage}
+                                src={
+                                  element.profileimage !== "undefined"
+                                    ? element.profileimage
+                                    : noAvatar
+                                }
                               />{" "}
                               <div className="message">{element.message}</div>
                             </div>
@@ -212,7 +220,7 @@ const Chat = () => {
                   </ScrollToBottom>
                 </div>
               ) : (
-                <div className="start_chat">Let's Start converseion</div>
+                <div className="start_chat">Let's Start conversation</div>
               )}
             </>
           ) : (
@@ -223,15 +231,18 @@ const Chat = () => {
               className="textarea_chat"
               rows="1"
               placeholder="Send Chat"
-              spellcheck="false"
+              spellCheck="false"
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
+              onKeyPress={(event) => {
+                event.key === "Enter" && createMessage();
+              }}
             ></textarea>
 
             <div
-              class="add-button"
+              className="add-button"
               onClick={() => {
                 createMessage();
               }}
