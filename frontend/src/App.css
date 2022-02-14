@@ -101,7 +101,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #aa1824;
+  background: #ece5e6;
   padding: 14px 28px;
   color: #ffffff;
   border-radius: 3px;
@@ -770,7 +770,6 @@ body {
 
 /*--------------------------Profile Page Css ------------------------------------------*/
 
-
 .mid_profile_page {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -778,7 +777,8 @@ body {
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
-  font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
   color: #344258;
   box-sizing: inherit;
   margin-left: -0.75rem;
@@ -810,7 +810,6 @@ body {
 
 .top_profile_page {
   padding-top: 2.5rem;
-
 }
 .btn-modal_profile {
   display: block;
@@ -866,7 +865,6 @@ body {
 .all_avatar {
   display: flex;
   flex-direction: column;
-
 }
 .avatar {
   color: #344258;
@@ -960,15 +958,15 @@ body {
   box-sizing: inherit;
   margin: 0;
   height: 10.5rem;
-position: relative;
+  position: relative;
   border-bottom-left-radius: 0.8rem;
   border-bottom-right-radius: 0.8rem;
   font-weight: 600;
   color: #393a4f;
   line-height: 1.2;
-display: flex;
-flex-direction: column;
-gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 13px -8px rgba(0, 0, 0, 0.68);
 }
@@ -1170,7 +1168,6 @@ gap: 5px;
   margin: 400px 0;
 
   margin-left: 12.2rem;
-  
 }
 
 .imgees {
@@ -1180,7 +1177,7 @@ gap: 5px;
 
   justify-content: space-evenly;
   justify-items: center;
-  /* align-content: space-evenly;*/
+
   align-items: center;
 
   background-color: #ffffff;
@@ -1234,14 +1231,13 @@ gap: 5px;
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
-  font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
   color: #344258;
   box-sizing: inherit;
 
- 
   width: 33.33333337%;
-  padding: .5rem;
- 
+  padding: 0.5rem;
 }
 
 /**************************profile box friends************************************/
@@ -1258,7 +1254,7 @@ gap: 5px;
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  margin: -170px ;
+  margin: -230px;
 
   margin-left: 12.2rem;
 }
@@ -1321,7 +1317,7 @@ gap: 5px;
   padding: 9px 0px 0px 10px;
 }
 
-.follow_button{
+.follow_button {
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
   width: 140px;
@@ -1336,12 +1332,11 @@ gap: 5px;
   z-index: 1;
 }
 
-.follow_button:hover{
-
+.follow_button:hover {
   background-color: #2c569e;
 }
 
-.unfollow_button{
+.unfollow_button {
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
   width: 140px;
@@ -1356,10 +1351,121 @@ gap: 5px;
   transition: all 0.4s;
 }
 
-.unfollow_button:hover{
-
+.unfollow_button:hover {
   background-color: #757a80;
 }
 
+/************modal edit post************************/
 
-/************************************/
+.btn-modal {
+  display: block;
+  margin: 100px auto 0;
+  font-size: 15px;
+}
+
+.modal_Edit,
+.overlay_Edit {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.overlay_Edit {
+  background: rgba(252, 252, 253, 0.7);
+}
+.modal-content_Edit {
+  position: absolute;
+  top: 45%;
+  left: 47.7%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  padding: 14px 28px;
+  color: #ffffff;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+  z-index: 2;
+}
+
+.close-modal_create {
+  position: absolute;
+  top: 5.5px;
+  right: -25px;
+  padding: 5px 3px;
+  font-size: 37px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: rgb(119, 111, 111);
+}
+
+.close-modal_create :hover {
+  color: #a51010;
+  transition: all 0.2s;
+}
+
+.Edit_post_pagePost {
+  position: relative;
+  width: 38rem;
+  height: 17.5rem;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  background-color: #ffffff;
+}
+
+.button_Save {
+  cursor: pointer;
+  box-sizing: inherit;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  margin-right: 5px;
+  background: #5596e6;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  width: 29rem;
+  color: #f4f4f5;
+  transition: all 0.3s;
+  border: none;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.button_Save:hover {
+  background: #3572bd;
+}
+
+.Delete_button {
+  width: 6rem;
+  cursor: pointer;
+  box-sizing: inherit;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  margin-right: 5px;
+  background: #c71717;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  color: #f4f4f5;
+  transition: all 0.3s;
+  border: none;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.Delete_button:hover {
+  background: #a51010;
+}
+
+.rubbish {
+  font-size: 18px;
+}
