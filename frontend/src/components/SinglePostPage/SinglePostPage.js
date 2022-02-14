@@ -112,7 +112,17 @@ const SinglePostPage = () => {
       }
     }
   };
- 
+  /******************************************************** */
+  const checkLikes = () => {
+    const filtered = likes.filter((element) => {
+      return element.user_id == state.user_id;
+    });
+    if (filtered.length != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   /* ****************************************************** */
   const getPostByID = async () => {
     try {
