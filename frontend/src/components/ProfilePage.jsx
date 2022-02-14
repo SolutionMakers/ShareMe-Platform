@@ -231,6 +231,16 @@ const ProfilePage = () => {
       return e.post_id === id;
     });
   };
+  const checkLikes = (id) => {
+    const filtered = allLikes.filter((element) => {
+      return element.user_id == state.user_id && element.post_id == id;
+    });
+    if (filtered.length != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   /************************************************************************************************************* */
   const handleUpdate = async (id) => {
     try {
@@ -664,7 +674,7 @@ const ProfilePage = () => {
             <span className="post_title">Posts</span>
           </div>
 
-          {userPosts.length && !show ? (
+          {userPosts.length &&  !show ? (
             userPosts.map((element, index) => {
               return (
                 <div key={index} className="post">
@@ -741,6 +751,12 @@ const ProfilePage = () => {
 
                     <div className="postBottom">
                       <div className="postBottomLeft">
+                      {checkLikes(element.id) ? (
+                        <BsFillHeartFill
+                          className="likeIcon_heart"
+                          style={{ transition: "all 0.5s", color: "#e60023" }}
+                        />
+                      ) : (
                         <BsFillHeartFill
                           className="likeIcon_heart"
                           onClick={(e) => {
@@ -749,6 +765,7 @@ const ProfilePage = () => {
                             e.target.style.transition = "all 0.5s";
                           }}
                         />
+                      )}
 
                         <span className="postLikeCounter">
                           {filterArray(element.id).length} People Like It
