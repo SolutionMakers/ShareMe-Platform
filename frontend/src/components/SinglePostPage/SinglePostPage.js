@@ -6,9 +6,9 @@ import {
   BsThreeDotsVertical,
   BsFillHeartFill,
   BsChatDotsFill,
-  BsPlusCircleFill,BsPen
+  BsPlusCircleFill,
+  BsPen,
 } from "react-icons/bs";
-
 
 import { MdDeleteForever } from "react-icons/md";
 import axios from "axios";
@@ -24,6 +24,7 @@ const SinglePostPage = () => {
     return {
       token: state.loginReducer.token,
       posts: state.postsReducer.posts,
+      user_id: state.loginReducer.user_id,
     };
   });
   const [post, setPost] = useState([]);
@@ -108,6 +109,17 @@ const SinglePostPage = () => {
       if (error.response && error.response.data) {
         console.log(error.response.data.message);
       }
+    }
+  };
+  /******************************************************** */
+  const checkLikes = () => {
+    const filtered = likes.filter((element) => {
+      return element.user_id == state.user_id;
+    });
+    if (filtered.length != 0) {
+      return true;
+    } else {
+      return false;
     }
   };
   /* ****************************************************** */
@@ -209,86 +221,60 @@ const SinglePostPage = () => {
                   <div>
                     {" "}
                     {modal && (
-                           <div className="modal_Edit">
-                           <div
-                             onClick={toggleModal}
-                             className="overlay_Edit"
-                           ></div>
-                           <div className="modal-content_Edit">
-
-
-
-
-
-
-
-
-
-                             <div className="Edit_post_pagePost">
-             <div className="pen_publish_pagePost">
-               <BsPen className="icon_pen_pagePost" />
-               <div className="publish_pagePost">Edit Post</div>
-             </div>
-
-             <div className="border_bottom_create_pagePost"></div>
-             <div className="content_create_post_pagePost">
-               <img
-                 className="img_user_creat_post_pagePost"
-                 src={imgUser !== "undefined" ? imgUser : noAvatar}
-               />
-
-               <textarea
-                 id="publish_pagePost"
-                 className="textarea_pagePost"
-                 defaultValue={post.description}
-                 rows="3"
-               
-                 spellCheck="false"
-                 onChange={(e) => {
-                   setDescription(e.target.value);
-                 }}
-               ></textarea>
-
-
-             </div>
-             <div className="upload_media_post_pagePost">
-              
-               <button
-                 className="Delete_button"
-                 onClick={(e) => {
-                   handleDelete(id)
-                
-                   toggleModal();
-                 
-                  
-                 }}
-               >
-                 <MdDeleteForever className="rubbish"/>
-                 Delete
-               </button>
-
-               <button
-                 className="button_Save"
-                 onClick={(e) => {
-                    handleUpdate(id)
-                    toggleModal();
-                 }}
-               >
-                 Save
-               </button>
-             </div>
-           </div>
-
-
-
-
-
-
-
-
-
-                           </div>
-                         </div>
+                      <div className="modal_Edit">
+                        <div
+                          onClick={toggleModal}
+                          className="overlay_Edit"
+                        ></div>
+                        <div className="modal-content_Edit">
+                          <div className="Edit_post_pagePost">
+                            <div className="pen_publish_pagePost">
+                              <BsPen className="icon_pen_pagePost" />
+                              <div className="publish_pagePost">Edit Post</div>
+                            </div>
+                            <div className="border_bottom_create_pagePost"></div>
+                            <div className="content_create_post_pagePost">
+                              <img
+                                className="img_user_creat_post_pagePost"
+                                src={
+                                  imgUser !== "undefined" ? imgUser : noAvatar
+                                }
+                              />
+                              <textarea
+                                id="publish_pagePost"
+                                className="textarea_pagePost"
+                                defaultValue={post.description}
+                                rows="3"
+                                spellCheck="false"
+                                onChange={(e) => {
+                                  setDescription(e.target.value);
+                                }}
+                              ></textarea>
+                            </div>
+                            <div className="upload_media_post_pagePost">
+                              <button
+                                className="Delete_button"
+                                onClick={(e) => {
+                                  handleDelete(id);
+                                  toggleModal();
+                                }}
+                              >
+                                <MdDeleteForever className="rubbish" />
+                                Delete
+                              </button>
+                              <button
+                                className="button_Save"
+                                onClick={(e) => {
+                                  handleUpdate(id);
+                                  toggleModal();
+                                }}
+                              >
+                                Save
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       // <div className="modal_post">
                       //   <div
                       //     onClick={toggleModal}
@@ -327,41 +313,39 @@ const SinglePostPage = () => {
                   </div>
                 </div>
               </div>
-
               <div className="postCenter">
                 <p className="postText">{post.description}</p>
                 <img className="postImg" src={post.media} alt="" />
               </div>
-
               <div className="postBottom">
                 <div className="postBottomLeft">
-                  <BsFillHeartFill
-                    className="likeIcon_heart"
-                    onClick={(e) => {
-                      putNewLike(post.id);
-                      e.target.style.color = "#e60023";
-                      e.target.style.transition = "all 0.5s";
-                    }}
-                  />
-
+                  {checkLikes() ? (
+                    <BsFillHeartFill
+                      className="likeIcon_heart"
+                      style={{ transition: "all 0.5s", color: "#e60023" }}
+                    />
+                  ) : (
+                    <BsFillHeartFill
+                      className="likeIcon_heart"
+                      onClick={(e) => {
+                        putNewLike(id);
+                        e.target.style.color = "#e60023";
+                        e.target.style.transition = "all 0.5s";
+                      }}
+                    />
+                  )}
                   <span className="postLikeCounter">
                     {likes.length} People Like It
                   </span>
                 </div>
-
                 <div className="postBottomRight">
-                   
-                      <BsChatDotsFill
-                        className="postCommentText"
-                      
-                      />
-                         comments: {comments.length}
-                    </div>
+                  <BsChatDotsFill className="postCommentText" />
+                  comments: {comments.length}
+                </div>
                 {/* <span>Comments: {comments.length}</span> */}
               </div>
             </div>
             <div className="all_comments">
-            
               {comments.length ? (
                 comments.map((element, index) => {
                   return (
@@ -375,13 +359,11 @@ const SinglePostPage = () => {
                               : noAvatar
                           }
                         />
-
                         <div className="one_comment">
                           <div className="comment_flex_column">
                             <div className="uesr_commenter_name">
                               {element.userName}
                             </div>
-
                             <div className="comment_font">
                               {element.comment}
                             </div>
