@@ -664,7 +664,7 @@ const ProfilePage = () => {
             <span className="post_title">Posts</span>
           </div>
 
-          {userPosts.length ? (
+          {userPosts.length && !show ? (
             userPosts.map((element, index) => {
               return (
                 <div key={index} className="post">
