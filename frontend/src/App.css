@@ -1170,6 +1170,7 @@ gap: 5px;
   margin: 400px 0;
 
   margin-left: 12.2rem;
+  
 }
 
 .imgees {
@@ -1187,6 +1188,7 @@ gap: 5px;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   margin: 26px 0;
+  overflow-y: scroll;
 }
 
 .imges_box {
@@ -1256,7 +1258,7 @@ gap: 5px;
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  margin: -235px ;
+  margin: -170px ;
 
   margin-left: 12.2rem;
 }
@@ -1280,7 +1282,7 @@ gap: 5px;
   padding-bottom: 5px;
   justify-content: center;
   padding-left: 10px;
-
+  overflow-y: scroll;
   background-color: #ffffff;
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
