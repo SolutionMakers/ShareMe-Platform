@@ -896,6 +896,123 @@ background-color: #e7dfdf;
   font-size: 15px;
 }
 
+.compose{
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  box-sizing: inherit;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6px 16px;
+  margin-right: 10px;
+  background: #bb2f2f;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  color: #ffffff;
+  transition: all 0.3s;
+  width: 110px;
+}
+
+.compose:hover{
+
+  background: #a12626;
+}
+.icon_cam_svg{
+  cursor: pointer;
+}
+.media_ {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #ffffff;
+  box-sizing: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  display: block;
+  padding: 0 8px;
+}
+
+.buttons_upload_flex{
+
+display: flex;
+align-items: center;
+
+}
+
+
+.upload_edit_pic{
+
+  
+  font-weight: 600;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  box-sizing: inherit;
+  position: relative;
+  display: flex;
+justify-content: center;
+  align-items: center;
+  padding: 6px 16px;
+  margin-right: 10px;
+  background: #1f91c5;
+  border-radius: 7px;
+  font-size: 0.98em;
+  color: #ffffff;
+  transition: all 0.3s;
+  width: 180px;
+  outline: none;
+  border: none;
+
+}
+
+.upload_edit_pic:hover{
+  background: #1c7199;
+}
+
+.square_img{
+
+
+  width: 220px;
+  height:220px;
+  border-radius: 5%;
+  object-fit: cover;
+  
+  box-shadow: 0 0 3px rgb(145, 144, 144);
+}
+.font_span_pic{
+  font-size: 30px;
+  font-weight: 600;
+  color: #393a4f;
+}
+
+.modal_edit_pic_profile{
+display: flex;
+flex-direction: column;
+  width: 400px;
+  height: 350px;
+  background-color: #fdfdfd;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border-radius: 10px;
+
+
+}
+
+
 .modal_profile,
 .overlay_profile {
   width: 100vw;
@@ -917,30 +1034,106 @@ background-color: #e7dfdf;
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #f1f1f1;
+
   border-radius: 3px;
   max-width: 600px;
   min-width: 300px;
   z-index: 2;
+ 
+
 }
 
-.close-modal_profile {
+
+
+
+
+
+/************************Cover*************************/
+.modal_cover,
+.overlay_cover {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 2;
+}
+
+.overlay_cover {
+  background: rgba(98, 98, 98, 0.4);
+}
+.modal-content_cover {
   position: absolute;
-  top: 5.5px;
-  right: -25px;
-  padding: 5px 3px;
-  font-size: 37px;
-  cursor: pointer;
+  top: 47%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+ 
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+  z-index: 2;
+ 
+
+}
+
+
+.modal_edit_pic_cover{
   display: flex;
+  flex-direction: column;
+    width: 800px;
+    height: 500px;
+    background-color: #fdfdfd;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+  
+  
+  }
+.rectangular_img{
+
+  
+  width: 600px;
+  height:300px;
+  border-radius: 1%;
+  object-fit: cover;
+  
+  box-shadow: 0 0 3px rgb(145, 144, 144);
+}
+
+.upload_edit_cover{
+ 
+  font-weight: 600;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  cursor: pointer;
+  box-sizing: inherit;
+  position: relative;
+  display: flex;
+justify-content: center;
   align-items: center;
-  color: rgb(119, 111, 111);
+  padding: 6px 16px;
+  margin-right: 10px;
+  background: #1f91c5;
+  border-radius: 7px;
+  font-size: 0.98em;
+  color: #ffffff;
+  transition: all 0.3s;
+  width: 350px;
+  outline: none;
+  border: none;
+
 }
 
-.close-modal_profile :hover {
-  color: #5a4646;
-  transition: all 0.2s;
+.upload_edit_cover:hover{
+  background: #1c7199;
 }
 
+/*******************************************************/
 .all_avatar {
   display: flex;
   flex-direction: column;
@@ -994,6 +1187,7 @@ background-color: #e7dfdf;
   transition: all 0.3s;
   border: none;
   width: 3.5rem;
+  background-color: #527cc5;
 
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
@@ -1060,7 +1254,6 @@ background-color: #e7dfdf;
   max-width: 100%;
   display: block;
   border-radius: 3px;
-  /* object-position: top; */
   object-fit: cover;
 
   max-height: 370px;
