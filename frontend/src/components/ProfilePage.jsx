@@ -583,20 +583,6 @@ const ProfilePage = () => {
             )}
           </div>
 
-          {/************************* This map for the posts images ***************************** */}
-
-          {/* {false ? (
-            postsImages ? (
-              postsImages.map((element, index) => {
-                return <img src={element.media} />;
-              })
-            ) : (
-              <></>
-            )
-          ) : (
-            <></>
-          )} */}
-
           {/*****************************photo box************ */}
 
           <div className="tow">
@@ -622,6 +608,14 @@ const ProfilePage = () => {
                         : noAvatar
                     }
                   />
+
+                  {postsImages ? (
+                    postsImages.map((element, index) => {
+                      return <img src={element.media} className="imges_box" />;
+                    })
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </div>

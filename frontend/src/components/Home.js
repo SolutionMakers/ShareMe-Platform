@@ -10,7 +10,7 @@ import {
   BsPen,
   BsChatDotsFill,
 } from "react-icons/bs";
-
+import { MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
 /******************************************************************************************************* */
@@ -235,38 +235,82 @@ const Home = () => {
                             onClick={() => toggleModal(element.id)}
                           />
                           {modal && id == element.id && (
-                            <div className="modal_post">
+                            <div className="modal_Edit">
                               <div
                                 onClick={toggleModal}
-                                className="overlay_post"
+                                className="overlay_Edit"
                               ></div>
-                              <div className="modal-content_post">
-                                <h2>Edit Post</h2>
-                                <button
-                                  className="button_delete"
-                                  onClick={() => handleDelete(element.id)}
-                                >
-                                  delete
-                                </button>
-                                <input
-                                  type="text"
-                                  defaultValue={element.description}
-                                  placeholder="updated description"
-                                  onChange={(e) => {
-                                    setDescription(e.target.value);
-                                  }}
-                                />
-                                <button
-                                  onClick={() => handleUpdate(element.id)}
-                                >
-                                  Update
-                                </button>
-                                <button
-                                  className="close-modal_post"
-                                  onClick={() => toggleModal("")}
-                                >
-                                  CLOSE
-                                </button>
+                              <div className="modal-content_Edit">
+
+
+
+
+
+
+
+
+
+                                <div className="Edit_post_pagePost">
+                <div className="pen_publish_pagePost">
+                  <BsPen className="icon_pen_pagePost" />
+                  <div className="publish_pagePost">Edit Post</div>
+                </div>
+
+                <div className="border_bottom_create_pagePost"></div>
+                <div className="content_create_post_pagePost">
+                  <img
+                    className="img_user_creat_post_pagePost"
+                    src={imgUser !== "undefined" ? imgUser : noAvatar}
+                  />
+
+                  <textarea
+                    id="publish_pagePost"
+                    className="textarea_pagePost"
+                    defaultValue={element.description}
+                    rows="3"
+                  
+                    spellCheck="false"
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
+                  ></textarea>
+
+
+                </div>
+                <div className="upload_media_post_pagePost">
+                 
+                  <button
+                    className="Delete_button"
+                    onClick={(e) => {
+                      handleDelete(element.id)
+                      toggleModal();
+                     
+                    }}
+                  >
+                    <MdDeleteForever className="rubbish"/>
+                    Delete
+                  </button>
+
+                  <button
+                    className="button_Save"
+                    onClick={(e) => {
+                       handleUpdate(element.id)
+                       toggleModal();
+                    }}
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
                               </div>
                             </div>
                           )}
