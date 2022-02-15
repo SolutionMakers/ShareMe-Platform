@@ -410,7 +410,8 @@ const ProfilePage = () => {
                       type="file"
                       accept=".png, .jpg, .jpeg"
                       onChange={(e) => {
-                        setUploadedCover(e.target.files[0]);
+                        setUploadedCover(e.target.files[0])
+                      }}
                       />
                     </div>
 
