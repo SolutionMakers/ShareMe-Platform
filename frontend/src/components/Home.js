@@ -167,6 +167,7 @@ const Home = () => {
   return (
     <div className="contain_all_home">
       <div className="left_home">
+
         
 
       <div className="chat_style">
@@ -174,6 +175,7 @@ const Home = () => {
                navigation("/chat");
          }}/>
 </div>
+
       </div>
 
       <div className="middle_home">
@@ -330,14 +332,20 @@ const Home = () => {
 
                   <div className="postCenter">
                     <p className="postText">{element.description}</p>
-                    <img
-                      className="postImg"
-                      src={element.media}
-                      alt=""
-                      onClick={() => {
-                        navigation(`/post/${element.id}`);
-                      }}
-                    />
+                    {element.media.includes("video") ? (
+                      <video controls className="postImg">
+                        <source src={element.media} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <img
+                        className="postImg"
+                        src={element.media}
+                        alt=""
+                        onClick={() => {
+                          navigation(`/post/${element.id}`);
+                        }}
+                      />
+                    )}
                   </div>
 
                   <div className="postBottom">
