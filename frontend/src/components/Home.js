@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { setPosts, updatePost, deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { format, render, cancel, register } from "timeago.js";
+import { format } from "timeago.js";
 import { FaUserFriends } from "react-icons/fa";
 import {
   BsThreeDotsVertical,
