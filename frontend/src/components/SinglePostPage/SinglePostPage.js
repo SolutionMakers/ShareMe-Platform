@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { setPosts, updatePost, deletePost } from "../../reducers/post/index";
+import {  updatePost, deletePost } from "../../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
-import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   BsThreeDotsVertical,
   BsFillHeartFill,
@@ -13,13 +13,12 @@ import {
 import { MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import noAvatar from "../../images/noAvatar.png";
-import { format, render, cancel, register } from "timeago.js";
+import { format} from "timeago.js";
 import "../SinglePostPage/SinglePostPage.css";
 
 const SinglePostPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const navigation = useNavigate();
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
