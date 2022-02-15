@@ -207,7 +207,14 @@ const Home = () => {
                         navigation(`/chat/`);
                       }}
                     >
-                      <img className="user_sug_img" src={e.profileimage} />
+                      <img
+                        className="user_sug_img"
+                        src={
+                          e.profileimage !== "undefined"
+                            ? e.profileimage
+                            : noAvatar
+                        }
+                      />
                       <div className="user_fri_name">{e.userName}</div>
                     </div>
                   </>
@@ -446,7 +453,14 @@ const Home = () => {
                           navigation(`/profile/${e.id}`);
                         }}
                       >
-                        <img className="user_sug_img" src={e.profileimage} />
+                        <img
+                          className="user_sug_img"
+                          src={
+                            e.profileimage !== "undefined"
+                              ? e.profileimage
+                              : noAvatar
+                          }
+                        />
                         <div className="user_sug_name">{e.userName}</div>
                       </div>
                     ) : (
