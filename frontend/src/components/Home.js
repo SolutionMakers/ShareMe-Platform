@@ -3,6 +3,7 @@ import { setPosts, updatePost, deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { format, render, cancel, register } from "timeago.js";
+import { FaUserFriends } from "react-icons/fa";
 import {
   BsThreeDotsVertical,
   BsFillHeartFill,
@@ -20,6 +21,7 @@ const Home = () => {
   const [id, setId] = useState("");
   const [allLikes, setAllLikes] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
 
   /***************************************************************************************************************** */
   const navigation = useNavigate();
@@ -55,6 +57,21 @@ const Home = () => {
     }
   };
   /**************************************************************************************************************** */
+
+  /********************************************************************************************************************* */
+
+  const getAllUsers = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/users");
+      if (res.data.success) {
+        setAllUsers(res.data.results);
+      } else throw Error;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
+
+  /**************************************************************** */
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:5000/posts/${id}`)
@@ -126,6 +143,7 @@ const Home = () => {
   useEffect(() => {
     getAllPosts();
     getAllLikes();
+    getAllUsers();
   }, []);
   /**********************************************************************************************************************/
   const filterArray = (id) => {
@@ -148,7 +166,34 @@ const Home = () => {
 
   return (
     <div className="contain_all_home">
-      <div className="left_home"></div>
+      <div className="left_home">
+        <div className="suggestions_and_box">
+          <div className="suggestions_word">
+            <FaUserFriends className="icon_sug" /> Suggestions
+          </div>
+          <div className="box_suggestions">
+            {allUsers.length ? (
+              allUsers.map((e, i) => {
+                return (
+                  <>
+                    <div
+                      className="user_rod_suggestions"
+                      onClick={() => {
+                        navigation(`/profile/${e.id}`);
+                      }}
+                    >
+                      <img className="user_sug_img" src={e.profileimage} />
+                      <div className="user_sug_name">{e.userName}</div>
+                    </div>
+                  </>
+                );
+              })
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
+      </div>
 
       <div className="middle_home">
         <div className="create_post">
@@ -241,76 +286,57 @@ const Home = () => {
                                 className="overlay_Edit"
                               ></div>
                               <div className="modal-content_Edit">
-
-
-
-
-
-
-
-
-
                                 <div className="Edit_post_pagePost">
-                <div className="pen_publish_pagePost">
-                  <BsPen className="icon_pen_pagePost" />
-                  <div className="publish_pagePost">Edit Post</div>
-                </div>
+                                  <div className="pen_publish_">
+                                    <BsPen className="icon_pen_" />
+                                    <div className="publish_">Edit Post</div>
+                                  </div>
 
-                <div className="border_bottom_create_pagePost"></div>
-                <div className="content_create_post_pagePost">
-                  <img
-                    className="img_user_creat_post_pagePost"
-                    src={imgUser !== "undefined" ? imgUser : noAvatar}
-                  />
+                                  <div className="border_bottom_create_"></div>
+                                  <div className="content_create_post_">
+                                    <img
+                                      className="img_user_creat_post_"
+                                      src={
+                                        imgUser !== "undefined"
+                                          ? imgUser
+                                          : noAvatar
+                                      }
+                                    />
 
-                  <textarea
-                    id="publish_pagePost"
-                    className="textarea_pagePost"
-                    defaultValue={element.description}
-                    rows="3"
-                  
-                    spellCheck="false"
-                    onChange={(e) => {
-                      setDescription(e.target.value);
-                    }}
-                  ></textarea>
+                                    <textarea
+                                      id="publish_"
+                                      className="textarea_"
+                                      defaultValue={element.description}
+                                      rows="3"
+                                      spellCheck="false"
+                                      onChange={(e) => {
+                                        setDescription(e.target.value);
+                                      }}
+                                    ></textarea>
+                                  </div>
+                                  <div className="upload_media_post_">
+                                    <button
+                                      className="Delete_button"
+                                      onClick={(e) => {
+                                        handleDelete(element.id);
+                                        toggleModal();
+                                      }}
+                                    >
+                                      <MdDeleteForever className="rubbish" />
+                                      Delete
+                                    </button>
 
-
-                </div>
-                <div className="upload_media_post_pagePost">
-                 
-                  <button
-                    className="Delete_button"
-                    onClick={(e) => {
-                      handleDelete(element.id)
-                      toggleModal();
-                     
-                    }}
-                  >
-                    <MdDeleteForever className="rubbish"/>
-                    Delete
-                  </button>
-
-                  <button
-                    className="button_Save"
-                    onClick={(e) => {
-                       handleUpdate(element.id)
-                       toggleModal();
-                    }}
-                  >
-                    Save
-                  </button>
-                </div>
-              </div>
-
-
-
-
-
-
-
-
-
+                                    <button
+                                      className="button_Save"
+                                      onClick={(e) => {
+                                        handleUpdate(element.id);
+                                        toggleModal();
+                                      }}
+                                    >
+                                      Save
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           )}
