@@ -155,7 +155,7 @@ const ProfilePage = () => {
       if (res.data.success) {
         console.log(res.data);
         getUserInfo();
-        localStorage.getItem("img");
+        localStorage.setItem("img", profileimage);
       }
     } catch (err) {
       console.log(err);
@@ -371,65 +371,62 @@ const ProfilePage = () => {
             <></>
           )}
           {coverModal && (
-          
-
             <div className="modal_cover">
-            <div onClick={toggleModalCover} className="overlay_cover"></div>
-            <div className="modal-content_cover">
-              <div className="modal_edit_pic_cover">
-                <span className="font_span_pic">Edit your Cover</span>
-                <img
-                  className="rectangular_img"
-                  src={
-                    userInfo.profilecover !== "undefined"
-                      ? userInfo.profilecover
-                      : cover
-                  }
-                />
+              <div onClick={toggleModalCover} className="overlay_cover"></div>
+              <div className="modal-content_cover">
+                <div className="modal_edit_pic_cover">
+                  <span className="font_span_pic">Edit your Cover</span>
+                  <img
+                    className="rectangular_img"
+                    src={
+                      userInfo.profilecover !== "undefined"
+                        ? userInfo.profilecover
+                        : cover
+                    }
+                  />
 
-                <div className="buttons_upload_flex">
-                  <div className="compose">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-camera_pagePost"
-                      id="icon_cam_svg"
-                    >
-                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                      <circle cx="12" cy="13" r="4"></circle>
-                    </svg>
-                    <span className="media_">Media</span>
-                    <input
-                      id="feed-upload-input-2_pagePost"
-                      type="file"
-                      accept=".png, .jpg, .jpeg"
-                      onChange={(e) => {
-                        setUploadedCover(e.target.files[0]);
+                  <div className="buttons_upload_flex">
+                    <div className="compose">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather feather-camera_pagePost"
+                        id="icon_cam_svg"
+                      >
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                      </svg>
+                      <span className="media_">Media</span>
+                      <input
+                        id="feed-upload-input-2_pagePost"
+                        type="file"
+                        accept=".png, .jpg, .jpeg"
+                        onChange={(e) => {
+                          setUploadedCover(e.target.files[0]);
+                        }}
+                      />
+                    </div>
+
+                    <button
+                      className="upload_edit_cover"
+                      onClick={() => {
+                        uploadCoverPhoto();
+                        toggleModalCover();
                       }}
-                    />
+                    >
+                      Upload
+                    </button>
                   </div>
-
-                  <button
-                    className="upload_edit_cover"
-                    onClick={() => {
-                      uploadCoverPhoto();
-                      toggleModalCover();
-                    }}
-                  >
-                    Upload
-                  </button>
                 </div>
               </div>
             </div>
-          </div>
-
           )}
 
           {coverShow && (
@@ -462,9 +459,6 @@ const ProfilePage = () => {
             }
           />
         </div>
-
-
-
 
         <div className="all_avatar">
           <div className="avatar">
