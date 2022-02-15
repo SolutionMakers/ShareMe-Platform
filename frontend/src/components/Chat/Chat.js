@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "../Chat/Chat.css";
 import { io } from "socket.io-client";
@@ -14,18 +13,14 @@ const Chat = () => {
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
-      posts: state.postsReducer.posts,
       user_id: state.loginReducer.user_id,
       userName: state.loginReducer.userName,
     };
   });
   const [loggedIn, setLoggedIn] = useState(false);
   const [message, setMessage] = useState("");
-  const [roomId, setRoomId] = useState("");
   const [letsStart, setLetsStart] = useState(false);
-  const [userName, setUserName] = useState(state.userName);
   const [messageList, setMessageList] = useState([]);
-  const [allUsers, setAllUsers] = useState([]);
   const [allFriends, setAllFriends] = useState([]);
   const [room, setRoom] = useState(0);
 
@@ -57,17 +52,6 @@ const Chat = () => {
     }
   };
   /************************************************************** */
-  const getAllUsers = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/users");
-      if (res.data.success) {
-        setAllUsers(res.data.results);
-      } else throw Error;
-    } catch (err) {
-      console.log(err.response.data);
-    }
-  };
-  /****************************************************** */
   const getAllFriendsByUserId = async () => {
     try {
       const res = await axios.get(
@@ -144,7 +128,6 @@ const Chat = () => {
   /************************************************************** */
   useEffect(() => {
     joinRoom();
-    getAllUsers();
     getAllFriendsByUserId();
     reciveMessage();
   }, [messageList]);
@@ -267,8 +250,6 @@ const Chat = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="right_side_chat">Details</div> */}
       </div>
     </>
   );

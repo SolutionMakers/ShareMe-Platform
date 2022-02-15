@@ -14,7 +14,7 @@ const postsReducer = (state = initialState, { type, payload }) => {
     case "UPDATE_POST":
       return {
         posts: state.posts.map((element) => {
-          if (payload.id == element.id) {
+          if (payload.id === element.id) {
             return payload;
           } else {
             return element;
@@ -24,7 +24,7 @@ const postsReducer = (state = initialState, { type, payload }) => {
     case "DELETE_POST":
       return {
         posts: state.posts.filter((element) => {
-          return element.id != payload;
+          return element.id !== payload;
         }),
       };
     default:

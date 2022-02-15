@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { addPost } from "../../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -23,8 +23,7 @@ const NewPost = () => {
     };
   });
   /******************************************* */
-  //console.log(uploadedImage.type?.split("/")[0]);
-  //uploadedImage.name.split("").pop()
+
   const uploadimage = async () => {
     const formData = new FormData();
     formData.append("file", uploadedImage);
