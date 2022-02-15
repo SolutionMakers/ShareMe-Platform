@@ -7,7 +7,7 @@ import { FaUserFriends } from "react-icons/fa";
 import {
   BsThreeDotsVertical,
   BsFillHeartFill,
-  BsFillHandThumbsUpFill,
+  BsFillChatLeftTextFill,
   BsPen,
   BsChatDotsFill,
 } from "react-icons/bs";
@@ -22,6 +22,7 @@ const Home = () => {
   const [allLikes, setAllLikes] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+  const [allFriends, setAllFriends] = useState([]);
 
   /***************************************************************************************************************** */
   const navigation = useNavigate();
@@ -128,6 +129,21 @@ const Home = () => {
       }
     }
   };
+
+  /********************************************************** */
+
+  const getAllFriendsByUserId = async () => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/friends/user/${state.user_id}`
+      );
+      if (res.data.success) {
+        setAllFriends(res.data.results);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   /****************************************************************************************************************** */
   const getAllLikes = async () => {
     try {
@@ -144,6 +160,7 @@ const Home = () => {
     getAllPosts();
     getAllLikes();
     getAllUsers();
+    getAllFriendsByUserId();
   }, []);
   /**********************************************************************************************************************/
   const filterArray = (id) => {
@@ -164,18 +181,43 @@ const Home = () => {
   };
   /**********************************************************************************************************************/
 
+  let finalArray = allFriends.map(function (obj) {
+    return obj.id;
+  });
+
+  console.log(finalArray);
+  /*************************************************************************** */
   return (
     <div className="contain_all_home">
       <div className="left_home">
+        <div className="chat_with_friends">
+          <div className="connect_word">
+            <BsFillChatLeftTextFill className="icon_sug" /> Connect with your
+            friends
+          </div>
 
-        
-
-      <div className="chat_style">
-         <img src="https://res.cloudinary.com/dvg9eijgb/image/upload/v1644942544/un8ydzwuqx7mqcdooskk.png" className="img_chat_poster" onClick={()=>{
-               navigation("/chat");
-         }}/>
-</div>
-
+          <div className="box_chat_home">
+            {allFriends.length ? (
+              allFriends.map((e, i) => {
+                return (
+                  <>
+                    <div
+                      className="user_rod_suggestions"
+                      onClick={() => {
+                        navigation(`/chat/`);
+                      }}
+                    >
+                      <img className="user_sug_img" src={e.profileimage} />
+                      <div className="user_fri_name">{e.userName}</div>
+                    </div>
+                  </>
+                );
+              })
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="middle_home">
@@ -388,7 +430,7 @@ const Home = () => {
         </div>
       </div>
       <div className="rigth_home">
-      <div className="suggestions_and_box">
+        <div className="suggestions_and_box">
           <div className="suggestions_word">
             <FaUserFriends className="icon_sug" /> Suggestions
           </div>
@@ -397,15 +439,19 @@ const Home = () => {
               allUsers.map((e, i) => {
                 return (
                   <>
-                    <div
-                      className="user_rod_suggestions"
-                      onClick={() => {
-                        navigation(`/profile/${e.id}`);
-                      }}
-                    >
-                      <img className="user_sug_img" src={e.profileimage} />
-                      <div className="user_sug_name">{e.userName}</div>
-                    </div>
+                    {state.user_id != e.id && !finalArray.includes(e.id) ? (
+                      <div
+                        className="user_rod_suggestions"
+                        onClick={() => {
+                          navigation(`/profile/${e.id}`);
+                        }}
+                      >
+                        <img className="user_sug_img" src={e.profileimage} />
+                        <div className="user_sug_name">{e.userName}</div>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </>
                 );
               })
