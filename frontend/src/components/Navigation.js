@@ -19,7 +19,6 @@ const Navigation = () => {
     };
   });
   /***************************************************************************************** */
-
   const [allUsers, setAllUsers] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [typing, setTyping] = useState("");
@@ -42,8 +41,6 @@ const Navigation = () => {
     });
     setSearchResult(result);
   };
-  console.log(searchResult);
-
   /***************************************************************** */
 
   const toggleModal = () => {
@@ -101,7 +98,11 @@ const Navigation = () => {
                             }}
                           >
                             <img
-                              src={user.profileimage}
+                              src={
+                                user.profileimage !== "undefined"
+                                  ? user.profileimage
+                                  : noAvatar
+                              }
                               className="img_search"
                             />
                             <span>{user.userName}</span>

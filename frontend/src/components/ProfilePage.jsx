@@ -155,7 +155,7 @@ const ProfilePage = () => {
       if (res.data.success) {
         console.log(res.data);
         getUserInfo();
-        localStorage.getItem("img");
+        localStorage.setItem("img", profileimage);
       }
     } catch (err) {
       console.log(err);
@@ -371,23 +371,22 @@ const ProfilePage = () => {
             <></>
           )}
           {coverModal && (
-          
-
             <div className="modal_cover">
-            <div onClick={toggleModalCover} className="overlay_cover"></div>
-            <div className="modal-content_cover">
-              <div className="modal_edit_pic_cover">
-                <span className="font_span_pic">Edit your Cover</span>
-                <img
-                  className="rectangular_img"
-                  src={
-                    userInfo.profilecover !== "undefined"
-                      ? userInfo.profilecover
-                      : cover
-                  }
-                />
+              <div onClick={toggleModalCover} className="overlay_cover"></div>
+              <div className="modal-content_cover">
+                <div className="modal_edit_pic_cover">
+                  <span className="font_span_pic">Edit your Cover</span>
+                  <img
+                    className="rectangular_img"
+                    src={
+                      userInfo.profilecover !== "undefined"
+                        ? userInfo.profilecover
+                        : cover
+                    }
+                  />
 
-                <div className="buttons_upload_flex">
+
+                   <div className="buttons_upload_flex">
                   <div className="compose">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -412,24 +411,24 @@ const ProfilePage = () => {
                       accept=".png, .jpg, .jpeg"
                       onChange={(e) => {
                         setUploadedCover(e.target.files[0]);
-                      }}
-                    />
-                  </div>
+                      />
+                    </div>
 
-                  <button
-                    className="upload_edit_cover"
-                    onClick={() => {
-                      uploadCoverPhoto();
-                      toggleModalCover();
-                    }}
-                  >
-                    Upload
-                  </button>
+                    <button
+                      className="upload_edit_cover"
+                      onClick={() => {
+                        uploadCoverPhoto();
+                        toggleModalCover();
+
+
+                      }}
+                    >
+                      Upload
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
           )}
 
           {coverShow && (
@@ -462,9 +461,6 @@ const ProfilePage = () => {
             }
           />
         </div>
-
-
-
 
         <div className="all_avatar">
           <div className="avatar">
