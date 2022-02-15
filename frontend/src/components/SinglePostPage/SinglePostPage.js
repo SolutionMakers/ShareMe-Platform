@@ -281,7 +281,13 @@ const SinglePostPage = () => {
               </div>
               <div className="postCenter">
                 <p className="postText">{post.description}</p>
-                <img className="postImg" src={post.media} alt="" />
+                {post.media.includes("video") ? (
+                  <video controls className="postImg">
+                    <source src={post.media} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img className="postImg" src={post.media} alt="" />
+                )}
               </div>
               <div className="postBottom">
                 <div className="postBottomLeft">

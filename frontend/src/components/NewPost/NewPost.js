@@ -23,14 +23,20 @@ const NewPost = () => {
     };
   });
   /******************************************* */
-
+  //console.log(uploadedImage.type?.split("/")[0]);
+  //uploadedImage.name.split("").pop()
   const uploadimage = async () => {
     const formData = new FormData();
     formData.append("file", uploadedImage);
     formData.append("upload_preset", "wyggi4ze");
 
     await axios
-      .post("https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload", formData)
+      .post(
+        uploadedImage.type?.split("/")[0] == "video"
+          ? "https://api.cloudinary.com/v1_1/dvg9eijgb/video/upload"
+          : "https://api.cloudinary.com/v1_1/dvg9eijgb/image/upload",
+        formData
+      )
       .then((response) => {
         setMedia(response.data.secure_url);
       })

@@ -182,7 +182,14 @@ const Home = () => {
                         navigation(`/profile/${e.id}`);
                       }}
                     >
-                      <img className="user_sug_img" src={e.profileimage} />
+                      <img
+                        className="user_sug_img"
+                        src={
+                          e.profileimage !== "undefined"
+                            ? e.profileimage
+                            : noAvatar
+                        }
+                      />
                       <div className="user_sug_name">{e.userName}</div>
                     </div>
                   </>
@@ -349,14 +356,20 @@ const Home = () => {
 
                   <div className="postCenter">
                     <p className="postText">{element.description}</p>
-                    <img
-                      className="postImg"
-                      src={element.media}
-                      alt=""
-                      onClick={() => {
-                        navigation(`/post/${element.id}`);
-                      }}
-                    />
+                    {element.media.includes("video") ? (
+                      <video controls className="postImg">
+                        <source src={element.media} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <img
+                        className="postImg"
+                        src={element.media}
+                        alt=""
+                        onClick={() => {
+                          navigation(`/post/${element.id}`);
+                        }}
+                      />
+                    )}
                   </div>
 
                   <div className="postBottom">

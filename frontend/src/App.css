@@ -817,7 +817,6 @@ body {
   cursor: pointer;
 }
 
-
 .icon_pen:hover {
   color: black;
   transition: all 0.3s;
@@ -1411,7 +1410,7 @@ body {
 }
 
 .imgees {
-  height: 100%;
+  height: 200px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
@@ -1426,6 +1425,7 @@ body {
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   margin: 26px 0;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .imges_box {
@@ -1436,7 +1436,6 @@ body {
   cursor: pointer;
   box-shadow: 0 0 3px rgb(145, 144, 144);
   border: 1px solid #fff;
-
   display: flex;
 }
 
@@ -1451,11 +1450,9 @@ body {
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
   /* color: #344258; */
-
   color: #ffffff;
   box-sizing: inherit;
   margin: 0;
-
   font-weight: 500;
   padding: 9px 0px 0px 10px;
 }
@@ -1464,7 +1461,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 30px;
-
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   text-size-adjust: 100%;
@@ -1475,7 +1471,6 @@ body {
     "Helvetica Neue", Arial, sans-serif;
   color: #344258;
   box-sizing: inherit;
-
   width: 33.33333337%;
   padding: 0.5rem;
 }
@@ -1484,25 +1479,23 @@ body {
 
 .box_friends_all {
   display: flex;
-
   flex-direction: column;
-  width: 20rem;
-
-  height: 3rem;
-
-  background-color: #527cc5;
   border-radius: 0.6rem;
-  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  margin: -230px;
-
+  gap: 13px;
+  /*-webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);*/
+  margin: -150px;
   margin-left: 12.2rem;
 }
 
 .flex_friend_name {
   display: flex;
-  padding-left: 5px;
+  padding: 10px;
+  border-radius: 0.6rem;
   gap: 7px;
+
+  /*width: 250px;
+  height: 250px;*/
   align-items: center;
 }
 
@@ -1513,17 +1506,15 @@ body {
 .imgees_cintainer_f {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding-top: 7px;
-  padding-bottom: 5px;
+  width: 320px;
+  height: 100%;
+  gap: 10px;
   justify-content: center;
-  padding-left: 10px;
-  overflow-y: scroll;
   background-color: #ffffff;
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  margin: 26px 0px -200px 0px;
+  /* margin: 26px 0px -200px 0px; */
 }
 
 .imges_friend_pic {
@@ -1534,14 +1525,16 @@ body {
   cursor: pointer;
   box-shadow: 0 0 3px rgb(145, 144, 144);
 
-
   display: flex;
 }
 
 .Friends_title {
   font-size: 1.1rem;
   display: flex;
-
+  background-color: #527cc5;
+  height: 50px;
+  width: 320px;
+  border-radius: 10px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   text-size-adjust: 100%;
@@ -1656,7 +1649,6 @@ body {
   font-size: 1.4rem;
 }
 
-
 .img_user_creat_post_ {
   width: 35px;
   height: 35px;
@@ -1706,7 +1698,6 @@ body {
   border: 0.5px solid #dbdbdb;
 }
 
-
 .icon_pen_ {
   font-size: 1.25rem;
 }
@@ -1715,9 +1706,6 @@ body {
 
   transition: all 0.3s;
 }
-
-
-
 
 .upload_media_post_ {
   border-top: 0.5px solid #dbdbdb;
@@ -1777,8 +1765,6 @@ body {
 .rubbish {
   font-size: 18px;
 }
-
-
 
 /***************************profile********************************/
 
@@ -1896,12 +1882,9 @@ body {
   cursor: pointer;
 }
 
-
-
 /*************************************** LEFT HOME *************/
 
 .left_home {
-
 }
 
 .suggestions_and_box {
@@ -1940,7 +1923,7 @@ body {
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-gap: 10px;
+  gap: 10px;
   margin-left: 60px;
   padding: 10px;
 }
@@ -1954,7 +1937,7 @@ gap: 10px;
   cursor: pointer;
 }
 
-.user_rod_suggestions:hover{
+.user_rod_suggestions:hover {
   background-color: #e7dfdf;
 }
 
@@ -1975,7 +1958,7 @@ gap: 10px;
 
 .user_sug_img {
   width: 40px;
-  height:40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
@@ -1983,11 +1966,11 @@ gap: 10px;
   border: 1px solid #fff;
 }
 
-.icon_sug{
+.icon_sug {
   font-size: 19px;
 }
 
-.spiner{
+.spiner {
   display: flex;
   margin-top: 240px;
 
@@ -1995,4 +1978,3 @@ gap: 10px;
   align-items: center;
   color: #e61717;
 }
-
