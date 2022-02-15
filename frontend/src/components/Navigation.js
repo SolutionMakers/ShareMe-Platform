@@ -7,6 +7,7 @@ import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
 import { FaFacebookMessenger } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
+import { MdOutlineLogout } from "react-icons/md";
 const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -144,16 +145,15 @@ const Navigation = () => {
           <div className="userName_font_nav">{state.userName}</div>
         </div>
         <div className="style_logOut">
-          <button
+          <MdOutlineLogout
             className="LogOut"
             onClick={() => {
               dispatch(logout());
               localStorage.clear();
               navigate("/");
             }}
-          >
-            LogOut
-          </button>
+          />
+        
         </div>
       </div>
     </>

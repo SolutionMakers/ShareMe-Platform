@@ -112,7 +112,7 @@
 .slogan {
   font-size: 60px;
   font-weight: bold;
-  color: #e60023;
+  color: #527cc5;
 }
 .qout {
   font-size: 22px;
@@ -180,17 +180,18 @@
 .craete_new_account {
   width: 250px;
   height: 50px;
-  background-color: #df0021;
+  background-color: #dab361;
   color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 19px;
   font-weight: bold;
+  transition: all 0.3s;
 }
 
 .craete_new_account:hover {
-  background-color: #b6001b;
+  background-color: #caa451;
 }
 
 .register-content {
@@ -252,7 +253,7 @@
 .buttonRegs {
   width: 250px;
   height: 50px;
-  background-color: #df0021;
+  background-color: #527cc5;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -262,14 +263,14 @@
 }
 
 .buttonRegs:hover {
-  background-color: #b6001b;
+  background-color: #2a58a7;
 }
 
 .button_login {
   width: 390px;
   height: 50px;
   outline-style: none;
-  background-color: #17a6e6;
+  background-color: #527cc5;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -306,11 +307,11 @@ body {
 .chat {
   font-size: 30px;
   cursor: pointer;
-  color: #17a6e6;
+  color: #527cc5;
 }
 
 .chat:hover {
-  color: #0982b9;
+  color: #345da3;
 }
 
 .user_nav {
@@ -344,7 +345,7 @@ body {
   gap: 15px;
 }
 .logo {
-  color: #1877f2;
+  color: #527cc5;
   font-size: 25px;
   /* margin-top: 10px; */
   font-family: Georgia, "Times New Roman", Times, serif;
@@ -382,7 +383,7 @@ body {
 }
 
 .icon_search {
-  color: #0982b9;
+  color: #527cc5;
   font-size: 20px;
 }
 
@@ -496,25 +497,26 @@ body {
   color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
-  width: 110px;
+  width: 40px;
   height: 27px;
+
   font-size: 15px;
-  background-color: #17a6e6;
+  background-color: #527cc5;
   font-weight: bold;
 }
 
 .LogOut:hover {
-  background-color: #0982b9;
+  background-color: #325ca5;
 }
 
 .home_icon {
   font-size: 37px;
-  color: #17a6e6;
+  color: #527cc5;
   cursor: pointer;
 }
 
 .home_icon:hover {
-  color: #0982b9;
+  color: #325ea8;
 }
 
 /*---------------------------------Home Page -------------------*/
@@ -668,7 +670,7 @@ body {
   cursor: pointer;
 
   font-size: 21px;
-  color: #17a6e6;
+  color: #527cc5;
 }
 
 /*-----------------------------Create New Post Home -------------------*/
@@ -776,7 +778,7 @@ body {
   align-items: center;
   padding: 6px 16px;
   margin-right: 10px;
-  background: #17a6e6;
+  background: #527cc5;
   border-radius: 500px;
   font-size: 0.85rem;
   color: #fdfdfd;
@@ -1276,13 +1278,17 @@ body {
   margin: 26px 0;
 }
 
+.left_side_profile{
+  height: 1090px;
+ 
+}
 .userBasicInfo_title {
   display: flex;
 
   flex-direction: column;
-  width: 20rem;
+  width: 320px;
 
-  height: 3rem;
+  height: 48px;
 
   background-color: #527cc5;
   border-radius: 0.6rem;
@@ -1404,7 +1410,7 @@ body {
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
 
-  margin: 400px 0;
+  margin:400px 0;
 
   margin-left: 12.2rem;
 }
@@ -1449,7 +1455,6 @@ body {
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
-  /* color: #344258; */
   color: #ffffff;
   box-sizing: inherit;
   margin: 0;
@@ -1482,9 +1487,7 @@ body {
   flex-direction: column;
   border-radius: 0.6rem;
   gap: 13px;
-  /*-webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);*/
-  margin: -150px;
+  margin: -170px;
   margin-left: 12.2rem;
 }
 
@@ -1493,9 +1496,6 @@ body {
   padding: 10px;
   border-radius: 0.6rem;
   gap: 7px;
-
-  /*width: 250px;
-  height: 250px;*/
   align-items: center;
 }
 
@@ -1514,7 +1514,8 @@ body {
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  /* margin: 26px 0px -200px 0px; */
+
+ 
 }
 
 .imges_friend_pic {
@@ -1886,20 +1887,20 @@ body {
 
 
 
-.suggestions_and_box {
+.chat_with_friends {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.suggestions_word {
+.connect_word {
   font-weight: 600;
   font-size: 17.5px;
   display: flex;
   gap: 8px;
   justify-content: flex-start;
   padding-left: 10px;
-  width: 250px;
+  width: 270px;
   align-items: center;
   height: 45px;
   color: #ffffff;
@@ -1910,14 +1911,14 @@ body {
   margin-left: 60px;
 }
 
-.box_suggestions {
+.box_chat_home {
   display: flex;
 
   flex-direction: column;
-  width: 250px;
+  width: 270px;
 
-  height: 100%;
-
+  height: 300px;
+  
   background-color: #ffffff;
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
@@ -1925,6 +1926,26 @@ body {
   gap: 10px;
   margin-left: 60px;
   padding: 10px;
+
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  box-sizing: inherit;
+  color: #4a4a4a;
+  max-width: 100%;
+  /* position: relative; */
+  margin-bottom: 1.5rem;
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  border-radius: .85rem;
+  box-shadow: none;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center;
+  background-color: #cf7c6f;
+  background-image: url(https://friendkit.cssninja.io/assets/img/illustrations/cards/job-bg.svg);
+ 
 }
 
 .user_rod_suggestions {
@@ -1940,7 +1961,7 @@ body {
   background-color: #e7dfdf;
 }
 
-.user_sug_name {
+.user_fri_name {
   font-size: 1.1rem;
   display: flex;
 
@@ -1950,7 +1971,7 @@ body {
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
-  color: #344258;
+  color: #ffffff;
   margin: 0;
   font-weight: 500;
 }
@@ -1969,15 +1990,8 @@ body {
   font-size: 19px;
 }
 
-.spiner {
-  display: flex;
-  margin-top: 240px;
 
-  justify-content: center;
-  align-items: center;
-  color: #e61717;
-}
-
+/****************************Draft****************************/
 .chat_style{
 
   width: 300px;
@@ -2024,7 +2038,7 @@ body {
     gap: 8px;
     justify-content: flex-start;
     padding-left: 10px;
-    width: 250px;
+    width: 270px;
     align-items: center;
     height: 45px;
     color: #ffffff;
@@ -2039,7 +2053,7 @@ body {
     display: flex;
   
     flex-direction: column;
-    width: 250px;
+    width: 270px;
   
     height: 100%;
   
