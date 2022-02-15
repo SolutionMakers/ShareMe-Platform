@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {  updatePost, deletePost } from "../../reducers/post/index";
+import { updatePost, deletePost } from "../../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
@@ -13,7 +13,7 @@ import {
 import { MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import noAvatar from "../../images/noAvatar.png";
-import { format} from "timeago.js";
+import { format } from "timeago.js";
 import "../SinglePostPage/SinglePostPage.css";
 
 const SinglePostPage = () => {
@@ -315,7 +315,6 @@ const SinglePostPage = () => {
                   <BsChatDotsFill className="postCommentText" />
                   comments: {comments.length}
                 </div>
-                {/* <span>Comments: {comments.length}</span> */}
               </div>
             </div>
             <div className="all_comments">
@@ -360,6 +359,9 @@ const SinglePostPage = () => {
                 }}
                 type="text"
                 placeholder="write comment here..."
+                onKeyPress={(event) => {
+                  event.key === "Enter" && createNewComment();
+                }}
               />{" "}
               <BsPlusCircleFill className="apple" onClick={createNewComment} />
             </div>
