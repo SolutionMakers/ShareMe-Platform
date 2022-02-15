@@ -399,15 +399,15 @@ const ProfilePage = () => {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="feather feather-camera_pagePost"
-                      id="icon_cam_svg"
+                      className="feather_p"
+                      id="icon_cam_svg_P"
                     >
                       <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
                       <circle cx="12" cy="13" r="4"></circle>
                     </svg>
                     <span className="media_">Media</span>
                     <input
-                      id="feed-upload-input-2_pagePost"
+                   id="feed-2"
                       type="file"
                       accept=".png, .jpg, .jpeg"
                       onChange={(e) => {
@@ -570,7 +570,7 @@ const ProfilePage = () => {
                     </svg>
                     <span className="media_">Media</span>
                     <input
-                      id="feed-upload-input-2_pagePost"
+                      id="feed-2"
                       type="file"
                       accept=".png, .jpg, .jpeg"
                       onChange={(e) => {
@@ -785,18 +785,18 @@ const ProfilePage = () => {
                                 className="overlay_Edit"
                               ></div>
                               <div className="modal-content_Edit">
-                                <div className="Edit_post_pagePost">
-                                  <div className="pen_publish_pagePost">
-                                    <BsPen className="icon_pen_pagePost" />
-                                    <div className="publish_pagePost">
+                                <div className="Edit_post_pagePost_p">
+                                  <div className="pen_publish_p">
+                                    <BsPen className="icon_pen_p" />
+                                    <div className="publish_p">
                                       Edit Post
                                     </div>
                                   </div>
 
-                                  <div className="border_bottom_create_pagePost"></div>
-                                  <div className="content_create_post_pagePost">
+                                  <div className="border_bottom_create_p"></div>
+                                  <div className="content_create_post_p">
                                     <img
-                                      className="img_user_creat_post_pagePost"
+                                      className="img_user_creat_post_p"
                                       src={
                                         imgUser !== "undefined"
                                           ? imgUser
@@ -805,8 +805,8 @@ const ProfilePage = () => {
                                     />
 
                                     <textarea
-                                      id="publish_pagePost"
-                                      className="textarea_pagePost"
+                                      id="publish_p"
+                                      className="textarea_p"
                                       defaultValue={element.description}
                                       rows="3"
                                       spellCheck="false"
@@ -815,7 +815,7 @@ const ProfilePage = () => {
                                       }}
                                     ></textarea>
                                   </div>
-                                  <div className="upload_media_post_pagePost">
+                                  <div className="upload_media_post_p">
                                     <button
                                       className="Delete_button"
                                       onClick={(e) => {
