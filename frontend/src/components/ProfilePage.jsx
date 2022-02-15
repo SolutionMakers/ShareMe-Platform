@@ -51,9 +51,8 @@ const ProfilePage = () => {
     };
   });
   /************************************************************************************************************** */
-
   let postsImages = userPosts.filter((e, i) => {
-    return e.media !== "";
+    return e.media !== "" && e.media.includes("image");
   });
   /************************************************************************************************************** */
   const toggleModal = (id) => {
@@ -385,33 +384,32 @@ const ProfilePage = () => {
                     }
                   />
 
-
-                   <div className="buttons_upload_flex">
-                  <div className="compose">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather_p"
-                      id="icon_cam_svg_P"
-                    >
-                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                      <circle cx="12" cy="13" r="4"></circle>
-                    </svg>
-                    <span className="media_">Media</span>
-                    <input
-                   id="feed-2"
-                      type="file"
-                      accept=".png, .jpg, .jpeg"
-                      onChange={(e) => {
-                        setUploadedCover(e.target.files[0])
-                      }}
+                  <div className="buttons_upload_flex">
+                    <div className="compose">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="feather_p"
+                        id="icon_cam_svg_P"
+                      >
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                      </svg>
+                      <span className="media_">Media</span>
+                      <input
+                        id="feed-2"
+                        type="file"
+                        accept=".png, .jpg, .jpeg"
+                        onChange={(e) => {
+                          setUploadedCover(e.target.files[0]);
+                        }}
                       />
                     </div>
 
@@ -420,8 +418,6 @@ const ProfilePage = () => {
                       onClick={() => {
                         uploadCoverPhoto();
                         toggleModalCover();
-
-
                       }}
                     >
                       Upload
@@ -785,9 +781,7 @@ const ProfilePage = () => {
                                 <div className="Edit_post_pagePost_p">
                                   <div className="pen_publish_p">
                                     <BsPen className="icon_pen_p" />
-                                    <div className="publish_p">
-                                      Edit Post
-                                    </div>
+                                    <div className="publish_p">Edit Post</div>
                                   </div>
 
                                   <div className="border_bottom_create_p"></div>
@@ -844,7 +838,13 @@ const ProfilePage = () => {
 
                     <div className="postCenter">
                       <p className="postText">{element.description}</p>
-                      <img className="postImg" src={element.media} alt="" />
+                      {element.media.includes("video") ? (
+                        <video controls className="postImg">
+                          <source src={element.media} type="video/mp4" />
+                        </video>
+                      ) : (
+                        <img className="postImg" src={element.media} alt="" />
+                      )}
                     </div>
 
                     <div className="postBottom">
