@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {  updatePost, deletePost } from "../reducers/post/index";
+import { updatePost, deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
@@ -372,6 +372,7 @@ const ProfilePage = () => {
                 <div className="modal_edit_pic_cover">
                   <span className="font_span_pic">Edit your Cover</span>
                   <img
+                    alt="image"
                     className="rectangular_img"
                     src={
                       userInfo.profilecover !== "undefined"
@@ -429,6 +430,7 @@ const ProfilePage = () => {
               <div onClick={toggleCoverImg} className="overlay_cover"></div>
               <div className="modal-content">
                 <img
+                  alt="image"
                   onClick={toggleCoverImg}
                   className="cover_photo_for_modal"
                   src={
@@ -445,6 +447,7 @@ const ProfilePage = () => {
           )}
 
           <img
+            alt="image"
             onClick={toggleCoverImg}
             className="cover_photo"
             src={
@@ -458,6 +461,7 @@ const ProfilePage = () => {
         <div className="all_avatar">
           <div className="avatar">
             <img
+              alt="image"
               className="avatar-image"
               src={
                 userInfo.profileimage !== "undefined"
@@ -531,6 +535,7 @@ const ProfilePage = () => {
               <div className="modal_edit_pic_profile">
                 <span className="font_span_pic">Edit your picture</span>
                 <img
+                  alt="image"
                   className="square_img"
                   src={
                     userInfo.profileimage !== "undefined"
@@ -661,6 +666,7 @@ const ProfilePage = () => {
               <div className="All_img">
                 <div className="imgees">
                   <img
+                    alt="image"
                     className="imges_box"
                     src={
                       userInfo.profilecover !== "undefined"
@@ -670,6 +676,7 @@ const ProfilePage = () => {
                   />
 
                   <img
+                    alt="image"
                     className="imges_box"
                     src={
                       userInfo.profileimage !== "undefined"
@@ -680,7 +687,13 @@ const ProfilePage = () => {
 
                   {postsImages ? (
                     postsImages.map((element, index) => {
-                      return <img src={element.media} className="imges_box" />;
+                      return (
+                        <img
+                          alt="image"
+                          src={element.media}
+                          className="imges_box"
+                        />
+                      );
                     })
                   ) : (
                     <></>
@@ -703,6 +716,7 @@ const ProfilePage = () => {
                       <>
                         <div className="flex_friend_name">
                           <img
+                            alt="image"
                             src={
                               e.profileimage !== "undefined"
                                 ? e.profileimage
@@ -746,6 +760,7 @@ const ProfilePage = () => {
                       <div className="postTopLeft">
                         <Link to={`/profile/${element.user_id}`}>
                           <img
+                            alt="image"
                             className="postProfileImg"
                             width="100%"
                             src={
@@ -839,7 +854,8 @@ const ProfilePage = () => {
                           <source src={element.media} type="video/mp4" />
                         </video>
                       ) : (
-                        <img className="postImg" src={element.media} alt="" />
+                        <img alt="image"
+                        className="postImg" src={element.media} alt="" />
                       )}
                     </div>
 
