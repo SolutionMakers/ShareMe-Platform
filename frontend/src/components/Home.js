@@ -167,39 +167,15 @@ const Home = () => {
   return (
     <div className="contain_all_home">
       <div className="left_home">
-        <div className="suggestions_and_box">
-          <div className="suggestions_word">
-            <FaUserFriends className="icon_sug" /> Suggestions
-          </div>
-          <div className="box_suggestions">
-            {allUsers.length ? (
-              allUsers.map((e, i) => {
-                return (
-                  <>
-                    <div
-                      className="user_rod_suggestions"
-                      onClick={() => {
-                        navigation(`/profile/${e.id}`);
-                      }}
-                    >
-                      <img
-                        className="user_sug_img"
-                        src={
-                          e.profileimage !== "undefined"
-                            ? e.profileimage
-                            : noAvatar
-                        }
-                      />
-                      <div className="user_sug_name">{e.userName}</div>
-                    </div>
-                  </>
-                );
-              })
-            ) : (
-              <></>
-            )}
-          </div>
-        </div>
+
+        
+
+      <div className="chat_style">
+         <img src="https://res.cloudinary.com/dvg9eijgb/image/upload/v1644942544/un8ydzwuqx7mqcdooskk.png" className="img_chat_poster" onClick={()=>{
+               navigation("/chat");
+         }}/>
+</div>
+
       </div>
 
       <div className="middle_home">
@@ -411,7 +387,34 @@ const Home = () => {
           })}
         </div>
       </div>
-      <div className="rigth_home"></div>
+      <div className="rigth_home">
+      <div className="suggestions_and_box">
+          <div className="suggestions_word">
+            <FaUserFriends className="icon_sug" /> Suggestions
+          </div>
+          <div className="box_suggestions">
+            {allUsers.length ? (
+              allUsers.map((e, i) => {
+                return (
+                  <>
+                    <div
+                      className="user_rod_suggestions"
+                      onClick={() => {
+                        navigation(`/profile/${e.id}`);
+                      }}
+                    >
+                      <img className="user_sug_img" src={e.profileimage} />
+                      <div className="user_sug_name">{e.userName}</div>
+                    </div>
+                  </>
+                );
+              })
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
