@@ -13,7 +13,6 @@ const Chat = () => {
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
-      posts: state.postsReducer.posts,
       user_id: state.loginReducer.user_id,
       userName: state.loginReducer.userName,
     };
@@ -251,8 +250,6 @@ const Chat = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="right_side_chat">Details</div> */}
       </div>
     </>
   );
