@@ -201,6 +201,7 @@ const SinglePostPage = () => {
                 <div className="postTopLeft">
                   <Link to={`/profile/${post.user_id}`}>
                     <img
+                      alt="image"
                       className="postProfileImg"
                       width="100%"
                       src={
@@ -235,6 +236,7 @@ const SinglePostPage = () => {
                             <div className="border_bottom_create_s"></div>
                             <div className="content_create_post_s">
                               <img
+                                alt="image"
                                 className="img_user_creat_post_s"
                                 src={
                                   imgUser !== "undefined" ? imgUser : noAvatar
