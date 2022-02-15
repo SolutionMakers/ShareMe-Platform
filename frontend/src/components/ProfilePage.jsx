@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { setPosts, updatePost, deletePost } from "../reducers/post/index";
+import {  updatePost, deletePost } from "../reducers/post/index";
 import { useSelector, useDispatch } from "react-redux";
-import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   BsThreeDotsVertical,
   BsFillHeartFill,
-  BsFillHandThumbsUpFill,
   BsChatDotsFill,
   BsPen,
 } from "react-icons/bs";
@@ -28,14 +27,11 @@ const ProfilePage = () => {
   const [description, setDescription] = useState("");
   const [userPosts, setUserPosts] = useState([]);
   const [uploadedImage, setUploadedImage] = useState("");
-  const [profileimage, setProfileimage] = useState("");
-  const [profileCover, setProfileCover] = useState("");
   const [userInfo, setUserInfo] = useState([]);
   const [allLikes, setAllLikes] = useState([]);
   const [modalImg, setTModalImg] = useState(false);
   const [coverModal, setCoverModal] = useState(false);
   const [uploadedCover, setUploadedCover] = useState("");
-  const [friendsList, setFriendsList] = useState([]);
   const [myFriendsList, setMyFriendsList] = useState([]);
   const [show, setShow] = useState(true);
   const [coverShow, setCoverShow] = useState(false);
