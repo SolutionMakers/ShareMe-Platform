@@ -227,22 +227,22 @@ const SinglePostPage = () => {
                           className="overlay_Edit"
                         ></div>
                         <div className="modal-content_Edit">
-                          <div className="Edit_post_pagePost">
-                            <div className="pen_publish_pagePost">
-                              <BsPen className="icon_pen_pagePost" />
-                              <div className="publish_pagePost">Edit Post</div>
+                          <div className="Edit_post_pagePost_s">
+                            <div className="pen_publish_s">
+                              <BsPen className="icon_pen_s" />
+                              <div className="publish_s">Edit Post</div>
                             </div>
-                            <div className="border_bottom_create_pagePost"></div>
-                            <div className="content_create_post_pagePost">
+                            <div className="border_bottom_create_s"></div>
+                            <div className="content_create_post_s">
                               <img
-                                className="img_user_creat_post_pagePost"
+                                className="img_user_creat_post_s"
                                 src={
                                   imgUser !== "undefined" ? imgUser : noAvatar
                                 }
                               />
                               <textarea
                                 id="publish_pagePost"
-                                className="textarea_pagePost"
+                                className="textarea_s"
                                 defaultValue={post.description}
                                 rows="3"
                                 spellCheck="false"
@@ -251,7 +251,7 @@ const SinglePostPage = () => {
                                 }}
                               ></textarea>
                             </div>
-                            <div className="upload_media_post_pagePost">
+                            <div className="upload_media_post_s">
                               <button
                                 className="Delete_button"
                                 onClick={(e) => {
@@ -275,40 +275,6 @@ const SinglePostPage = () => {
                           </div>
                         </div>
                       </div>
-                      // <div className="modal_post">
-                      //   <div
-                      //     onClick={toggleModal}
-                      //     className="overlay_post"
-                      //   ></div>
-                      //   <div className="modal-content_post">
-                      //     <h2>Edit Post</h2>
-                      //     <button
-                      //       className="button_delete"
-                      //       onClick={() => {
-                      //         navigation("/home");
-                      //         handleDelete(id);
-                      //       }}
-                      //     >
-                      //       delete
-                      //     </button>
-                      //     <input
-                      //       type="text"
-                      //       placeholder="updated description"
-                      //       onChange={(e) => {
-                      //         setDescription(e.target.value);
-                      //       }}
-                      //     />
-                      //     <button onClick={() => handleUpdate(id)}>
-                      //       Update
-                      //     </button>
-                      //     <button
-                      //       className="close-modal_post"
-                      //       onClick={() => toggleModal("")}
-                      //     >
-                      //       CLOSE
-                      //     </button>
-                      //   </div>
-                      // </div>
                     )}
                   </div>
                 </div>
