@@ -343,7 +343,7 @@ const ProfilePage = () => {
                 <div className="modal_edit_pic_cover">
                   <span className="font_span_pic">Edit your Cover</span>
                   <img
-                    alt="image"
+                    alt="rect image"
                     className="rectangular_img"
                     src={
                       userInfo.profilecover !== "undefined"
@@ -401,7 +401,7 @@ const ProfilePage = () => {
               <div onClick={toggleCoverImg} className="overlay_cover"></div>
               <div className="modal-content">
                 <img
-                  alt="image"
+                  alt=" cover image"
                   onClick={toggleCoverImg}
                   className="cover_photo_for_modal"
                   src={
@@ -418,7 +418,7 @@ const ProfilePage = () => {
           )}
 
           <img
-            alt="image"
+            alt=" cover image"
             onClick={toggleCoverImg}
             className="cover_photo"
             src={
@@ -432,7 +432,7 @@ const ProfilePage = () => {
         <div className="all_avatar">
           <div className="avatar">
             <img
-              alt="image"
+              alt="avatar image"
               className="avatar-image"
               src={
                 userInfo.profileimage !== "undefined"
@@ -506,7 +506,7 @@ const ProfilePage = () => {
               <div className="modal_edit_pic_profile">
                 <span className="font_span_pic">Edit your picture</span>
                 <img
-                  alt="image"
+                  alt="square image"
                   className="square_img"
                   src={
                     userInfo.profileimage !== "undefined"
@@ -637,7 +637,7 @@ const ProfilePage = () => {
               <div className="All_img">
                 <div className="imgees">
                   <img
-                    alt="image"
+                    alt="image boxxx"
                     className="imges_box"
                     src={
                       userInfo.profilecover !== "undefined"
@@ -647,7 +647,7 @@ const ProfilePage = () => {
                   />
 
                   <img
-                    alt="image"
+                    alt="image boxx"
                     className="imges_box"
                     src={
                       userInfo.profileimage !== "undefined"
@@ -660,7 +660,7 @@ const ProfilePage = () => {
                     postsImages.map((element, index) => {
                       return (
                         <img
-                          alt="image"
+                          alt="image box"
                           src={element.media}
                           className="imges_box"
                         />
@@ -687,13 +687,12 @@ const ProfilePage = () => {
                       <>
                         <div className="flex_friend_name">
                           <img
-                            alt="image"
+                            alt=" undefined image"
                             src={
                               e.profileimage !== "undefined"
                                 ? e.profileimage
                                 : noAvatar
                             }
-                            alt=""
                             className="imges_friend_pic"
                             onClick={() => {
                               navigation(`/profile/${e.id}`);
@@ -731,7 +730,7 @@ const ProfilePage = () => {
                       <div className="postTopLeft">
                         <Link to={`/profile/${element.user_id}`}>
                           <img
-                            alt="image"
+                            alt="profile image"
                             className="postProfileImg"
                             width="100%"
                             src={
@@ -769,6 +768,7 @@ const ProfilePage = () => {
                                   <div className="border_bottom_create_p"></div>
                                   <div className="content_create_post_p">
                                     <img
+                                    alt="user image"
                                       className="img_user_creat_post_p"
                                       src={
                                         imgUser !== "undefined"
@@ -825,7 +825,7 @@ const ProfilePage = () => {
                           <source src={element.media} type="video/mp4" />
                         </video>
                       ) : (
-                        <img alt="image"
+                        <img alt="post image"
                         className="postImg" src={element.media} alt="" />
                       )}
                     </div>
