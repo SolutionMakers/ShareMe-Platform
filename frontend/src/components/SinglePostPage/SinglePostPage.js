@@ -214,10 +214,11 @@ const SinglePostPage = () => {
                   <span className="postDate">{format(post.created_at)}</span>
                 </div>
                 <div className="postTopRight">
-                  <BsThreeDotsVertical
+                  {post.user_id == state.user_id?( <BsThreeDotsVertical
                     className="icon_popup"
                     onClick={() => toggleModal(post.id)}
-                  />
+                  />):(<></>)}
+                 
                   <div>
                     {" "}
                     {modal && (
