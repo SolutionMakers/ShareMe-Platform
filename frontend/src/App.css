@@ -99,7 +99,6 @@
 }
 .container_login {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 80px;
@@ -108,16 +107,28 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
 }
 .slogan {
   font-size: 60px;
   font-weight: bold;
-  color: #527cc5;
+  color: #5FC9E4;
 }
 .qout {
   font-size: 22px;
+  color: #344258;
 }
 
+.logo_slogan{
+
+  height:190px;
+width: 190px;
+border-radius: 50%;
+object-fit: cover;
+
+}
 .Login {
   width: 410px;
   height: 390px;
@@ -180,7 +191,7 @@
 .craete_new_account {
   width: 250px;
   height: 50px;
-  background-color: #dab361;
+  background-color: #5FC9E4;
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -191,7 +202,7 @@
 }
 
 .craete_new_account:hover {
-  background-color: #caa451;
+  background-color: #2fadcc;
 }
 
 .register-content {
@@ -213,6 +224,7 @@
   display: flex;
   align-items: center;
   gap: 220px;
+  color:#527cc5 ;
 }
 
 .icon_close {
@@ -342,15 +354,20 @@ body {
   display: flex;
   align-items: center;
 
-  gap: 15px;
+  gap: 30px;
 }
 .logo {
-  color: #527cc5;
-  font-size: 25px;
-  /* margin-top: 10px; */
-  font-family: Georgia, "Times New Roman", Times, serif;
+  /* color: #527cc5; */
+  /* font-size: 25px; */
+  /* font-family: Georgia, "Times New Roman", Times, serif; */
+height: 40px;
+width: 40px;
+border-radius: 50%;
+
+
   cursor: pointer;
 }
+
 
 /******************************************Seacrh**********/
 
@@ -2019,7 +2036,7 @@ body {
     object-fit: cover;
   
     cursor: pointer;
-    /* box-shadow: 0 0 3px rgb(145, 144, 144); */
+  
   
   }
   
