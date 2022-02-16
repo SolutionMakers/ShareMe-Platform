@@ -10,10 +10,11 @@ import {
 } from "react-icons/bs";
 
 import { MdDeleteForever } from "react-icons/md";
+import { ImSad } from "react-icons/im";
 import { FiCamera } from "react-icons/fi";
-import { AiFillHourglass } from "react-icons/ai";
+import { AiFillHourglass,AiFillLock  } from "react-icons/ai";
 import { ImHome3 } from "react-icons/im";
-import { FaUserGraduate, FaVenusMars, FaUserCircle } from "react-icons/fa";
+import { FaUserGraduate, FaVenusMars, FaUserCircle} from "react-icons/fa";
 import { format } from "timeago.js";
 import axios from "axios";
 import noAvatar from "../images/noAvatar.png";
@@ -746,10 +747,11 @@ const ProfilePage = () => {
                         </div>
                       </div>
                       <div className="postTopRight">
-                        <BsThreeDotsVertical
+                        {element.user_id == state.user_id?( <BsThreeDotsVertical
                           className="icon_popup"
                           onClick={() => toggleModal(element.id)}
-                        />
+                        />):(<></>)}
+                       
                         <div>
                           {" "}
                           {modal && id == element.id && (
@@ -867,7 +869,27 @@ const ProfilePage = () => {
               );
             })
           ) : (
-            <div>No Posts for this user</div>
+            user_id == state.user_id? (<div className="Private">
+
+            <div className="lock_style"><ImSad className="lock_icon"/></div>
+            <div className="title_Private_column">
+            <div className="title_Private_bold">No posts yet</div>
+           
+            
+            </div>
+            
+                        </div>)
+                        
+                        :(<div className="Private">
+
+<div className="lock_style"><AiFillLock className="lock_icon"/></div>
+<div className="title_Private_column">
+<div className="title_Private_bold">This account is private</div>
+<div className="title_Private_weight">Follow this account to see their photos and videos</div>
+
+</div>
+
+            </div>)
           )}
         </div>
       </div>

@@ -2117,3 +2117,99 @@ body {
     color: #e61717;
   }
   
+  /*********************Lock Profile Page *********/
+  .Private{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .title_Private_column{
+
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    
+  }
+
+  .title_Private_bold{
+    font-weight: 600;
+    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+    font-size: 32px;
+  color: #344258;
+  }
+
+  .title_Private_weight{
+    font-size: 22px;
+    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  color: #505c6e;
+  }
+  .lock_icon{
+    font-size: 55px;
+    color:#527cc5 
+    ;
+   
+  }
+  .lock_style{
+    border-radius: 50%;
+    border: 0.5px solid #ffffff;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  }
+
+/*****************************No posts*****/
+.Private{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title_Private_column{
+
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  
+}
+
+.title_Private_bold{
+  font-weight: 600;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  "Helvetica Neue", Arial, sans-serif;
+  font-size: 32px;
+color: #344258;
+}
+
+.title_Private_weight{
+  font-size: 22px;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  "Helvetica Neue", Arial, sans-serif;
+color: #505c6e;
+}
+.lock_icon{
+  font-size: 55px;
+  color:#527cc5 
+  ;
+ 
+}
+.lock_style{
+  border-radius: 50%;
+  border: 0.5px solid #ffffff;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
