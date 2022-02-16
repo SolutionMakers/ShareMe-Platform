@@ -57,7 +57,11 @@ const Navigation = () => {
     <>
       <div className="nav">
         <div className="logo_search">
-          <div className="logo">logo</div>
+          <img className="logo" src="https://res.cloudinary.com/dvg9eijgb/image/upload/v1645002900/su1xnqw4k9jxcaxmyuwu.png" onClick={()=>{
+             navigate(`/home`);
+          }}/>
+            
+      
 
           <div className="input_and_icon">
             <div className="search">
