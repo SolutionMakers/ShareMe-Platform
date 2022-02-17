@@ -60,9 +60,6 @@ ShareMe allows you to share your posts, ideas, photos, and videos, edit them, an
 5- run the backend server by npm run dev
 
 ```
-## 🌎 Demo <a name="Demo"></a> **[ShareMe](https://sharee-mee.netlify.app/)**
-
-
 
 ## 🎈 Usage <a name="usage"></a>
 
