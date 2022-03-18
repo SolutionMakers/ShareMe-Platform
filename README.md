@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://res.cloudinary.com/dvg9eijgb/image/upload/v1647279278/mxvkm10itp3ntzofuu8u.png" alt="Project logo"></a>
+ <img width=200px height=200px src="https://res.cloudinary.com/dvg9eijgb/image/upload/v1645002900/su1xnqw4k9jxcaxmyuwu.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">ShareMe</h3>
