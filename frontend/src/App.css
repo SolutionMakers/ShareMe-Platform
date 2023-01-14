@@ -26,7 +26,7 @@
 * {
   box-sizing: border-box;
   font-family: "Roboto", -apple-system, system-ui, BlinkMacSystemFont, Segoe UI,
-    Helvetica Neue, Arial, sans-serif;
+  Helvetica Neue, Arial, sans-serif;
 }
 .App {
   display: flex;
@@ -124,9 +124,9 @@
 .logo_slogan{
 
   height:190px;
-width: 190px;
-border-radius: 50%;
-object-fit: cover;
+  width: 190px;
+  border-radius: 50%;
+  object-fit: cover;
 
 }
 .Login {
@@ -360,9 +360,9 @@ body {
   /* color: #527cc5; */
   /* font-size: 25px; */
   /* font-family: Georgia, "Times New Roman", Times, serif; */
-height: 40px;
-width: 40px;
-border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 
 
   cursor: pointer;
@@ -373,14 +373,14 @@ border-radius: 50%;
 
 .search {
   display: flex;
-  /* padding-left: 5px; */
   align-items: center;
+  justify-content: center;
   background-color: #f0f2f5;
   border-radius: 15px;
   border: none;
   outline: none;
   z-index: 2;
-  /* margin-top: 115px; */
+  position: relative;
 }
 
 .input_search {
@@ -425,16 +425,18 @@ border-radius: 50%;
   display: flex;
   flex-direction: column;
   gap: 9px;
+  position: absolute;
+  top: 35px;
   background-color: #ffffff;
-  width: 227px;
+  width: 95%;
   height: 250px;
-  border-radius: 2px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
   padding-top: 5px;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  overflow-y: scroll;
+
 }
 
 .user_info_rod {
@@ -443,14 +445,16 @@ border-radius: 50%;
   align-items: center;
   padding-left: 8px;
   font-size: 20px;
-
   height: 50px;
   gap: 5px;
-  border-bottom: 0.5px solid #e7dfdf;
   cursor: pointer;
+  padding: 6px;
   color: #383a46;
 }
 
+.user_info_rod:not(:last-child) {
+  border-bottom: 1px solid #e7dfdf;
+}
 .user_info_rod:hover {
   background-color: #e7dfdf;
 }
@@ -766,8 +770,8 @@ border-radius: 50%;
   max-width: 100%;
   width: 100%;
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  "Helvetica", "Arial", sans-serif;
   font-size: 0.9rem;
   cursor: pointer;
 }
@@ -786,7 +790,7 @@ border-radius: 50%;
   font-weight: 400;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
   box-sizing: inherit;
   position: relative;
@@ -808,7 +812,7 @@ border-radius: 50%;
   text-size-adjust: 100%;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
   font-size: 0.85rem;
   color: #ffffff;
@@ -825,8 +829,8 @@ border-radius: 50%;
   box-sizing: inherit;
   margin: 0;
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  "Helvetica", "Arial", sans-serif;
   position: absolute;
   top: 0;
   left: 0;
@@ -858,7 +862,7 @@ border-radius: 50%;
   transition: all 0.3s;
   border: none;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
 }
 
 /*--------------------------Profile Page Css ------------------------------------------*/
@@ -871,7 +875,7 @@ border-radius: 50%;
   font-weight: 400;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   color: #344258;
   box-sizing: inherit;
   margin-left: -0.75rem;
@@ -917,7 +921,7 @@ border-radius: 50%;
   font-weight: 400;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
   box-sizing: inherit;
   position: relative;
@@ -946,7 +950,7 @@ border-radius: 50%;
   text-size-adjust: 100%;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
   font-size: 0.85rem;
   color: #ffffff;
@@ -966,7 +970,7 @@ border-radius: 50%;
   font-weight: 600;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
   box-sizing: inherit;
   position: relative;
@@ -1096,7 +1100,7 @@ border-radius: 50%;
   font-weight: 600;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
   box-sizing: inherit;
   position: relative;
@@ -1146,7 +1150,7 @@ border-radius: 50%;
   position: absolute;
   background: #3d70b2;
   box-shadow: 0 14px 26px -12px rgba(61, 112, 178, 0.42),
-    0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(61, 112, 178, 0.2) !important;
+  0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(61, 112, 178, 0.2) !important;
   cursor: pointer;
   margin-top: 7rem;
   margin-left: 4.5rem;
@@ -1176,7 +1180,7 @@ border-radius: 50%;
   background-color: #527cc5;
 
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   position: absolute;
   z-index: 2;
 }
@@ -1189,7 +1193,7 @@ border-radius: 50%;
 
   border-radius: 50%;
   box-shadow: 0 14px 26px -12px rgba(85, 150, 230, 0.42),
-    0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(85, 150, 230, 0.2) !important;
+  0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(85, 150, 230, 0.2) !important;
 
   cursor: pointer;
   color: #fff;
@@ -1212,7 +1216,7 @@ border-radius: 50%;
   padding-top: 75px;
   font-size: 1.75rem;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   text-align: center;
   box-sizing: inherit;
   margin: 0;
@@ -1267,7 +1271,7 @@ border-radius: 50%;
   border: none;
   width: 7rem;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   position: absolute;
   z-index: 2;
 }
@@ -1297,7 +1301,7 @@ border-radius: 50%;
 
 .left_side_profile{
   height: 1090px;
- 
+
 }
 .userBasicInfo_title {
   display: flex;
@@ -1322,7 +1326,7 @@ border-radius: 50%;
 
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   /* color: #344258; */
   color: #ffffff;
   font-weight: 500;
@@ -1338,7 +1342,7 @@ border-radius: 50%;
   text-size-adjust: 100%;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   /* color: #344258; */
   box-sizing: inherit;
   margin: 0;
@@ -1355,7 +1359,7 @@ border-radius: 50%;
 
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   color: #344258;
 
   padding: 5px 0px 6px 10px;
@@ -1373,7 +1377,7 @@ border-radius: 50%;
   text-size-adjust: 100%;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
 
   font-style: inherit;
   display: block;
@@ -1392,7 +1396,7 @@ border-radius: 50%;
 
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   color: #344258;
 
   padding: 5px 0px 6px 10px;
@@ -1471,7 +1475,7 @@ border-radius: 50%;
   text-size-adjust: 100%;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   color: #ffffff;
   box-sizing: inherit;
   margin: 0;
@@ -1490,7 +1494,7 @@ border-radius: 50%;
   font-weight: 400;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   color: #344258;
   box-sizing: inherit;
   width: 33.33333337%;
@@ -1532,7 +1536,7 @@ border-radius: 50%;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
 
- 
+
 }
 
 .imges_friend_pic {
@@ -1558,7 +1562,7 @@ border-radius: 50%;
   text-size-adjust: 100%;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
 
   color: #ffffff;
   box-sizing: inherit;
@@ -1570,7 +1574,7 @@ border-radius: 50%;
 
 .follow_button {
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   width: 140px;
   height: 35px;
   color: white;
@@ -1589,7 +1593,7 @@ border-radius: 50%;
 
 .unfollow_button {
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   width: 140px;
   height: 35px;
   color: rgb(255, 255, 255);
@@ -1701,8 +1705,8 @@ border-radius: 50%;
   max-width: 100%;
   width: 100%;
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  "Helvetica", "Arial", sans-serif;
   font-size: 0.9rem;
 }
 .content_create_post_ {
@@ -1750,7 +1754,7 @@ border-radius: 50%;
   transition: all 0.3s;
   border: none;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
 }
 
 .button_Save:hover {
@@ -1773,7 +1777,7 @@ border-radius: 50%;
   transition: all 0.3s;
   border: none;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
 }
 
 .Delete_button:hover {
@@ -1852,8 +1856,8 @@ border-radius: 50%;
   max-width: 100%;
   width: 100%;
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  "Helvetica", "Arial", sans-serif;
   font-size: 0.9rem;
 }
 .content_create_post_p {
@@ -1889,8 +1893,8 @@ border-radius: 50%;
   box-sizing: inherit;
   margin: 0;
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    "Helvetica", "Arial", sans-serif;
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  "Helvetica", "Arial", sans-serif;
   position: absolute;
   top: 0;
   left: 0;
@@ -1935,7 +1939,7 @@ border-radius: 50%;
   width: 270px;
 
   height: 300px;
-  
+
   background-color: #ffffff;
   border-radius: 0.6rem;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
@@ -1962,7 +1966,7 @@ border-radius: 50%;
   background-position: center;
   background-color: #cf7c6f;
   background-image: url(https://friendkit.cssninja.io/assets/img/illustrations/cards/job-bg.svg);
- 
+
 }
 
 .user_rod_suggestions {
@@ -1987,7 +1991,7 @@ border-radius: 50%;
   text-size-adjust: 100%;
   line-height: 1.5;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  "Helvetica Neue", Arial, sans-serif;
   color: #ffffff;
   margin: 0;
   font-weight: 500;
@@ -2012,175 +2016,175 @@ border-radius: 50%;
 .chat_style{
 
   width: 300px;
-    height:350px;
-    margin-left:70px;
-    border-radius: 7px;
+  height:350px;
+  margin-left:70px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    background-color: #ffffff;
-    cursor: pointer;
-  }
-  
-  .chat_style:hover{
-    background-color: #e1ddee;
-    
-  
-  }
-  .img_chat_poster{
-    width: 250px;
-    /* height:350px; */
-    border-radius: 5%;
-    object-fit: cover;
-  
-    cursor: pointer;
-  
-  
-  }
-  
-  
-  /***************************************************Right****************************************************************************/
-  .suggestions_and_box {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .suggestions_word {
-    font-weight: 600;
-    font-size: 17.5px;
-    display: flex;
-    gap: 8px;
-    justify-content: flex-start;
-    padding-left: 10px;
-    width: 270px;
-    align-items: center;
-    height: 45px;
-    color: #ffffff;
-    border-radius: 0.6rem;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    background-color: #527cc5;
-    margin-left:75px;
-  }
-  
-  .box_suggestions {
-    display: flex;
-  
-    flex-direction: column;
-    width: 270px;
-  
-    height: 100%;
-  
-    background-color: #ffffff;
-    border-radius: 0.6rem;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.chat_style:hover{
+  background-color: #e1ddee;
+
+
+}
+.img_chat_poster{
+  width: 250px;
+  /* height:350px; */
+  border-radius: 5%;
+  object-fit: cover;
+
+  cursor: pointer;
+
+
+}
+
+
+/***************************************************Right****************************************************************************/
+.suggestions_and_box {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-    margin-left: 75px;
-    padding: 10px;
-  }
-  
-  .user_rod_suggestions {
-    display: flex;
-    padding-left: 10px;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 0.5px solid #dbdbdb;
-    cursor: pointer;
-  }
-  
-  .user_rod_suggestions:hover{
-    background-color: #e7dfdf;
-  }
-  
-  .user_sug_name {
-    font-size: 1.1rem;
-    display: flex;
-  
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    text-size-adjust: 100%;
-    line-height: 1.5;
-    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-      "Helvetica Neue", Arial, sans-serif;
-    color: #344258;
-    margin: 0;
-    font-weight: 500;
-  }
-  
-  .user_sug_img {
-    width: 40px;
-    height:40px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-    box-shadow: 0 0 3px rgb(145, 144, 144);
-    border: 1px solid #fff;
-  }
-  
-  .icon_sug{
-    font-size: 19px;
-  }
-  
-  .spiner{
-    display: flex;
-    margin-top: 240px;
-  
-    justify-content: center;
-    align-items: center;
-    color: #e61717;
-  }
-  
-  /*********************Lock Profile Page *********/
-  .Private{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+}
 
-  .title_Private_column{
+.suggestions_word {
+  font-weight: 600;
+  font-size: 17.5px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  padding-left: 10px;
+  width: 270px;
+  align-items: center;
+  height: 45px;
+  color: #ffffff;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  background-color: #527cc5;
+  margin-left:75px;
+}
 
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-    
-  }
+.box_suggestions {
+  display: flex;
 
-  .title_Private_bold{
-    font-weight: 600;
-    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
-    font-size: 32px;
+  flex-direction: column;
+  width: 270px;
+
+  height: 100%;
+
+  background-color: #ffffff;
+  border-radius: 0.6rem;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  gap: 10px;
+  margin-left: 75px;
+  padding: 10px;
+}
+
+.user_rod_suggestions {
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 0.5px solid #dbdbdb;
+  cursor: pointer;
+}
+
+.user_rod_suggestions:hover{
+  background-color: #e7dfdf;
+}
+
+.user_sug_name {
+  font-size: 1.1rem;
+  display: flex;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  line-height: 1.5;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  "Helvetica Neue", Arial, sans-serif;
   color: #344258;
-  }
+  margin: 0;
+  font-weight: 500;
+}
 
-  .title_Private_weight{
-    font-size: 22px;
-    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+.user_sug_img {
+  width: 40px;
+  height:40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgb(145, 144, 144);
+  border: 1px solid #fff;
+}
+
+.icon_sug{
+  font-size: 19px;
+}
+
+.spiner{
+  display: flex;
+  margin-top: 240px;
+
+  justify-content: center;
+  align-items: center;
+  color: #e61717;
+}
+
+/*********************Lock Profile Page *********/
+.Private{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title_Private_column{
+
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+
+}
+
+.title_Private_bold{
+  font-weight: 600;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  "Helvetica Neue", Arial, sans-serif;
+  font-size: 32px;
+  color: #344258;
+}
+
+.title_Private_weight{
+  font-size: 22px;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+  "Helvetica Neue", Arial, sans-serif;
   color: #505c6e;
-  }
-  .lock_icon{
-    font-size: 55px;
-    color:#527cc5 
-    ;
-   
-  }
-  .lock_style{
-    border-radius: 50%;
-    border: 0.5px solid #ffffff;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  }
+}
+.lock_icon{
+  font-size: 55px;
+  color:#527cc5
+;
+
+}
+.lock_style{
+  border-radius: 50%;
+  border: 0.5px solid #ffffff;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
 
 /*****************************No posts*****/
 .Private{
@@ -2194,7 +2198,7 @@ border-radius: 50%;
   display: flex;
   flex-direction: column;
   text-align: start;
-  
+
 }
 
 .title_Private_bold{
@@ -2202,20 +2206,20 @@ border-radius: 50%;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
   "Helvetica Neue", Arial, sans-serif;
   font-size: 32px;
-color: #344258;
+  color: #344258;
 }
 
 .title_Private_weight{
   font-size: 22px;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
   "Helvetica Neue", Arial, sans-serif;
-color: #505c6e;
+  color: #505c6e;
 }
 .lock_icon{
   font-size: 55px;
-  color:#527cc5 
-  ;
- 
+  color:#527cc5
+;
+
 }
 .lock_style{
   border-radius: 50%;
